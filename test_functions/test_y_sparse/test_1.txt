@@ -1,0 +1,2 @@
+g++ Tst_YSpars.cpp Y_Sparse.cpp Bus.cpp H_Bus.h H_header.h H_Line.h H_NBus.h header.cpp NBus.cpp -o test
+
