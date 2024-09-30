@@ -1,21 +1,19 @@
 #include "H_header.h"
-#include "math.h"
 
 using namespace std;
 using namespace Eigen;
 
 
-
 void mac_em(int i ,int k,MatrixXd bus , int flag)
 {
-
+    
     MatrixXd mac_em_idx ,mac_pot ,mac_con ,eterm,pelect,qelect, phi
     ,psi_re , psi_im ,mac_ang ,mac_spd  ,eqprime ,vex ,edprime,busnum
     , mac_con,bus_int, curqg ,curdg ,eq , ed ,curq , curd ,pmech;
     
     MatrixXcd V ,curr , eprime , ei , rot;
     double busmva; //constant given in the input ...
-    int n_em; //size of the mac_em_idx
+    int n_em; //size of the mac_em_idxt
 
     complex<double> jay(0.0 ,1.0);
 
