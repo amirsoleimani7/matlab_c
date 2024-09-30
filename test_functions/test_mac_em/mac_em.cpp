@@ -97,4 +97,5 @@ void mac_em(MatrixXd bus ,MatrixXd mac_con ,MatrixXd bus_int ,MatrixXd mac_em_id
     cout << "ei  is \n" << ei  << "\n";
     cout << "eprime  is \n" << eprime  << "\n";
     cout << "v  is \n" << V  << "\n";
+
 }

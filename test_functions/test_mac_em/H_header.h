@@ -32,5 +32,7 @@ void lftap(MatrixXd& bus,MatrixXd& V,MatrixXd& volt_min ,MatrixXd& volt_max, Mat
 void red_ybus(MatrixXd bus_sol, MatrixXd line , MatrixXd mac_con, MatrixXd load_con,double basmva, MatrixXcd&  Y_gprf,
         MatrixXcd& Y_gncprf,MatrixXcd& Y_ncgprf, MatrixXcd& Y_ncprf, MatrixXcd& V_rgprf, MatrixXcd& V_rncprf, MatrixXd& boprf);
 void y_switch(MatrixXd& bus, MatrixXd& line,MatrixXd& load_con, MatrixXd& mac_con, MatrixXd& sw_con);
-
+void mac_em(MatrixXd bus ,MatrixXd mac_con ,MatrixXd bus_int ,MatrixXd mac_em_idx,
+        double i ,double k , double flag ,double n_em,double basmva);
+    
 #endif
