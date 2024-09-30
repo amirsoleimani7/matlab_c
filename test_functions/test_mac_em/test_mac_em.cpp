@@ -35,7 +35,7 @@ int main(){
 
     cout << "mac_con is \n" << mac_con << "\n";
 
-    MatrixXi bus_int(13, 1);
+    MatrixXd bus_int(13, 1);
     bus_int << 1,
             2,
             3,
@@ -52,7 +52,7 @@ int main(){
     
     cout << "bus_int is \n" << bus_int << "\n";
 
-    MatrixXi mac_em_idx(4, 1);
+    MatrixXd mac_em_idx(4, 1);
     mac_em_idx << 1,
                 2,
                 3,
