@@ -23,13 +23,17 @@ void mac_sub(MatrixXd bus, MatrixXd mac_con, MatrixXd bus_int, MatrixXd mac_sub_
         Eigen::MatrixXcd curr(4, 1), V(4, 1), ei(4, 1), rot(4, 1);
         complex<double> jay(0.0, 1.0);
 
-        MatrixXd bus_num = MatrixXd::Zero(n_sub,1);
         MatrixXd b = MatrixXd::Zero(n_sub,3);
+        // for(int i = 0 ; i < n_sub ;++i){
+        //     b(i ,0) = .8;
+        //     b(i ,1) = 1 + mac_con(i ,19);
+        //     b(i ,2) = 1.2 * (1 + mac_con(i, 20));
+        // }
 
         MatrixXd sat(3,3);
 
         sat <<  0.64, 0.8, 1,
-                1, 1, 1,
+                1, 1, 1,    
                 1.44, 1.2, 1;
 
         MatrixXd inv_sat = sat.inverse();
@@ -37,7 +41,6 @@ void mac_sub(MatrixXd bus, MatrixXd mac_con, MatrixXd bus_int, MatrixXd mac_sub_
         for (int li = 0 ;li < n_sub ;++li){
 
             int i = mac_sub_idx(li ,0) -1;
-
             busnum(i , 0) = mac_con(i , 1) -1;
 
             if(mac_con(i,7) != mac_con(i,12)){
@@ -66,7 +69,6 @@ void mac_sub(MatrixXd bus, MatrixXd mac_con, MatrixXd bus_int, MatrixXd mac_sub_
             mac_pot(i, 14) = (mac_con(i, 11) - mac_con(i, 12)) / mac_pot(i, 12);    //checked
             mac_pot(i, 10) = (mac_con(i, 10) - mac_con(i, 11)) / mac_pot(i, 12) * mac_pot(i, 14);   //diagram just ...
             
-
             eterm(i ,0) = bus((int)busnum(i , 0) ,1); //putting the v in there ..
             theta(i ,0 ) = bus((int)busnum(i , 0), 2) * M_PI / 180.0;
 
@@ -78,7 +80,6 @@ void mac_sub(MatrixXd bus, MatrixXd mac_con, MatrixXd bus_int, MatrixXd mac_sub_
 
             phi(i) = atan(qelect(i ,0) / pelect(i ,0));
 
-            curr(i) = curr(i) * exp((theta(i , 0) - phi(i, 0)) * jay);
             
             V(i) = (eterm(i ,0));
             V(i) = V(i) *  exp(theta(i,0)  * jay);
@@ -86,10 +87,13 @@ void mac_sub(MatrixXd bus, MatrixXd mac_con, MatrixXd bus_int, MatrixXd mac_sub_
             curr(i) = curr(i) * exp((theta(i , 0) - phi(i, 0)) * jay);
 
             ei(i) = V(i) + mac_con(i ,4) + jay * mac_con(i ,10) * curr(i ,0);
+
             mac_ang(i) = atan(ei(i).imag() / ei(i).real());
             mac_spd(i) = 1.0;
+            
             rot(i) = exp(-jay * mac_ang(i ,0)) * jay;
             curr(i) = rot(i) * curr(i);
+
             curdg(i) = curr(i).real();
             curqg(i) = curr(i).imag();
 
@@ -98,40 +102,48 @@ void mac_sub(MatrixXd bus, MatrixXd mac_con, MatrixXd bus_int, MatrixXd mac_sub_
 
             mcurmag(i) = abs(curr(i));
             pmech(i) = pelect(i ,0)* mac_pot(i ,0) + mac_con(i ,4)*(mcurmag(i) * mcurmag(i));            
+            
             V(i) = rot(i) * V(i);
-            ed(li) = V(li).real();
+            
+            ed(i) = V(i).real();
+            eq(i) = V(i).imag();
 
-            eq(li) = V(li).imag();
             eqra(i) = eq(i ,0) + mac_con(i ,4) * curqg(i ,0);
+            
             psidpp(i) = eqra(i) + mac_con(i,7)*curdg(i,0);
+            
             psikd(i,0) = eqra(i) + mac_con(i,3 )*curdg(i,0);
+            
             eqprime(i,0) = eqra(i) + mac_con(i,6)*curdg(i,0);
+            
             edra(i ,0) = -ed(i,0) - mac_con(i,4)*curdg(i,0);
 
             psiqpp(i ,0) = edra(i ,0) + mac_con(i,12)*curqg(i,0);
+            
             psikq(i,0) = edra(i ,0) + mac_con(i,3)*curqg(i,0);
+            
             edprime(i,0) = edra(i ,0) + mac_con(i,11)*curqg(i,0);
 
-
-            MatrixXd col_1 = inv_sat.transpose().col(0);
-            MatrixXd col_2 = inv_sat.transpose().col(1);
-            MatrixXd col_3 = inv_sat.transpose().col(2);
+            MatrixXd col_1 = inv_sat.row(0).transpose();
+            MatrixXd col_2 = inv_sat.row(1).transpose();
+            MatrixXd col_3 = inv_sat.row(2).transpose();
 
             b(i ,0) = .8;
             b(i ,1) = 1 + mac_con(i ,19);
-            b(i ,2) = 1.2 + mac_con(i ,20);
-            mac_pot(i, 2) = b.row(i).dot(inv_sat.row(0));  // Equivalent to b*inv_sat(1,:)'
-            mac_pot(i, 3) = b.row(i).dot(inv_sat.row(1));  // Equivalent to b*inv_sat(2,:)'
-            mac_pot(i, 4) = b.row(i).dot(inv_sat.row(2));  // Equivalent to b*inv_sat(3,:)'
+            b(i ,2) = 1.2 * (1 + mac_con(i, 20));
 
-            E_Isat(i ,0 ) = (eqprime(i,0) * eqprime(i, 0) * mac_pot(i ,2)) + (eqprime(i ,0) * mac_pot(i,3))  +mac_pot(i,4);
+            mac_pot(i, 2) =( b.row(i) * col_1).value(); // Dot product with the first column
+            mac_pot(i, 3) = (b.row(i) * col_2).value(); // Dot product with the second column
+            mac_pot(i, 4) = (b.row(i) * col_3).value(); // Dduct with the third column of inv_sat
+
+            E_Isat(i ,0 ) = (mac_pot(i ,2) *eqprime(i,0) * eqprime(i, 0)) + eqprime(i ,0) * mac_pot(i,3) + mac_pot(i,4);
 
             // this if statement is removed from the mac_tra code ...
-            if(E_Isat(i ,0) < .8){
-                E_Isat(i ,0) = eqprime(i);
+            if(eqprime(i ,0) < .8){
+                E_Isat(i ,0) = eqprime(i, 0);
             }
     
-            vex(i,0) = E_Isat(i) + mac_con(i,5) * (eqprime(i ,0)  - psikd(i ,0)) +  mac_con(i,6) * curdg(i, 0) ;
+            vex(i,0) = E_Isat(i ,0) + mac_pot(i,5) * (eqprime(i ,0)  - psikd(i ,0)) +  mac_pot(i,6) * curdg(i, 0) ;
 
             fld_cur(i,0) = vex(i,0);
 
@@ -139,6 +151,10 @@ void mac_sub(MatrixXd bus, MatrixXd mac_con, MatrixXd bus_int, MatrixXd mac_sub_
             psi_im(i ,0) = (-cos(mac_ang(i)) * -psiqpp(i ,0)) + (sin(mac_ang(i, 0)) *psidpp(i ,0));
         }
 
+
+        cout << "i_esat \n" << E_Isat << "\n";
+        cout << "fldcur\n" << fld_cur << "\n"; 
+        cout << "psikd is \n" << psikd << "\n";
         cout << "theta is \n" << theta << "\n";
         cout << "curd is \n" << curd << "\n";
         cout << "curdg is \n" << curdg << "\n";
@@ -155,8 +171,10 @@ void mac_sub(MatrixXd bus, MatrixXd mac_con, MatrixXd bus_int, MatrixXd mac_sub_
         cout << "qelect  is \n" << qelect << "\n";
         cout << "pmetch  is \n" << pmech << "\n";
         cout << "phi  is \n" << phi << "\n";
+
         cout << "psi_im  is \n" << psi_im  << "\n";
         cout << "psi_re  is \n" << psi_re  << "\n";
+        
         cout << "vex  is \n" << vex   << "\n";
         
         cout << "rot_re   is \n" << rot.real()   << "\n";
