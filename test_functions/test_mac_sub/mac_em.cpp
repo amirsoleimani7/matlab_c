@@ -22,6 +22,7 @@ void mac_em(MatrixXd bus ,MatrixXd mac_con ,MatrixXd bus_int ,MatrixXd mac_em_id
     for (int lk=0;lk < n_em;++lk)
     {
         int li = mac_em_idx(lk , 0) -1;
+        
         busnum(li , 0) = mac_con(li , 1) -1;
         cout << "--busnum(li) : " << busnum(li) << "\n";
 
