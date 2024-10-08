@@ -1,5 +1,5 @@
 #include "H_header.h"
-#include <sched.h>
+
 using namespace std;
 using namespace Eigen;
 
@@ -17,8 +17,14 @@ int n_sub;
 int n_tra;
 double basmva;
 MatrixXd pm_sig;
-
-void mac_sub(int i, int k, MatrixXd& bus, int flag){
+/* 
+void mac_em(MatrixXd bus ,MatrixXd mac_con ,MatrixXd bus_int ,MatrixXd mac_em_idx,
+        double i ,double k , double flag ,double n_em,double basmva)
+{
+ */
+void mac_sub(MatrixXd bus, MatrixXd mac_con, MatrixXd bus_int, MatrixXd mac_sub_idx,
+    double i ,double k, double flag ,double n_sub, double basmva)
+{
 
         complex<double> jay(0.0, 1.0);
 
@@ -141,7 +147,7 @@ void mac_sub(int i, int k, MatrixXd& bus, int flag){
             psi_re(i ,0) = (sin(mac_ang(i ,0)) * psiqpp(i ,0) * (-1)) + (cos(mac_ang(i ,0)) *psidpp(i ,0));
             psi_im(i ,0) = (-cos(mac_ang(i)) * -psiqpp(i ,0)) + (sin(mac_ang(i, 0)) *psidpp(i ,0));
         }
-        
+
 
 
 
