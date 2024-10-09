@@ -36,5 +36,7 @@ void mac_em(MatrixXd bus ,MatrixXd mac_con ,MatrixXd bus_int ,MatrixXd mac_em_id
         double i ,double k , double flag ,double n_em,double basmva);
 void mac_sub(MatrixXd bus, MatrixXd mac_con, MatrixXd bus_int, MatrixXd mac_sub_idx,
     double i ,double k, double flag ,double n_sub, double basmva);
-
+void mac_tra(MatrixXd bus, MatrixXd mac_con, MatrixXd bus_int, MatrixXd mac_tra_idx,
+    double i ,double k, double flag ,double n_tra, double basmva);
+    
 #endif

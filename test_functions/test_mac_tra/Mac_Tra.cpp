@@ -4,18 +4,37 @@ using namespace std;
 using namespace Eigen;
 
 // Define constants and global variables
-double busmva, basrad, mach_ref;
-MatrixXd psi_re, psi_im, cur_re, cur_im, bus_int;
-MatrixXd mac_con, mac_pot, mac_ang, mac_spd, eqprime, edprime;
-MatrixXd curd, curq, curdg, curqg, fld_cur;
-MatrixXd vex, eterm, theta, ed, eq;
-MatrixXd pmech, pelect, qelect ,phi;
-MatrixXd dmac_ang, dmac_spd, deqprime, dedprime,mac_tra_idx,busnum, mcurmag ,E_Isat;
-int n_tra;
-MatrixXd pm_sig ;
-MatrixXcd V ,curr ,eprime ,ei ,rot;
+// double busmva, basrad, mach_ref;
+// MatrixXd psi_re, psi_im, cur_re, cur_im, bus_int;
+// MatrixXd mac_con, mac_pot, mac_ang, mac_spd, eqprime, edprime;
+// MatrixXd curd, curq, curdg, curqg, fld_cur;
+// MatrixXd vex, eterm, theta, ed, eq;
+// MatrixXd pmech, pelect, qelect ,phi;
+// MatrixXd dmac_ang, dmac_spd, deqprime, dedprime,mac_tra_idx,busnum, mcurmag ,E_Isat;
+// int n_tra;
+// MatrixXd pm_sig ;
+// MatrixXcd V ,curr ,eprime ,ei ,rot;
+/* 
+void mac_sub(MatrixXd bus, MatrixXd mac_con, MatrixXd bus_int, MatrixXd mac_sub_idx,
+    double i ,double k, double flag ,double n_sub, double basmva)
+{  
 
-void mac_tra(int i, int k, MatrixXd& bus, int flag) {
+ */
+void mac_tra(MatrixXd bus, MatrixXd mac_con, MatrixXd bus_int, MatrixXd mac_tra_idx,
+    double i ,double k, double flag ,double n_tra, double basmva)
+    {  
+    
+    MatrixXd mac_pot(4 ,23);
+    Eigen::MatrixXd cur_re(4, 1), cur_im(4, 1), psidpp(4, 1), psikd(4, 1), psikq(4, 1), psiqpp(4, 1) ,psi_re(4 ,1), psi_im(4 ,1);
+    Eigen::MatrixXd mac_ang(4, 1), mac_spd(4, 1), eqprime(4, 1), edprime(4, 1);
+    Eigen::MatrixXd curd(4, 1), curq(4, 1), curdg(4, 1), curqg(4, 1), fld_cur(4, 1);
+    Eigen::MatrixXd vex(4, 1), eterm(4, 1), theta(4, 1), ed(4, 1), eq(4, 1);
+    Eigen::MatrixXd pmech(4, 1), pelect(4, 1), qelect(4, 1);
+    Eigen::MatrixXd dmac_ang(4, 1), dmac_spd(4, 1), deqprime(4, 1), dedprime(4, 1);
+    Eigen::MatrixXd mcurmag(4, 1);
+    Eigen::MatrixXd busnum(4, 1), phi(4, 1), eqra(4, 1), E_Isat(4, 1), edra(4, 1);
+    Eigen::MatrixXcd curr(4, 1), V(4, 1), ei(4, 1), rot(4, 1) ,eprime(4 ,1);
+    
     std::complex<double> jay(0, 1);
 
     MatrixXd bus_num = MatrixXd::Zero(n_tra,1);
@@ -39,7 +58,7 @@ void mac_tra(int i, int k, MatrixXd& bus, int flag) {
             mac_con(i,14)  = 999.0;
         }
 
-        mac_pot(i,1) = busmva / mac_con(i,3);
+        mac_pot(i,1) = basmva / mac_con(i,3);
         mac_pot(i,2) = 1.0;
 
         eterm(i ,0) = bus((int)busnum(i , 0) ,1); //putting the v in there ..
@@ -151,6 +170,6 @@ void mac_tra(int i, int k, MatrixXd& bus, int flag) {
     cout << "v_im  is \n" << V.imag()  << "\n";
     cout << "E_isat is \n" << E_Isat << "\n"; 
     cout << "fldcur\n" << fld_cur << "\n"; 
-    
+
 }
 
