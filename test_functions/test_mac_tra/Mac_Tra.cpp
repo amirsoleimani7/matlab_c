@@ -36,8 +36,6 @@ void mac_tra(MatrixXd bus, MatrixXd mac_con, MatrixXd bus_int, MatrixXd mac_tra_
     Eigen::MatrixXcd curr(4, 1), V(4, 1), ei(4, 1), rot(4, 1) ,eprime(4 ,1);
     
     std::complex<double> jay(0, 1);
-
-    MatrixXd bus_num = MatrixXd::Zero(n_tra,1);
     
     MatrixXd b = MatrixXd::Zero(n_tra,3);
 
@@ -54,12 +52,12 @@ void mac_tra(MatrixXd bus, MatrixXd mac_con, MatrixXd bus_int, MatrixXd mac_tra_
         int i = mac_tra_idx(li , 0) -1 ;
         busnum(i , 0) = mac_con(i , 1) -1;
 
-        if(mac_con(i,14) == 0.0){
-            mac_con(i,14)  = 999.0;
+        if(mac_con(i,13) == 0.0){
+            mac_con(i,13)  = 999.0;
         }
 
-        mac_pot(i,1) = basmva / mac_con(i,3);
-        mac_pot(i,2) = 1.0;
+        mac_pot(i,0) = basmva / mac_con(i,2);
+        mac_pot(i,1) = 1.0;
 
         eterm(i ,0) = bus((int)busnum(i , 0) ,1); //putting the v in there ..
         theta(i ,0 ) = bus((int)busnum(i , 0), 2) * M_PI / 180.0;
@@ -135,6 +133,7 @@ void mac_tra(MatrixXd bus, MatrixXd mac_con, MatrixXd bus_int, MatrixXd mac_tra_
 
         }       
 
+
     cout << "theta is \n" << theta << "\n";
     cout << "curd is \n" << curd << "\n";
     cout << "curdg is \n" << curdg << "\n";
@@ -165,8 +164,10 @@ void mac_tra(MatrixXd bus, MatrixXd mac_con, MatrixXd bus_int, MatrixXd mac_tra_
 
     cout << "ei_re  is \n" << ei.real()  << "\n";
     cout << "ei_im  is \n" << ei.imag()  << "\n";
+    cout << "eprime_re is \n" << eprime.real() << "\n";
+    cout << "eprime_im is \n" << eprime.imag() << "\n";
     
-    cout << "v_re  is \n" << V.real()  << "\n";
+    cout << "v_re  is \n" << V.real()  << "\n"; 
     cout << "v_im  is \n" << V.imag()  << "\n";
     cout << "E_isat is \n" << E_Isat << "\n"; 
     cout << "fldcur\n" << fld_cur << "\n"; 
