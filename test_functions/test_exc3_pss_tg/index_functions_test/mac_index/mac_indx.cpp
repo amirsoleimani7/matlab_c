@@ -63,12 +63,17 @@ void mac_indx(MatrixXd& mac_con , MatrixXd&  mac_pot , int& n_mac) {
     n_em = mac_em_idx.rows();
     n_tra = mac_tra_idx.rows();
     n_sub = mac_sub_idx.rows();
-
+    
     cout << "mac_em_idx is :\n" << mac_em_idx <<"\n";
     cout << "mac_tra_idx is : \n" << mac_tra_idx <<"\n";
     cout << "mac_sub_idx is  : \n" << mac_sub_idx <<"\n";
     cout << "mac_int is : \n " << mac_int <<"\n";
+
+
+    cout << "macmax is : " << macmax << "\n";
     cout << "n_mac is : " << n_mac <<"\n";
+    cout << "n_tot is : " << n_tot << "\n";
+    cout << "n_ig is : " << n_ig << "\n";
     cout << "n_em is : " << n_em <<"\n";
     cout << "n_tra is : " << n_tra <<"\n";
     cout << "n_sub is : " << n_sub <<"\n";
