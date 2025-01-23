@@ -59,6 +59,7 @@ void pss_indx(MatrixXd& pss_con, MatrixXd& mac_con, MatrixXd& exc_con,
               MatrixXd& pss_T, MatrixXd& pss_T2, MatrixXd& pss_T4, 
               MatrixXd& pss_T4_idx, MatrixXd& pss_noT4);
 
+void Tg_idx(MatrixXd& tg_con, MatrixXd& tg_idx, int& n_tg, MatrixXd& tgh_idx, int& n_tgh);
 
     
 
