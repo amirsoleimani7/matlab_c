@@ -6,7 +6,7 @@ using namespace Eigen;
 
 MatrixXd mac_pot, mac_con, ind_con, igen_con, ibus_con;
 MatrixXd mac_int, ind_int, igen_int, mac_em_idx, mac_tra_idx, mac_sub_idx, mac_ib_idx, not_ib_idx;
-int n_mac, n_em, n_tra, n_sub, n_ib, n_ib_em, n_ib_tra, n_ib_sub, n_mot, n_ig , n_par;
+int n_mac, n_em, ngm, n_tot, n_tra, n_sub, n_ib, n_ib_em, n_ib_tra, n_ib_sub, n_mot, n_ig , n_par;
 
 void mac_indx(MatrixXd& mac_con , MatrixXd&  mac_pot , int& n_mac) {
 
@@ -27,18 +27,15 @@ void mac_indx(MatrixXd& mac_con , MatrixXd&  mac_pot , int& n_mac) {
         mac_int(int(mac_con(i, 0)) - 1, 0) = i + 1;
     }
 
+    n_tot = n_mac;
+    ngm = n_mac;
+    n_mot = 0;
+    n_ig = 0;
     
-
-
-
-
     n_ib = 0;
     n_ib_em = 0;
     n_ib_tra = 0;
     n_ib_sub = 0;
-    
-
-    cout << "we are here 2\n";
 
     Eigen::MatrixXd mac_em_idx(0, 1);
     Eigen::MatrixXd mac_tra_idx(0, 1);
@@ -49,7 +46,7 @@ void mac_indx(MatrixXd& mac_con , MatrixXd&  mac_pot , int& n_mac) {
             mac_em_idx.conservativeResize(mac_em_idx.rows() + 1, Eigen::NoChange);
             mac_em_idx(mac_em_idx.rows() -1 , 0) =  i + 1; 
         }
-        else{
+        else{   
             if(mac_con(i , 7) == 0){
                 mac_tra_idx.conservativeResize(mac_tra_idx.rows() +1 , Eigen::NoChange);
                 mac_tra_idx(mac_tra_idx.rows() -1 , 0) = i + 1;
@@ -60,6 +57,8 @@ void mac_indx(MatrixXd& mac_con , MatrixXd&  mac_pot , int& n_mac) {
             }
         }
     }
+
+
 
     n_em = mac_em_idx.rows();
     n_tra = mac_tra_idx.rows();
@@ -76,4 +75,3 @@ void mac_indx(MatrixXd& mac_con , MatrixXd&  mac_pot , int& n_mac) {
 
 
 }
-
