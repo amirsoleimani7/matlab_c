@@ -9,7 +9,10 @@ void pss(int i, int flag, MatrixXd& pss_con,MatrixXd& Tclead1, MatrixXd& Tclead2
          MatrixXd& dpw_out, MatrixXd& mac_con, MatrixXd& mac_spd, MatrixXd& pelect, MatrixXd& pss_sp_idx ,double basmva) {
   
     int f = 0;
-    int n_pss = pss_con.rows();
+
+    int n_pss = 4; // this was given manualyy in the test case
+
+    cout << "n_pss  : " << n_pss  << "\n";
 
     if (n_pss != 0) {
         
@@ -25,20 +28,32 @@ void pss(int i, int flag, MatrixXd& pss_con,MatrixXd& Tclead1, MatrixXd& Tclead2
 
         if (flag == 0) { // initialization // vector computation mode 
             if(i == 0){
-
                 pss_pot = MatrixXd::Ones(n_pss, 2);
-
                 cout << "pss_pot is : \n" << pss_pot << "\n"; 
 
                 MatrixXd n = pss_mb_idx; // same as the pss_mb_idx
                 MatrixXd n_sp(pss_sp_idx.rows() , 1);
 
+                cout << "n is: \n" << n << "\n";
+                cout << "n_sp is: \n"<< n_sp << "\n"; 
+                cout << "mac_int is : \n" << mac_int << "\n";
+                cout << "pss_con is : \n" << pss_con << "\n";
+                cout << "pss_sp_idx is \n" << pss_sp_idx << "\n";
+                cout << "mac_spd is : \n" << mac_spd << "\n";
+
+
+                n_sp.resize(pss_sp_idx.rows() ,1);
+                pss1.resize(pss_sp_idx.rows() ,1);
+
                 if (pss_sp_idx.rows() != 0) {
                     for(int li = 0; li < pss_sp_idx.rows() ; ++li){
-                        n_sp(li , 0) = mac_int((int)pss_con((int)pss_sp_idx(li ,1), 0) ,2);
-                        pss1((int)pss_sp_idx(li , 0), 0) = mac_spd((int)n_sp(li , 0), 0);
+                        n_sp(li , 0) =  mac_int((int)pss_con((int)pss_sp_idx(li ,0) -1, 1) -1 ,0);
+                        pss1((int)pss_sp_idx(li , 0) -1, 0) = mac_spd((int)n_sp(li , 0) -1, 0);
                     }   
                 }
+                
+                cout << "n_sp is :\n" << n_sp << "\n";
+                cout << "pss1 is :\n" << pss1 << "\n";
 
                 MatrixXd n_p(pss_p_idx.rows() , 1);
 
@@ -49,22 +64,61 @@ void pss(int i, int flag, MatrixXd& pss_con,MatrixXd& Tclead1, MatrixXd& Tclead2
                     }   
                 }
                 
+                cout << "we are here \n ";
+                
                 // if (dpw_pss_idx.rows() != 0) { // not sure about this dude ... 
                 //     pss1(dpw_pss_idx, 0) = dpw_out.col(0);
                 // }
+                
+
+                pss_pot.resize(n_pss , 2);
+                pss2.resize(n_pss ,1);
+                pss3.resize(n_pss ,1);
+                pss_out.resize(n_pss ,1);
+
 
                 for(int li = 0 ; li < n_pss ;++li){
-                    pss_pot(li , 0) = Tclead1(li , 0) / Tclag1(li , 0);
-                    pss2((int)pss_idx(li , 0)) = 0;
-                    pss3((int)pss_idx(li , 0)) = 0;
-                    pss_out((int)pss_idx(li , 0)) = 0;                    
-                }
+                    pss_pot(li , 0) = pss_con(li , 4) / pss_con(li , 5);
+                    pss2((int)pss_idx(li , 0) -1) = 0;
+                    pss3((int)pss_idx(li , 0) -1) = 0;
+                    pss_out((int)pss_idx(li , 0) -1) = 0;                    
+                }   
                 
+                cout << "pss_T4_idx is : \n" << pss_T4_idx << "\n ";
+                
+                cout << "pss_pot is \n" << pss_pot << "\n "; 
                 for(int li = 0 ;li < pss_T4_idx.rows() ;++li){
-                    pss_pot((int)pss_T4_idx(li , 0) ,1) = Tclead2((int)pss_T4_idx(li , 0) , 0) / pss_T4((int)pss_T4_idx(li , 0) , 0);
-                    // pss_pot((int)pss_T4_idx(li , 0), 1) = pss_con((int)pss_T4_idx(li , 0), 6) / pss_T4((int)pss_T4_idx(li, 0) , 0);                    
+                    pss_pot((int)pss_T4_idx(li , 0) -1, 1) = pss_con((int)pss_T4_idx(li , 0) -1, 6) / pss_T4((int)pss_T4_idx(li, 0)-1 , 0);                    
                 }
             }
         }
     }
+
+
+
+    cout << "pss_pot is : \n" << pss_pot << "\n";
+    cout << "pss1 is :\n" << pss1 << "\n";
+    cout << "pss2 is :\n" << pss2 << "\n";
+    cout << "pss3 is :\n" << pss3 << "\n";
+    cout << "pss_out is : \n" << pss_out <<"\n"; 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
 }

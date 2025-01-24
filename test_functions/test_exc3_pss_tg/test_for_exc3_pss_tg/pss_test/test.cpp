@@ -85,21 +85,29 @@ int main()
 
     std::cout << "pss_T4:\n" << pss_T4 << std::endl;
     
+    Eigen::MatrixXd pss_con(4, 10);
+    pss_con << 1, 1, 100, 10, 0.05, 0.01, 0.05, 0.01, 0.2, -0.05,
+               1, 2, 100, 10, 0.05, 0.01, 0.05, 0.01, 0.2, -0.05,
+               1, 3, 100, 10, 0.05, 0.01, 0.05, 0.01, 0.2, -0.05,
+               1, 4, 100, 10, 0.05, 0.01, 0.05, 0.01, 0.2, -0.05;
+
+    std::cout << "pss_con:\n" << pss_con << std::endl;
+    
 
     int n_pss = 4;
     int i = 0;
     int basmva = 100;
     int flag = 0;
     // Create placeholders
-    MatrixXd pss_con, Tclead1, Tclead2, Tclag1, pss_pot, pss_p_idx;
+    MatrixXd  Tclead1, Tclead2, Tclag1, pss_pot, pss_p_idx;
     MatrixXd pss1, pss2, pss3, pss_out, dpw_pss_idx, dpw_out, mac_con;
 
 
     cout << "this is before the function\n";
 
-    // pss(i, flag, pss_con, Tclead1, Tclead2, Tclag1, pss_idx, pss_pot, mac_int, pss_p_idx, pss_mb_idx, 
-    //     pss_exc_idx, pss1, pss_T4_idx, pss_T4, pss2, pss3, pss_out, dpw_pss_idx, dpw_out, mac_con, 
-    //     mac_spd, pelect, pss_sp_idx, basmva);
+    pss(i, flag, pss_con, Tclead1, Tclead2, Tclag1, pss_idx, pss_pot, mac_int, pss_p_idx, pss_mb_idx, 
+        pss_exc_idx, pss1, pss_T4_idx, pss_T4, pss2, pss3, pss_out, dpw_pss_idx, dpw_out, mac_con, 
+        mac_spd, pelect, pss_sp_idx, basmva);
 
     cout << "we are  after the function here \n";
 
