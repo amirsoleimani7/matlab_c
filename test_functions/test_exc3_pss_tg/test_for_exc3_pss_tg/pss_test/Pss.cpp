@@ -10,6 +10,7 @@ void pss(int i, int flag, MatrixXd& pss_con,MatrixXd& Tclead1, MatrixXd& Tclead2
   
     int f = 0;
     int n_pss = pss_con.rows();
+
     if (n_pss != 0) {
         
         if (i != 0) {
@@ -35,7 +36,7 @@ void pss(int i, int flag, MatrixXd& pss_con,MatrixXd& Tclead1, MatrixXd& Tclead2
                 if (pss_sp_idx.rows() != 0) {
                     for(int li = 0; li < pss_sp_idx.rows() ; ++li){
                         n_sp(li , 0) = mac_int((int)pss_con((int)pss_sp_idx(li ,1), 0) ,2);
-                        pss1(pss_sp_idx(li , 0), 0) = mac_spd(n_sp(li , 0), 0);
+                        pss1((int)pss_sp_idx(li , 0), 0) = mac_spd((int)n_sp(li , 0), 0);
                     }   
                 }
 
@@ -52,14 +53,14 @@ void pss(int i, int flag, MatrixXd& pss_con,MatrixXd& Tclead1, MatrixXd& Tclead2
                 //     pss1(dpw_pss_idx, 0) = dpw_out.col(0);
                 // }
 
-                for(int li ; li < n_pss ;++li){
+                for(int li = 0 ; li < n_pss ;++li){
                     pss_pot(li , 0) = Tclead1(li , 0) / Tclag1(li , 0);
                     pss2((int)pss_idx(li , 0)) = 0;
                     pss3((int)pss_idx(li , 0)) = 0;
                     pss_out((int)pss_idx(li , 0)) = 0;                    
                 }
                 
-                for(int li ;li < pss_T4_idx.rows() ;++li){
+                for(int li = 0 ;li < pss_T4_idx.rows() ;++li){
                     pss_pot((int)pss_T4_idx(li , 0) ,1) = Tclead2((int)pss_T4_idx(li , 0) , 0) / pss_T4((int)pss_T4_idx(li , 0) , 0);
                     // pss_pot((int)pss_T4_idx(li , 0), 1) = pss_con((int)pss_T4_idx(li , 0), 6) / pss_T4((int)pss_T4_idx(li, 0) , 0);                    
                 }
