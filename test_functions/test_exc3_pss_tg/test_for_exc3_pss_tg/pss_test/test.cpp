@@ -94,13 +94,22 @@ int main()
     std::cout << "pss_con:\n" << pss_con << std::endl;
     
 
+    Eigen::MatrixXd mac_con(4, 23); // 4 rows and 23 columns
+
+    mac_con << 1, 1, 900, 0.2, 0, 1.8, 0.3, 0.25, 8, 0.03, 1.7, 0.55, 0.24, 0.4, 0.05, 6.5, 0, 0, 1, 0.0654, 0.5743, 1, 1,
+               2, 2, 900, 0.2, 0, 1.8, 0.3, 0.25, 8, 0.03, 1.7, 0.55, 0.25, 0.4, 0.05, 6.5, 0, 0, 2, 0.0654, 0.5743, 1, 1,
+               3, 6, 900, 0.2, 0, 1.8, 0.3, 0.25, 8, 0.03, 1.7, 0.55, 0.24, 0.4, 0.05, 6.5, 0, 0, 3, 0.0654, 0.5743, 1, 1,
+               4, 7, 900, 0.2, 0, 1.8, 0.3, 0.25, 8, 0.03, 1.7, 0.55, 0.25, 0.4, 0.05, 6.5, 0, 0, 4, 0.0654, 0.5743, 1, 1;
+
+    std::cout << "mac_con matrix:\n" << mac_con << std::endl;
+
     int n_pss = 4;
     int i = 0;
     int basmva = 100;
     int flag = 0;
     // Create placeholders
     MatrixXd  Tclead1, Tclead2, Tclag1, pss_pot, pss_p_idx;
-    MatrixXd pss1, pss2, pss3, pss_out, dpw_pss_idx, dpw_out, mac_con;
+    MatrixXd pss1, pss2, pss3, pss_out, dpw_pss_idx, dpw_out;
 
 
     cout << "this is before the function\n";
