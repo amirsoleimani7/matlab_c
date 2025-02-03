@@ -66,9 +66,14 @@ void pss(int i, int flag, MatrixXd& pss_con,MatrixXd& Tclead1, MatrixXd& Tclead2
          MatrixXd& pss1, MatrixXd& pss_T4_idx , MatrixXd& pss_T4,MatrixXd& pss2, MatrixXd& pss3, MatrixXd& pss_out, MatrixXd& dpw_pss_idx, 
          MatrixXd& dpw_out, MatrixXd& mac_con, MatrixXd& mac_spd, MatrixXd& pelect, MatrixXd& pss_sp_idx ,double basmva);
 
-
-// tg and exc_st3 not added yet ...
-
+void exc_st3(
+    MatrixXd &exc_con, const MatrixXd &mac_con,const MatrixXd &mac_pot, const MatrixXd &bus_int, 
+    const MatrixXd &mac_int, const MatrixXd &vex, const MatrixXd &pelect, 
+    const MatrixXd &qelect, const MatrixXd &eterm, const MatrixXd &theta, 
+    const MatrixXd &fldcur, MatrixXd &Efd, MatrixXd &exc_pot, 
+    MatrixXd &V_B, MatrixXd &V_R, MatrixXd &V_A, MatrixXd &V_As, 
+    MatrixXd &V_TR, MatrixXd &R_f, const MatrixXd &st3_idx, 
+    const MatrixXd &st3_TB_idx);
     
 
 #endif

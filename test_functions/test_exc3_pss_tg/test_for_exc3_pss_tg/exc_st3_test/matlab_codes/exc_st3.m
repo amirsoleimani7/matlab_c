@@ -204,7 +204,7 @@ if n_st3~=0
       V_I = V_A(st3_idx,1)./exc_con(st3_idx,12);
       max_VI=find(V_I > exc_con(st3_idx,10));
       if ~isempty(max_VI)
-        disp('EXC_ST3: V_I above maximum in initialization at')
+        disp('cEXC_ST3: V_I above maximum in initialization at')
         n_error=mac_int(exc_con(max_VI,2))
         error('stop')
       end
