@@ -69,6 +69,10 @@ void pss(int i, int flag, MatrixXd& pss_con,MatrixXd& Tclead1, MatrixXd& Tclead2
 
 // tg and exc_st3 not added yet ...
 
+
+
+void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,MatrixXd& exc_con,
+             MatrixXd& pss_con , MatrixXd& tg_con ,MatrixXd& sw_con);
     
 
 #endif

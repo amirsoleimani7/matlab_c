@@ -77,7 +77,7 @@ void pss(int i, int flag, MatrixXd& pss_con,MatrixXd& Tclead1, MatrixXd& Tclead2
                     pss3((int)pss_idx(li , 0) -1) = 0;
                     pss_out((int)pss_exc_idx(0 , li) -1) = 0;                    
                 }   
-                     
+                
 
                 for(int li = 0 ;li < pss_T4_idx.rows() ;++li){
                     pss_pot((int)pss_T4_idx(li , 0) -1, 1) = pss_con((int)pss_T4_idx(li , 0) -1, 6) / pss_T4((int)pss_T4_idx(li, 0)-1 , 0);                    
