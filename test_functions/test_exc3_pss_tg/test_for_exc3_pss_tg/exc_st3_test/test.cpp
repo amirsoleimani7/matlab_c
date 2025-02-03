@@ -116,6 +116,7 @@ int main()
 
     cout << "this is before the function is called\n";
 
+    
     exc_st3(
         exc_con, mac_con,mac_pot, bus_int, 
         mac_int, vex, pelect, 
