@@ -40,7 +40,7 @@ void tg(MatrixXd &mac_int , MatrixXd &tg_con ,MatrixXd &tg_idx , MatrixXd &pmech
             int lj = tg_idx(li , 0) - 1;
 
             int n = mac_int((int)tg_con(lj , 1) -1) -1; // we should take the machine number ... machines that have governer-turbine
-
+            cout << "n is : " << n << "\n ";
             // this is for the scaler one .. (but needs to be checked for vectorized as well)
             if (pmech(n, 0) > tg_con(lj, 4)) {   // the indexing needs to be checked ...  // not sure about the indexing of the pmech(lj , 1) or pmetch(lj , k)
                 cout << "TG init: pmech > upper limit, check machine base";

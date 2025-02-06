@@ -173,6 +173,8 @@ void exc_st3(
     }
 
     cout << "-------------resalt---------------\n ";
+    cout << "V_E IS : \n" << V_E << "\n";
+    cout << "I_N is : \n" << I_N << "\n";
     cout << "iterm is : \n" << iterm << "\n";
     cout << "vep is : \n" << vep << "\n";
     cout << "ve is : \n" << ve << "\n";

@@ -141,6 +141,10 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
 
     MatrixXd t(0 ,1); // change the size dynamicly 
 
+    // To Do : fix the k ...
+
+
+    cout << "sw_con is :\n" << sw_con << "\n";
     for (int li = 0; li < n_switch - 1; ++li) { // not sure about this loop at all 
         h(li, 0) = sw_con(li, 6);
 
@@ -149,10 +153,6 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
         }
 
         k_inc(li, 0) = std::floor((sw_con(li + 1, 0) - sw_con(li, 0)) / h(li, 0));
-
-        if (k_inc(li, 0) == 0) {
-            k_inc(li, 0) = 1;
-        }
 
         h(li, 0) = (sw_con(li + 1, 0) - sw_con(li, 0)) / k_inc(li, 0);
 
@@ -165,12 +165,17 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
 
         k += k_inc(li, 0);
     }
+
+    cout << "k is : " << k << "\n"; 
+    cout << "h is : \n" << h << "\n";
+    cout << "k_inc is : \n" << k_inc << "\n";
     
     t.conservativeResize(t.rows() +1  , NoChange);
     t(k -1 , 0) = sw_con(n_switch -1 ,  0);
 
     int n_bus = bus.col(0).rows();
     int n = mac_con.col(0).rows();
+
 
     MatrixXd z(n , k);
     MatrixXd z1(1 , k);
@@ -226,11 +231,13 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
 
     // y_switch(bus , line, load_con , mac_con , sw_con);
     
-    flag = 0;
+    flag = 0;   
     int i = 0;
     // Create placeholders For pss 
     MatrixXd  Tclead1, Tclead2, Tclag1;
     MatrixXd pss1, pss2, pss3, pss_out, dpw_pss_idx, dpw_out;
+
+    cout << "pss_-------------------\n";
 
     pss(i, flag, pss_con, Tclead1, Tclead2, Tclag1, pss_idx, pss_pot, mac_int, pss_p_idx, pss_mb_idx, 
     pss_exc_idx, pss1, pss_T4_idx, pss_T4, pss2, pss3, pss_out, dpw_pss_idx, dpw_out, mac_con, 
