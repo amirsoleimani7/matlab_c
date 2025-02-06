@@ -30,6 +30,7 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     // set indexes 
     // note : dc index set in dc load flow
 
+
     // init matrixes for the mac_indx 
     MatrixXd mac_pot , mac_em_idx , mac_tra_idx , mac_sub_idx , mac_int;
     int macmax, n_tot , n_ig , n_em , n_tra, n_sub ;
@@ -39,7 +40,6 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
             ,macmax , n_mac , n_tot , n_ig, n_em , n_tra ,n_sub);
 
     //mac_indx result 
-
     cout << "mac_em_idx is :\n" << mac_em_idx <<"\n";
     cout << "mac_tra_idx is : \n" << mac_tra_idx <<"\n";
     cout << "mac_sub_idx is  : \n" << mac_sub_idx <<"\n";
@@ -52,11 +52,40 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     cout << "n_tra is : " << n_tra <<"\n";
     cout << "n_sub is : " << n_sub <<"\n";
     
-
     //init matrixes for exc_indx
+    MatrixXd st3_idx , st3_TA , st3_TA_idx , st3_noTA_idx;
+    MatrixXd exc_pot , st3_TB , st3_TB_idx , st3_noTB_idx , st3_TR , st3_TR_idx ,st3_noTR_idx;
+    int n_exc , n_st3;
+
+    exc_indx(exc_con , exc_pot , n_exc , st3_idx , n_st3 , st3_TA , st3_TA_idx ,st3_noTA_idx
+            ,st3_TB , st3_TB_idx , st3_noTB_idx , st3_TR , st3_TR_idx , st3_noTR_idx);
+
+
+    //exc_indx result
+    cout << "n_st3  is : " << n_st3 << "\n";
+    cout << "n_exc : " << n_exc << "\n";
+
+    cout << "exc_con : \n" << exc_con << "\n";
+    cout << "exc_pot : \n" << exc_pot << "\n";
+    cout << "n_exc : \n" << n_exc << "\n";
+    cout << "st3_idx : \n" << st3_idx << "\n";
+    cout << "n_st3 : \n" << n_st3 << "\n";
+
+    cout << "st3_TA : \n" << st3_TA << "\n";
+    cout << "st3_TA_idx : \n" << st3_TA_idx << "\n";
+    cout << "st3_noTA_idx : \n" << st3_noTA_idx << "\n";
+
+    cout << "st3_TB : \n" << st3_TB << "\n";
+    cout << "st3_TB_idx : \n" << st3_TB_idx << "\n";
+    cout << "st3_noTB_idx : \n" << st3_noTB_idx << "\n";
+
+
+    cout << "st3_TR : \n" << st3_TR << "\n";
+    cout << "st3_TR_idx : \n" << st3_TR_idx << "\n";
+    cout << "st3_noTR_idx : \n" << st3_noTR_idx << "\n";
+
+
     
-
-
 
 
 } 

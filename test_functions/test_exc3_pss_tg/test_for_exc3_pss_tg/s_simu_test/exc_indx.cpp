@@ -210,37 +210,4 @@ void exc_indx(MatrixXd& exc_con, MatrixXd& exc_pot, int& n_exc,
 
         }
 
-
-    cout << "n_st3  is : " << n_st3 << "\n";
-    cout << "n_exc : " << n_exc << "\n";
-    cout << "n_smp is : " << n_smp <<"\n";
-    cout << "n_smppi is : " << n_smppi <<"\n";
-    cout << "n_dc  : " << n_dc << "\n";
-    cout << "n_dc1 : " << n_dc1 << "\n";
-    cout << "n_dc2 : " << n_dc2 << "\n";
-    cout << "n_dc3 : " << n_dc3 << "\n";
-
-
-
-
-    cout << "exc_con : \n" << exc_con << "\n";
-    cout << "exc_pot : \n" << exc_pot << "\n";
-    cout << "n_exc : \n" << n_exc << "\n";
-    cout << "st3_idx : \n" << st3_idx << "\n";
-    cout << "n_st3 : \n" << n_st3 << "\n";
-
-    cout << "st3_TA : \n" << st3_TA << "\n";
-    cout << "st3_TA_idx : \n" << st3_TA_idx << "\n";
-    cout << "st3_noTA_idx : \n" << st3_noTA_idx << "\n";
-
-    cout << "st3_TB : \n" << st3_TB << "\n";
-    cout << "st3_TB_idx : \n" << st3_TB_idx << "\n";
-    cout << "st3_noTB_idx : \n" << st3_noTB_idx << "\n";
-
-
-    cout << "st3_TR : \n" << st3_TR << "\n";
-    cout << "st3_TR_idx : \n" << st3_TR_idx << "\n";
-    cout << "st3_noTR_idx : \n" << st3_noTR_idx << "\n";
-
-
 }
