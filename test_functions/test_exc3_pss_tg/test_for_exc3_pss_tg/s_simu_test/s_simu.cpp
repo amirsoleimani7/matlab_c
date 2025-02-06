@@ -6,39 +6,28 @@ using namespace Eigen;
 void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,MatrixXd& exc_con,
              MatrixXd& pss_con , MatrixXd& tg_con ,MatrixXd& sw_con)
 {
-    
     complex<double> jay(0.0, 1.0); // sqrt(-1)
-
+    
     double sys_freq = 50;
-    
     double basrad = sys_freq * 2 * M_PI;
-
     double basmva = 100.0;
-    
     double syn_ref = 0.0;
-    
     double n_mac = 0; //not sure need's to be definded ... 
-
     double tol = 1e-8;
-
     double iter_max = 30;
-    
     double acc = 1.0;
-    
-    double flag = 1;
-    // double flag = 2; // why 2?
+    double flag = 2; // flag does not change the functionality of the load_flow (why?)
     string display = "n";
 
-
     MatrixXd bus_sol_1,line_sol_1,line_flow_1; // the bus_sol_1 sould e the same as bus
-    load_flow(bus,line,tol,iter_max,acc,display,flag,bus_sol_1,line_sol_1,line_flow_1);
+    load_flow(bus,line,tol,iter_max,acc,display,flag ,bus_sol_1 , line_sol_1 , line_flow_1);    
 
-    cout << "bus_sol_1 is : \n" << bus_sol_1 << "\n";
-    cout << "line_sol_1 is : \n" << line_sol_1 << "\n";
-    cout << "line_flow_1 is : \n" << line_flow_1 << "\n";
+    
 
 
 } 
+
+
 //     MatrixXd mac_indx,exc_indx,tg_indx,pss_indx; //initiallizaation
     
 //     double n_tot = n_mac;

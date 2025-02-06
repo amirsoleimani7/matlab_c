@@ -86,12 +86,6 @@ void tg(MatrixXd &mac_int , MatrixXd &tg_con ,MatrixXd &tg_idx , MatrixXd &pmech
     cout << "tg_sig is : \n " <<  tg_sig  << "\n";
 
 
-     0.2   ,  0.8,       1,       0,  0.7793
-    0.2    , 0.8   ,    1   ,    0, 0.77941
-    0.2    , 0.8  ,     1  ,     0, 0.79992
-    0.2    , 0.8    ,   1    ,   0, 0.77936
-
-
 
 
 

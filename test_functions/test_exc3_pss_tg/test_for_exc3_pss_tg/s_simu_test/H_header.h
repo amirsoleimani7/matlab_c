@@ -30,7 +30,7 @@ MatrixXd safeInverse(const MatrixXd& mat);
 vector<Line> createLinesFromMatrix(const MatrixXd& matrix);
 vector<Bus> createBussesFromMatrix(MatrixXd& matrix);
 
-void load_flow(MatrixXd bus, MatrixXd line, double tol, double iter_max, double acc ,string display ,double flag,MatrixXd& bus_sol_1 ,MatrixXd& line_sol_1,MatrixXd& line_flow_1);
+void load_flow(MatrixXd bus, MatrixXd line, double tol, double iter_max, double acc ,string display ,double flag  , MatrixXd &bus_sol_1 , MatrixXd &line_sol_1 , MatrixXd &line_flow_1);
 
 void lftap(MatrixXd& bus,MatrixXd& V,MatrixXd& volt_min ,MatrixXd& volt_max, MatrixXd& line);
 

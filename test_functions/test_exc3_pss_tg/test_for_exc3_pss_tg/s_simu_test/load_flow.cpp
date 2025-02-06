@@ -4,8 +4,9 @@ using namespace std;
 using namespace Eigen;
 
 
-void load_flow(MatrixXd bus, MatrixXd line, double tol, double iter_max, double acc ,string display ,double flag,MatrixXd& bus_sol_1 ,MatrixXd& line_sol_1,MatrixXd& line_flow_1) {
+void load_flow(MatrixXd bus, MatrixXd line, double tol, double iter_max, double acc ,string display ,double flag  , MatrixXd &bus_sol_1 , MatrixXd &line_sol_1 , MatrixXd &line_flow_1) {
 
+    cout << "we are in the loadflow \n";
     complex<double> jay(0.0 ,1.0);
 
     int nline = line.rows(); //line numbers
@@ -37,6 +38,8 @@ void load_flow(MatrixXd bus, MatrixXd line, double tol, double iter_max, double 
     MatrixXd qg_min ;
     MatrixXd volt_min ;
     MatrixXd volt_max ;
+
+    cout << "laod1\n";
 
     bus_no = bus.col(0);   //matrix for bus numbers ...(nbus ,1);for all the below lines ...
     V = bus.col(1);    //matrix for v
@@ -300,6 +303,8 @@ void load_flow(MatrixXd bus, MatrixXd line, double tol, double iter_max, double 
             Ql(i ,0) = Qg(i ,0) - Q(i ,0);
         }
     }
+
+    cout << "load2\n";
 
     Pg(swing_index -1,0) = P(swing_index -1, 0) + Pl(swing_index -1, 0);    // baed on the matlab code
     Qg(swing_index -1,0) = Q(swing_index -1, 0) + Ql(swing_index -1, 0);    // both lines ..

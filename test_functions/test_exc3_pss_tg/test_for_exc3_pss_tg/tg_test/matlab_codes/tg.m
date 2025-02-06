@@ -74,7 +74,7 @@ if flag == 0; % initialization
          error('TG init: pmech < 0, check data')
       end
       tg1(i,1) = pmech(n,k);
-      %
+      %  
       tg_pot(i,1) = tg_con(i,8)/tg_con(i,7);
       a1 = 1 - tg_pot(i,1);
       tg_pot(i,2) = a1;
