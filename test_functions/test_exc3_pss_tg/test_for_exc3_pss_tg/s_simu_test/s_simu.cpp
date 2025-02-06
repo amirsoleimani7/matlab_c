@@ -27,10 +27,7 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     
     double flag = 1;
     // double flag = 2; // why 2?
-
     string display = "n";
-
-    cout << 
 
 
     MatrixXd bus_sol_1,line_sol_1,line_flow_1; // the bus_sol_1 sould e the same as bus

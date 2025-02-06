@@ -62,17 +62,24 @@ void pss_indx(MatrixXd& pss_con, MatrixXd& mac_con, MatrixXd& exc_con,
 void Tg_idx(MatrixXd& tg_con, MatrixXd& tg_idx, int& n_tg, MatrixXd& tgh_idx, int& n_tgh);
 
 
+
 void pss(int i, int flag, MatrixXd& pss_con,MatrixXd& Tclead1, MatrixXd& Tclead2 , MatrixXd Tclag1 ,MatrixXd& pss_idx,MatrixXd& pss_pot,MatrixXd& mac_int,MatrixXd& pss_p_idx , MatrixXd& pss_mb_idx, MatrixXd& pss_exc_idx,
          MatrixXd& pss1, MatrixXd& pss_T4_idx , MatrixXd& pss_T4,MatrixXd& pss2, MatrixXd& pss3, MatrixXd& pss_out, MatrixXd& dpw_pss_idx, 
          MatrixXd& dpw_out, MatrixXd& mac_con, MatrixXd& mac_spd, MatrixXd& pelect, MatrixXd& pss_sp_idx ,double basmva);
 
+void exc_st3(
+    MatrixXd &exc_con, const MatrixXd &mac_con,const MatrixXd &mac_pot, const MatrixXd &bus_int, 
+    const MatrixXd &mac_int, const MatrixXd &vex, const MatrixXd &pelect, 
+    const MatrixXd &qelect, const MatrixXd &eterm, const MatrixXd &theta, 
+    const MatrixXd &fldcur, MatrixXd &Efd, MatrixXd &exc_pot, 
+    MatrixXd &V_B, MatrixXd &V_R, MatrixXd &V_A, MatrixXd &V_As, 
+    MatrixXd &V_TR, MatrixXd &R_f, const MatrixXd &st3_idx, 
+    const MatrixXd &st3_TB_idx);
 
-// tg and exc_st3 not added yet ...
-
-
+void tg(MatrixXd &mac_int , MatrixXd &tg_con ,MatrixXd &tg_idx , MatrixXd &pmech , int n_tg);
 
 void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,MatrixXd& exc_con,
              MatrixXd& pss_con , MatrixXd& tg_con ,MatrixXd& sw_con);
-    
+
 
 #endif
