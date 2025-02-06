@@ -70,8 +70,6 @@
 % OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 % SOFTWARE.
 %
-
-
 clear all
 clear global
 close % close graphics windows

@@ -8,6 +8,9 @@ void pss(int i, int flag, MatrixXd& pss_con,MatrixXd& Tclead1, MatrixXd& Tclead2
          MatrixXd& pss1, MatrixXd& pss_T4_idx , MatrixXd& pss_T4,MatrixXd& pss2, MatrixXd& pss3, MatrixXd& pss_out, MatrixXd& dpw_pss_idx, 
          MatrixXd& dpw_out, MatrixXd& mac_con, MatrixXd& mac_spd, MatrixXd& pelect, MatrixXd& pss_sp_idx ,double basmva) {
   
+    
+
+    cout << "we are in the pss\n";
     int f = 0;
     int n_pss = 4; // this was given manualyy in the test case
 
@@ -85,32 +88,5 @@ void pss(int i, int flag, MatrixXd& pss_con,MatrixXd& Tclead1, MatrixXd& Tclead2
             }
         }
     }
-
-
-
-    cout << "pss_pot is : \n" << pss_pot << "\n";
-    cout << "pss1 is :\n" << pss1 << "\n";
-    cout << "pss2 is :\n" << pss2 << "\n";
-    cout << "pss3 is :\n" << pss3 << "\n";
-    cout << "pss_out is : \n" << pss_out <<"\n"; 
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
 
 }

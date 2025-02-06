@@ -72,8 +72,9 @@ void y_switch(MatrixXd& bus, MatrixXd& line,MatrixXd& load_con, MatrixXd& mac_co
     int f_nearbus = sw_con(1 ,1); /* sw_con(2 ,2)*/
     int f_farbus = sw_con(1 ,2); /*sw_con(2 ,3)*/
 
-    int f_type =  sw_con(1 ,5 );  /* sw_con(2 ,6) */  // Set based on your switching conditions
-    
+    int f_type =  sw_con(1 ,5);  /* sw_con(2 ,6) */  // Set based on your switching conditions
+    cout << "f_type is : " << f_type << "\n ";
+
     double bf, xf;
      
     vector<int> bus_idx;
