@@ -1,7 +1,0 @@
-	how to get ibus and other stuff
-	these two are needed to find the Matrixes like mac_ib_idx , other ib matrixes
-
-
-
-
-
