@@ -84,8 +84,33 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     cout << "st3_TR_idx : \n" << st3_TR_idx << "\n";
     cout << "st3_noTR_idx : \n" << st3_noTR_idx << "\n";
 
+    
+    //init matrixes for tg_indx
+    MatrixXd tg_idx , tgh_idx;
+    int n_tg, n_tgh ;
+    Tg_idx(tg_con , tg_idx , n_tg , tgh_idx , n_tgh);
+
+    //tg_indx result 
+    cout << "n_tg is : " << n_tg << "\n"; 
+    cout << "n_tgh is : " << n_tgh << "\n";
+    cout << "tg_idx is : \n" << tg_idx << "\n";
+    cout << "tgh_idx is : \n" << tgh_idx <<  "\n";    
+
+
+    //init matrixes for pss_indx
 
     
+
+
+
+
+
+
+
+
+
+
+
 
 
 } 

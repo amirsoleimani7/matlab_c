@@ -24,13 +24,14 @@ void Tg_idx(MatrixXd& tg_con, MatrixXd& tg_idx, int& n_tg, MatrixXd& tgh_idx, in
 
     }
         
-    cout << "tg_idx is : \n" << tg_idx << "\n";
-    cout << "tg_idx size is : " << tg_idx.rows() << " " << tg_idx.cols() << "\n ";   
+    // cout << "tg_idx is : \n" << tg_idx << "\n";
+    // cout << "tg_idx size is : " << tg_idx.rows() << " " << tg_idx.cols() << "\n ";   
 
     n_tg = tg_idx.rows(); 
+    n_tgh = tgh_idx.rows();
 
-    cout << "n_tg is : " << n_tg << "\n"; 
-    cout << "n_tgh is : " << n_tgh << "\n";
-    cout << "tg_idx is : \n" << tg_idx << "\n";
-    cout << "tgh_idx is : \n" << tgh_idx <<  "\n";
+    // cout << "n_tg is : " << n_tg << "\n"; 
+    // cout << "n_tgh is : " << n_tgh << "\n";
+    // cout << "tg_idx is : \n" << tg_idx << "\n";
+    // cout << "tgh_idx is : \n" << tgh_idx <<  "\n";
 }
