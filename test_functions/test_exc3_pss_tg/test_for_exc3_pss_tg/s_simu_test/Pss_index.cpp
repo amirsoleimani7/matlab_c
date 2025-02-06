@@ -106,22 +106,22 @@ void pss_indx(MatrixXd& pss_con, MatrixXd& mac_con, MatrixXd& exc_con,
     
 
 
-            cout << "pss_idx is : \n "<< pss_idx <<"\n";   
-            cout << "pss_mb_idx is : \n" << pss_mb_idx <<"\n";
-            cout << "pss_con is : \n" << pss_con <<"\n";
-            cout << "pss_exc_idx is : \n" << pss_exc_idx <<"\n";
-            cout << "exc_con is : \n" << exc_con  <<"\n ";
-            cout << "pss_exc_idx is : \n" << pss_exc_idx << "\n";
-            cout << "pss_T is : \n" << pss_T << "\n";
-            cout << "pss_T2 is : \n" << pss_T2 << "\n";
-            cout << "pss_T4 is : \n" << pss_T4 << "\n";
-            cout << "pss_T4_idx is : \n" << pss_T4_idx << "\n";
-            cout << "pss_noT4 is : \n" << pss_noT4 << "\n";
-            cout << "pss_sp_idx is : \n" << pss_sp_idx << "\n"; 
-            cout << "pss_p_idx is : \n" << pss_p_idx << "\n";
+            // cout << "pss_idx is : \n "<< pss_idx <<"\n";   
+            // cout << "pss_mb_idx is : \n" << pss_mb_idx <<"\n";
+            // cout << "pss_con is : \n" << pss_con <<"\n";
+            // cout << "pss_exc_idx is : \n" << pss_exc_idx <<"\n";
+            // cout << "exc_con is : \n" << exc_con  <<"\n ";
+            // cout << "pss_exc_idx is : \n" << pss_exc_idx << "\n";
+            // cout << "pss_T is : \n" << pss_T << "\n";
+            // cout << "pss_T2 is : \n" << pss_T2 << "\n";
+            // cout << "pss_T4 is : \n" << pss_T4 << "\n";
+            // cout << "pss_T4_idx is : \n" << pss_T4_idx << "\n";
+            // cout << "pss_noT4 is : \n" << pss_noT4 << "\n";
+            // cout << "pss_sp_idx is : \n" << pss_sp_idx << "\n"; 
+            // cout << "pss_p_idx is : \n" << pss_p_idx << "\n";
 
 
-            cout << "jpss : "<< _globjpss +1 << "\n";
-            cout << "n_pss : " << n_pss << "\n";
+            // cout << "jpss : "<< _globjpss +1 << "\n";
+            // cout << "n_pss : " << n_pss << "\n";
             
 }

@@ -97,15 +97,34 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     cout << "tgh_idx is : \n" << tgh_idx <<  "\n";    
 
 
-    //init matrixes for pss_indx
+    //init matrixes for pss_indx    
+
+    MatrixXd pss_pot; 
+    MatrixXd pss_idx, pss_sp_idx, pss_p_idx, pss_mb_idx ,pss_exc_idx;
+    MatrixXd pss_T, pss_T2 ,pss_T4 ,pss_T4_idx , pss_noT4_idx ,pss_noT4;
+
+    int n_pss;
+    
+    pss_indx(pss_con , mac_con, exc_con,pss_idx , n_pss , pss_sp_idx , pss_p_idx , pss_mb_idx , pss_exc_idx , 
+            pss_T , pss_T2 , pss_T4 , pss_T4_idx , pss_noT4);
 
     
+    //pss_indx result 
+     cout << "pss_idx is : \n "<< pss_idx <<"\n";   
+    cout << "pss_mb_idx is : \n" << pss_mb_idx <<"\n";
+    cout << "pss_con is : \n" << pss_con <<"\n";
+    cout << "pss_exc_idx is : \n" << pss_exc_idx <<"\n";
+    cout << "exc_con is : \n" << exc_con  <<"\n ";
+    cout << "pss_exc_idx is : \n" << pss_exc_idx << "\n";
+    cout << "pss_T is : \n" << pss_T << "\n";
+    cout << "pss_T2 is : \n" << pss_T2 << "\n";
+    cout << "pss_T4 is : \n" << pss_T4 << "\n";
+    cout << "pss_T4_idx is : \n" << pss_T4_idx << "\n";
+    cout << "pss_noT4 is : \n" << pss_noT4 << "\n";
+    cout << "pss_sp_idx is : \n" << pss_sp_idx << "\n"; 
+    cout << "pss_p_idx is : \n" << pss_p_idx << "\n";
 
-
-
-
-
-
+    cout << "n_pss : " << n_pss << "\n";
 
 
 
