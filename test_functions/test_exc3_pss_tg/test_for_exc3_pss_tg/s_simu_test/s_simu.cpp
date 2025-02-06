@@ -110,7 +110,7 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
 
     
     //pss_indx result 
-     cout << "pss_idx is : \n "<< pss_idx <<"\n";   
+    cout << "pss_idx is : \n "<< pss_idx <<"\n";   
     cout << "pss_mb_idx is : \n" << pss_mb_idx <<"\n";
     cout << "pss_con is : \n" << pss_con <<"\n";
     cout << "pss_exc_idx is : \n" << pss_exc_idx <<"\n";
@@ -125,6 +125,72 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     cout << "pss_p_idx is : \n" << pss_p_idx << "\n";
 
     cout << "n_pss : " << n_pss << "\n";
+
+    int ntot = n_mac;
+    int ngm = n_mac;
+    int n_pm = n_mac;       
+
+    int k = 1; // this is zero based and should be 0 instead of 1(to work in my functions)
+
+    int n_switch = sw_con.col(0).rows(); // how many rows are there in the sw_con ... 
+
+    MatrixXd k_inc(n_switch -1 ,1);
+    MatrixXd t_switch(n_switch ,1);
+    MatrixXd h = t_switch;
+
+
+
+
+
+    vector<double> t;
+
+    for (int li = 0; li < n_switch - 1; ++li) { // not sure about this loop at all 
+        h(li, 0) = sw_con(li, 6);
+
+        if (h(li, 0) == 0) {
+            h(li, 0) = 0.01; 
+        }
+
+        k_inc(li, 0) = std::floor((sw_con(li + 1, 0) - sw_con(li, 0)) / h(li, 0));
+
+        if (k_inc(li, 0) == 0) {
+            k_inc(li, 0) = 1;
+        }
+
+        h(li, 0) = (sw_con(li + 1, 0) - sw_con(li, 0)) / k_inc(li, 0);
+
+        t_switch(li + 1, 0) = t_switch(li, 0) + k_inc(li, 0) * h(li, 0);
+
+        for (int lj = 0; lj < k_inc(li, 0); ++lj) {
+            t.push_back(t_switch(li, 0) + lj * h(li, 0)); // Update t
+        }
+
+        k += k_inc(li, 0);
+    }
+
+
+    
+    // MatrixXd t1(t.size()  ,1); 
+
+    // for (int i = 0 ; i < t1.size() ;++i){
+    //     t1(i , 0) = t[i];
+    // }
+
+    // use the vector t if needed ...
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
