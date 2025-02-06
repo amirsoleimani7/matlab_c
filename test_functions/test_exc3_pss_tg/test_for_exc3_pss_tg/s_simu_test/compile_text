@@ -1,1 +1,1 @@
-g++ -o test test_s_simu.cpp s_simu.cpp load_flow.cpp Y_Sparse.cpp Calc.cpp lftap.cpp form_jac.cpp Bus.cpp header.cpp  NBus.cpp  chq_lim.cpp
+g++ -o test test_s_simu.cpp s_simu.cpp load_flow.cpp Y_Sparse.cpp Calc.cpp lftap.cpp form_jac.cpp Bus.cpp header.cpp  NBus.cpp  chq_lim.cpp Exc_st3.cpp tg.cpp mac_indx.cpp tg_indx.cpp Pss_index.cpp exc_indx.cpp 

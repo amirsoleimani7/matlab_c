@@ -12,7 +12,6 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     double basrad = sys_freq * 2 * M_PI;
     double basmva = 100.0;
     double syn_ref = 0.0;
-    double n_mac = 0; //not sure need's to be definded ... 
     double tol = 1e-8;
     double iter_max = 30;
     double acc = 1.0;
@@ -22,7 +21,42 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     MatrixXd bus_sol_1,line_sol_1,line_flow_1; // the bus_sol_1 sould e the same as bus
     load_flow(bus,line,tol,iter_max,acc,display,flag ,bus_sol_1 , line_sol_1 , line_flow_1);    
 
+    //result of the load_flow
+    cout << "bus_sol_1 is : \n" << bus_sol_1 << "\n";
+    cout << "line_sol_1 is : \n" << line_sol_1 << "\n";
+    cout << "line_flow_1 is : \n" << line_flow_1 << "\n";
     
+
+    // set indexes 
+    // note : dc index set in dc load flow
+
+    // init matrixes for the mac_indx 
+    MatrixXd mac_pot , mac_em_idx , mac_tra_idx , mac_sub_idx , mac_int;
+    int macmax, n_tot , n_ig , n_em , n_tra, n_sub ;
+    int n_mac = 0;
+
+    mac_indx(mac_con , mac_pot , mac_em_idx , mac_tra_idx , mac_sub_idx , mac_int
+            ,macmax , n_mac , n_tot , n_ig, n_em , n_tra ,n_sub);
+
+    //mac_indx result 
+
+    cout << "mac_em_idx is :\n" << mac_em_idx <<"\n";
+    cout << "mac_tra_idx is : \n" << mac_tra_idx <<"\n";
+    cout << "mac_sub_idx is  : \n" << mac_sub_idx <<"\n";
+    cout << "mac_int is : \n " << mac_int <<"\n";
+    cout << "macmax is : " << macmax << "\n";
+    cout << "n_mac is : " << n_mac <<"\n";
+    cout << "n_tot is : " << n_tot << "\n";
+    cout << "n_ig is : " << n_ig << "\n";
+    cout << "n_em is : " << n_em <<"\n";
+    cout << "n_tra is : " << n_tra <<"\n";
+    cout << "n_sub is : " << n_sub <<"\n";
+    
+
+    //init matrixes for exc_indx
+    
+
+
 
 
 } 

@@ -51,8 +51,11 @@ void exc_indx(MatrixXd& exc_con, MatrixXd& exc_pot, int& n_exc,
               MatrixXd& st3_TB, MatrixXd& st3_TB_idx, MatrixXd& st3_noTB_idx,
               MatrixXd& st3_TR, MatrixXd& st3_TR_idx, MatrixXd& st3_noTR_idx);
 
-void mac_indx(MatrixXd& mac_con , MatrixXd&  mac_pot , int& n_mac);
-
+void mac_indx(MatrixXd& mac_con, MatrixXd& mac_pot, MatrixXd& mac_em_idx, 
+              MatrixXd& mac_tra_idx, MatrixXd& mac_sub_idx, MatrixXd& mac_int, 
+              int& macmax, int& n_mac, int& n_tot, int& n_ig, int& n_em, 
+              int& n_tra, int& n_sub);
+              
 void pss_indx(MatrixXd& pss_con, MatrixXd& mac_con, MatrixXd& exc_con, 
               MatrixXd& pss_idx, int& n_pss, MatrixXd& pss_sp_idx, 
               MatrixXd& pss_p_idx, MatrixXd& pss_mb_idx, MatrixXd& pss_exc_idx, 
