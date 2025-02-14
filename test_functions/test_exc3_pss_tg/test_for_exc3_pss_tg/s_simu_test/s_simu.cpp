@@ -255,6 +255,7 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     
     //place holder for exc_st3  ... 
     MatrixXd Efd , V_B , V_R  , V_A , V_As , V_TR , R_f;
+    
     MatrixXd bus_int = bus.col(0);
     
 
@@ -331,14 +332,36 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
 
     std::cout << "fldcur matrix:\n" << fldcur << std::endl;
 
-    // MatrixXd Efd , exc_pot , V_B , V_R , V_A , V_As , V_TR , R_f;
+    
+
+    MatrixXcd iterm , vep , ve;
+    MatrixXd F_EX , low_IN , V_I , n_mat , n_bus_mat;
+
+    exc_st3(i , flag , exc_con , mac_con , mac_pot , bus_int , mac_int , vex , pelect , qelect , eterm
+     , theta , fldcur , Efd , exc_pot , V_B , V_R , V_A , V_As , V_TR , R_f , st3_idx , st3_TB_idx,
+        iterm , vep , ve , F_EX , n_mat , n_bus_mat ,low_IN , V_I);
+    
+    
+    cout << "-------------resalt---------------\n ";
+    cout << "iterm is : \n" << iterm << "\n";
+    cout << "vep is : \n" << vep << "\n";
+    cout << "ve is : \n" << ve << "\n";
+    cout << "F_EX is : \n" << F_EX << "\n";
+    cout << "n_bus is : \n" << n_bus_mat << "\n";
+    cout << "n is : \n" << n_mat << "\n";
+    cout << "Efd is : \n" << Efd << "\n";
+    cout << "exc_pot is : \n" << exc_pot << "\n";
+    cout << "low_IN is : \n" << low_IN << "\n";
+    cout << "V_B is : \n" << V_B << "\n";
+    cout << "V_R is : \n" << V_R << "\n";
+    cout << "V_A is : \n" << V_A << "\n";
+    cout << "V_As is : \n" << V_As << "\n";
+    cout << "V_I is : \n" << V_I << "\n";
+    cout << "V_TR is : \n" << V_TR << "\n";
+    cout << "R_f is : \n" << R_f << "\n";    
 
 
-    exc_st3(i , flag , exc_con , mac_con , mac_pot,  bus_int , mac_int , vex, pelect , qelect , eterm
-        , theta , fldcur, Efd , exc_pot  , V_B , V_R , V_A ,  V_As , V_TR , R_f  ,st3_idx , st3_TB_idx);
 
-
-        
 
 
 
