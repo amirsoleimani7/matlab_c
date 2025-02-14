@@ -42,9 +42,58 @@ void y_switch(MatrixXd& bus, MatrixXd& line,MatrixXd& load_con, MatrixXd& mac_co
 void mac_em(MatrixXd bus ,MatrixXd mac_con ,MatrixXd bus_int ,MatrixXd mac_em_idx,
         double i ,double k , double flag ,double n_em,double basmva);
 
-void mac_sub(MatrixXd bus, MatrixXd mac_con, MatrixXd bus_int, MatrixXd mac_sub_idx,
-    double i ,double k, double flag ,double n_sub, double basmva);
-    
+        
+void mac_sub(
+        int i,            // (Unused; originally "i")
+        int flag,
+        const MatrixXd &bus,
+        MatrixXd &mac_con,
+        const MatrixXd &bus_int,
+        const MatrixXd &mac_sub_idx,
+        double n_sub,         // number of subtransient machines
+        double basmva,
+        MatrixXd &mac_pot,
+        MatrixXd &cur_re,
+        MatrixXd &cur_im,
+        MatrixXd &psidpp,
+        MatrixXd &psikd,
+        MatrixXd &psikq,
+        MatrixXd &psiqpp,
+        MatrixXd &psi_re,
+        MatrixXd &psi_im,
+        MatrixXd &mac_ang,
+        MatrixXd &mac_spd,
+        MatrixXd &eqprime,
+        MatrixXd &edprime,
+        MatrixXd &curd,
+        MatrixXd &curq,
+        MatrixXd &curdg,
+        MatrixXd &curqg,
+        MatrixXd &fld_cur,
+        MatrixXd &vex,
+        MatrixXd &eterm,
+        MatrixXd &theta,
+        MatrixXd &ed,
+        MatrixXd &eq,
+        MatrixXd &pmech,
+        MatrixXd &pelect,
+        MatrixXd &qelect,
+        MatrixXd &dmac_ang,
+        MatrixXd &dmac_spd,
+        MatrixXd &deqprime,
+        MatrixXd &dedprime,
+        MatrixXd &mcurmag,
+        MatrixXd &busnum,
+        MatrixXd &phi,
+        MatrixXd &eqra,
+        MatrixXd &E_Isat,
+        MatrixXd &edra,
+        MatrixXcd &curr,
+        MatrixXcd &V,
+        MatrixXcd &ei,
+        MatrixXcd &rot
+        );
+        
 void exc_indx(MatrixXd& exc_con, MatrixXd& exc_pot, int& n_exc, 
               MatrixXd& st3_idx, int& n_st3,
               MatrixXd& st3_TA, MatrixXd& st3_TA_idx, MatrixXd& st3_noTA_idx,
@@ -54,7 +103,7 @@ void exc_indx(MatrixXd& exc_con, MatrixXd& exc_pot, int& n_exc,
 void mac_indx(MatrixXd& mac_con, MatrixXd& mac_pot, MatrixXd& mac_em_idx, 
               MatrixXd& mac_tra_idx, MatrixXd& mac_sub_idx, MatrixXd& mac_int, 
               int& macmax, int& n_mac, int& n_tot, int& n_ig, int& n_em, 
-              int& n_tra, int& n_sub);
+              int& n_tra, int& n_sub , MatrixXd &not_ib_idx , int &ngm);
               
 void pss_indx(MatrixXd& pss_con, MatrixXd& mac_con, MatrixXd& exc_con, 
               MatrixXd& pss_idx, int& n_pss, MatrixXd& pss_sp_idx, 

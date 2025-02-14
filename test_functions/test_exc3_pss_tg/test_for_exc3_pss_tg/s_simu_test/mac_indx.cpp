@@ -11,7 +11,7 @@ int n_mac, n_em, ngm, n_tot, n_tra, n_sub, n_ib, n_ib_em, n_ib_tra, n_ib_sub, n_
 void mac_indx(MatrixXd& mac_con, MatrixXd& mac_pot, MatrixXd& mac_em_idx, 
               MatrixXd& mac_tra_idx, MatrixXd& mac_sub_idx, MatrixXd& mac_int, 
               int& macmax, int& n_mac, int& n_tot, int& n_ig, int& n_em, 
-              int& n_tra, int& n_sub){
+              int& n_tra, int& n_sub , MatrixXd &not_ib_idx , int &ngm){
 
     n_mac = mac_con.rows();
     mac_pot = MatrixXd::Zero(n_mac, 15); // making mac_pot all zero 
@@ -30,6 +30,11 @@ void mac_indx(MatrixXd& mac_con, MatrixXd& mac_pot, MatrixXd& mac_em_idx,
         mac_int(int(mac_con(i, 0)) - 1, 0) = i + 1;
     }
 
+    not_ib_idx.resize(n_mac ,1);
+    for (int i = 0; i < n_mac; ++i) { // the rest of the cells should zero
+        not_ib_idx(i ,0) = i+1;
+    }
+    
     n_tot = n_mac;
     ngm = n_mac;
     n_mot = 0;
