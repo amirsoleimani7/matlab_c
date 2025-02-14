@@ -3,7 +3,7 @@
 using namespace Eigen;
 using namespace std;
 
-void exc_st3(
+void exc_st3( int i , int flag  ,
     MatrixXd &exc_con, const MatrixXd &mac_con,const MatrixXd &mac_pot, const MatrixXd &bus_int, 
     const MatrixXd &mac_int, const MatrixXd &vex, const MatrixXd &pelect, 
     const MatrixXd &qelect, const MatrixXd &eterm, const MatrixXd &theta, 
@@ -14,6 +14,7 @@ void exc_st3(
 
 {
 
+    cout << "we are in the exc_st3 \n";
 
     int n_st3 = st3_idx.rows(); // or given in the funtion parameters .. 
     MatrixXd n(n_st3 ,1);

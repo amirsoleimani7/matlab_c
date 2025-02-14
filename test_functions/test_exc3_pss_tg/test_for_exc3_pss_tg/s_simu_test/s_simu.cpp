@@ -238,20 +238,111 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     MatrixXd  Tclead1, Tclead2, Tclag1;
     MatrixXd pss1, pss2, pss3, pss_out, dpw_pss_idx, dpw_out;
 
-    // cout << "pss_-------------------\n";
 
     // mac_spd should be all ones  ... 
     mac_spd.col(0) = MatrixXd::Ones(4 ,1); // not sure about this one tho 
-    
+
     pss(i, flag, pss_con, Tclead1, Tclead2, Tclag1, pss_idx, pss_pot, mac_int, pss_p_idx, pss_mb_idx, 
     pss_exc_idx, pss1, pss_T4_idx, pss_T4, pss2, pss3, pss_out, dpw_pss_idx, dpw_out, mac_con, 
     mac_spd, pelect, pss_sp_idx, basmva);
+
 
     cout << "pss_pot is : \n" << pss_pot << "\n";
     cout << "pss1 is :\n" << pss1 << "\n";
     cout << "pss2 is :\n" << pss2 << "\n";
     cout << "pss3 is :\n" << pss3 << "\n";
     cout << "pss_out is : \n" << pss_out <<"\n"; 
+    
+    //place holder for exc_st3  ... 
+    MatrixXd Efd , V_B , V_R  , V_A , V_As , V_TR , R_f;
+    MatrixXd bus_int = bus.col(0);
+    
+
+    
+    cout << "-------------------\n";
+    cout << "mac_con is : \n" << mac_con << "\n";
+    cout << "mac_int is : \n" << mac_int << "\n";
+    cout << "exc_con is : \n" << exc_con << "\n";
+    cout << "st3_idx is : \n" << st3_idx << "\n";
+    cout << "bus_int is : \n" << bus_int << "\n"; 
+    vex.resize(4, 1);
+    vex << 1.87245065830439, 
+           1.95024192439475, 
+           1.81514178352559, 
+           1.91659268284482;
+    
+    cout << "vex is : \n" << vex << "\n";
+    
+    pelect.resize(4, 1);
+    pelect << 7.26106622019356, 
+              7, 
+              7, 
+              7;
+
+    std::cout << "pelect matrix:\n" << pelect << std::endl;
+
+    qelect.resize(4, 1);
+    qelect << 1.27119216215814, 
+              1.94200544624984, 
+              1.13415163866497, 
+              1.76305806835366;
+
+    std::cout << "qelect matrix:\n" << qelect << std::endl;
+
+    eterm.resize(4, 1);
+    eterm << 1.01, 1.01, 1.01, 1.01 ;
+    
+    std::cout << "eterm matrix:\n" << eterm << std::endl;
+
+    theta.resize(14, 1);
+    theta <<  0.322885911618951, 
+              0.134825139650961, 
+             -0.129863257254776, 
+             -0.17857604175599, 
+              0.2020801912147, 
+             -0.157298115763022, 
+             -0.333711889371994, 
+             -0.594510944060937, 
+             -0.681034322781182, 
+              0.0170136892433736, 
+             -0.367460704798512, 
+             -0.273536351796361, 
+             -0.451171213764415, 
+              0;
+
+    std::cout << "theta matrix:\n" << theta << std::endl;  
+
+    cout << "mac_pot is : \n" << mac_pot << "\n";
+
+    mac_pot.resize(4, 15);
+    mac_pot << 0.111111111111111, 1, 6.9795, -11.2361, 5.32200000000001, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+               0.111111111111111, 1, 6.9795, -11.2361, 5.32200000000001, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+               0.111111111111111, 1, 6.9795, -11.2361, 5.32200000000001, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+               0.111111111111111, 1, 6.9795, -11.2361, 5.32200000000001, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0;
+
+    std::cout << "mac_pot matrix:\n" << mac_pot << std::endl;
+
+
+    fldcur.resize(4, 1);
+    fldcur << 1.87245065830439, 
+              1.95024192439475, 
+              1.81514178352559, 
+              1.91659268284482;
+
+    std::cout << "fldcur matrix:\n" << fldcur << std::endl;
+
+    // MatrixXd Efd , exc_pot , V_B , V_R , V_A , V_As , V_TR , R_f;
+
+
+    exc_st3(i , flag , exc_con , mac_con , mac_pot,  bus_int , mac_int , vex, pelect , qelect , eterm
+        , theta , fldcur, Efd , exc_pot  , V_B , V_R , V_A ,  V_As , V_TR , R_f  ,st3_idx , st3_TB_idx);
+
+
+        
+
+
+
+
 
 
 

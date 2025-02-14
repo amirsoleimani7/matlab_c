@@ -171,7 +171,7 @@ void exc_st3(
         V_TR(lj , 0) = eterm((int)n(li , 0) -1, 0);
         R_f(lj , 0) = 0;
     }
-
+    
     cout << "-------------resalt---------------\n ";
     cout << "V_E IS : \n" << V_E << "\n";
     cout << "I_N is : \n" << I_N << "\n";
