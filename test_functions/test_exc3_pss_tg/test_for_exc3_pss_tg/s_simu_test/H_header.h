@@ -100,9 +100,22 @@ void exc_st3( int i, int flag,
     MatrixXd &n,        // Output: machine number vector
     MatrixXd &n_bus,    // Output: bus index vector
     MatrixXd &low_IN,   // Output: list of low current indices
-    MatrixXd &V_I);      // Output: V_I values
-void tg(MatrixXd &mac_int , MatrixXd &tg_con ,MatrixXd &tg_idx , MatrixXd &pmech , int n_tg);
+    MatrixXd &V_I, 
+    MatrixXd &V_E , 
+    MatrixXd &I_N);      // Output: V_I values
 
+
+void tg(int i, int flag, 
+MatrixXd &mac_int, 
+MatrixXd &tg_con, 
+MatrixXd &tg_idx, 
+MatrixXd &pmech, 
+int n_tg,
+MatrixXd &tg1,
+MatrixXd &tg2,
+MatrixXd &tg3,
+MatrixXd &tg_pot,
+MatrixXd &tg_sig);
 void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,MatrixXd& exc_con,
              MatrixXd& pss_con , MatrixXd& tg_con ,MatrixXd& sw_con);
 

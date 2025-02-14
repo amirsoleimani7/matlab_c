@@ -4,24 +4,33 @@ using namespace Eigen;
 using namespace std;
 
 
-
-void tg(MatrixXd &mac_int , MatrixXd &tg_con ,MatrixXd &tg_idx , MatrixXd &pmech , int n_tg) { 
-
+void tg(int i, int flag, 
+    MatrixXd &mac_int, 
+    MatrixXd &tg_con, 
+    MatrixXd &tg_idx, 
+    MatrixXd &pmech, 
+    int n_tg,
+    MatrixXd &tg1,
+    MatrixXd &tg2,
+    MatrixXd &tg3,
+    MatrixXd &tg_pot,
+    MatrixXd &tg_sig)
+{
     cout << "we are in the tg function \n";
 
-
-    int flag = 0 , i = 0;
     int k = 0; // this should be given to the user  ... 
 
     complex<float> jay(0.0, 1.0); // the is the sqrt(-1)
     
-    MatrixXd tg1(n_tg , 1);
-    MatrixXd tg2(n_tg , 1);
-    MatrixXd tg3(n_tg , 1);
+    cout << "we are here \n" ;
 
+    tg1.resize(n_tg , 1);
+    tg2.resize(n_tg , 1);
+    tg3.resize(n_tg , 1);
 
-
-    MatrixXd tg_pot(n_tg ,5);
+    cout << "we are here2\n";
+ 
+    tg_pot.resize(n_tg ,5);
     MatrixXd a1(n_tg , 1);
     MatrixXd a2(n_tg , 1);
 
@@ -30,8 +39,7 @@ void tg(MatrixXd &mac_int , MatrixXd &tg_con ,MatrixXd &tg_idx , MatrixXd &pmech
     MatrixXd T5(n_tg , 1);
     MatrixXd Tc(n_tg , 1);
 
-    MatrixXd tg_sig(n_tg , 1);
-
+    tg_sig.resize(n_tg , 1);
 
     if(flag == 0 && i == 0){
 
