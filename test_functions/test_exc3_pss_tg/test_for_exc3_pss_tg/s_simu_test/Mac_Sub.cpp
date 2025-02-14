@@ -256,6 +256,8 @@ void mac_sub(
 )
 {
 
+
+    cout << "we are in the mac_sub\n";
     const std::complex<double> jay(0, 1); 
     
     // Resize all output matrices based on n_sub (convert n_sub to int)
@@ -304,18 +306,22 @@ void mac_sub(
 
     // Local intermediate matrix b (n x 3)
     MatrixXd b = MatrixXd::Zero(n, 3);
-
+    cout << "we are here 3\n";
     // Define saturation matrix and its inverse (local variables)
     MatrixXd sat(3, 3);
     sat << 0.64, 0.8, 1,
            1,    1,   1,
            1.44, 1.2, 1;
     MatrixXd inv_sat = sat.inverse();
-
+    cout << "we are here 4 \n";
     // Use a loop over each subtransient machine (use "li" for loop index)
+
+    cout << "mac_sub_idx is : \n" << mac_sub_idx << "\n";
+    cout << "bus is : \n" << bus << "\n";
     for (int li = 0; li < n; ++li) {
         // Avoid conflict with the function parameter "dummy" by using "idx" for the machine index
         int idx = mac_sub_idx(li, 0) - 1;
+        cout << "the idx is : " << idx << "\n";
         
         // Set bus number from mac_con (adjust indexing as needed)
         busnum(idx, 0) = mac_con(idx, 1) - 1;
@@ -329,6 +335,7 @@ void mac_sub(
             mac_con(idx, 14) = 999.0;
 
         // Compute machine potential values
+        cout << "we are here 6\n";
         mac_pot(idx, 0) = basmva / mac_con(idx, 2);
         mac_pot(idx, 1) = 1.0;
         mac_pot(idx, 7) = mac_con(idx, 6) - mac_con(idx, 3);
@@ -341,14 +348,19 @@ void mac_sub(
         mac_pot(idx, 11) = (mac_con(idx, 10) - mac_con(idx, 11)) * mac_pot(idx, 13);
         mac_pot(idx, 14) = (mac_con(idx, 11) - mac_con(idx, 12)) / mac_pot(idx, 12);
         mac_pot(idx, 10) = (mac_con(idx, 10) - mac_con(idx, 11)) / mac_pot(idx, 12) * mac_pot(idx, 14);
+        cout << "we are here 7\n";
 
         // Get terminal voltage and angle from bus data
         eterm(idx, 0) = bus((int)busnum(idx, 0), 1);
         theta(idx, 0) = bus((int)busnum(idx, 0), 2) * M_PI / 180.0;
+        cout << "we are here 8\n";
 
         // Compute electrical power values (Pg and Qg)
+        
         pelect(idx, 0) = bus((int)busnum(idx, 0), 3) * mac_con(idx, 21);
         qelect(idx, 0) = bus((int)busnum(idx, 0), 4) * mac_con(idx, 22);
+        
+        cout << "we are here 9\n";
 
         // Compute current magnitude and adjust with machine potential
         curr(idx) = sqrt(pow(pelect(idx, 0), 2) + pow(qelect(idx, 0), 2)) / eterm(idx, 0);
@@ -367,6 +379,8 @@ void mac_sub(
         mac_ang(idx) = atan(ei(idx).imag() / ei(idx).real());
         mac_spd(idx) = 1.0;
 
+        cout << "we are here 8\n";
+
         // Compute rotation and update current
         rot(idx) = exp(-jay * mac_ang(idx, 0)) * jay;
         curr(idx) = rot(idx) * curr(idx);
@@ -380,6 +394,7 @@ void mac_sub(
 
         // Mechanical power calculation
         pmech(idx) = pelect(idx, 0) * mac_pot(idx, 0) + mac_con(idx, 4) * (mcurmag(idx) * mcurmag(idx));
+        cout << "we are here 9\n";
 
         // Rotate voltage for further calculations
         V(idx) = rot(idx) * V(idx);
@@ -424,41 +439,5 @@ void mac_sub(
         psi_im(idx, 0) = (cos(mac_ang(idx, 0)) * psiqpp(idx, 0)) + (sin(mac_ang(idx, 0)) * psidpp(idx, 0));
     }
 
-    // Print selected outputs (for debugging)
-    cout << "theta is:\n" << theta << "\n";
-    cout << "curd is:\n" << curd << "\n";
-    cout << "curdg is:\n" << curdg << "\n";
-    cout << "curq is:\n" << curq << "\n";
-    cout << "curqg is:\n" << curqg << "\n";
-    cout << "ed is:\n" << ed << "\n";
-    cout << "edprime is:\n" << edprime << "\n";
-    cout << "eq is:\n" << eq << "\n";
-    cout << "eqprime is:\n" << eqprime << "\n";
-    cout << "eterm is:\n" << eterm << "\n";
-    cout << "mac_ang is:\n" << mac_ang << "\n";
-    cout << "mac_spd is:\n" << mac_spd << "\n";
-    cout << "pelect is:\n" << pelect << "\n";
-    cout << "qelect is:\n" << qelect << "\n";
-    cout << "pmech is:\n" << pmech << "\n";
-    cout << "phi is:\n" << phi << "\n";
-    cout << "psi_im is:\n" << psi_im << "\n";
-    cout << "psi_re is:\n" << psi_re << "\n";
-    cout << "vex is:\n" << vex << "\n";
-    cout << "rot (real) is:\n" << rot.real() << "\n";
-    cout << "rot (imag) is:\n" << rot.imag() << "\n";
-    cout << "curr (real) is:\n" << curr.real() << "\n";
-    cout << "curr (imag) is:\n" << curr.imag() << "\n";
-    cout << "ei (real) is:\n" << ei.real() << "\n";
-    cout << "ei (imag) is:\n" << ei.imag() << "\n";
-    cout << "eqra is:\n" << eqra << "\n";
-    cout << "psidpp is:\n" << psidpp << "\n";
-    cout << "psikd is:\n" << psikd << "\n";
-    cout << "edra is:\n" << edra << "\n";
-    cout << "psiqpp is:\n" << psiqpp << "\n";
-    cout << "psikq is:\n" << psikq << "\n";
-    cout << "V (real) is:\n" << V.real() << "\n";
-    cout << "V (imag) is:\n" << V.imag() << "\n";
-    cout << "E_Isat is:\n" << E_Isat << "\n";
-    cout << "fld_cur is:\n" << fld_cur << "\n";
 }
 

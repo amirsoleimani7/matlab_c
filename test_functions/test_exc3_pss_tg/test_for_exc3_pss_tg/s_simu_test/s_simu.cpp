@@ -40,6 +40,7 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
             ,macmax , n_mac , n_tot , n_ig, n_em , n_tra ,n_sub , not_ib_idx ,ngm);
 
     //mac_indx result 
+    cout << "mac_con after mac_index is : \n" << mac_con << "\n";
     cout << "mac_em_idx is :\n" << mac_em_idx <<"\n";
     cout << "mac_tra_idx is : \n" << mac_tra_idx <<"\n";
     cout << "mac_sub_idx is  : \n" << mac_sub_idx <<"\n";
@@ -259,13 +260,52 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     MatrixXd dmac_ang, dmac_spd, deqprime, dedprime;
     MatrixXd mcurmag;
     MatrixXd busnum, phi, eqra, E_Isat, edra;
-    MatrixXcd curr, V, ei, rot;
-    
+    MatrixXcd curr, V, ei, rot;    
 
-    mac_sub(i , flag , bus , mac_con , bus_int , mac_sub_idx , n_sub , basmva , mac_pot , cur_re , cur_im , 
+    mac_sub(i , flag , bus_sol_1 , mac_con , bus_int , mac_sub_idx , n_sub , basmva , mac_pot , cur_re , cur_im , 
             psidpp , psikd , psikq , psiqpp , psi_re , psi_im ,mac_ang , mac_spd , eqprime , edprime , curd ,
         curq , curdg , curqg , fld_cur , vex , eterm , theta  , ed , eq , pmech , pelect , qelect , dmac_ang ,
     dmac_spd , deqprime , dedprime , mcurmag , busnum , phi , eqra , E_Isat, edra , curr,V , ei , rot);
+
+
+
+    cout << "----------results for mac_sub-----\b";
+    // Print selected outputs (for debugging)
+    cout << "theta is:\n" << theta << "\n";
+    cout << "curd is:\n" << curd << "\n";
+    cout << "curdg is:\n" << curdg << "\n";
+    cout << "curq is:\n" << curq << "\n";
+    cout << "curqg is:\n" << curqg << "\n";
+    cout << "ed is:\n" << ed << "\n";
+    cout << "edprime is:\n" << edprime << "\n";
+    cout << "eq is:\n" << eq << "\n";
+    cout << "eqprime is:\n" << eqprime << "\n";
+    cout << "eterm is:\n" << eterm << "\n";
+    cout << "mac_ang is:\n" << mac_ang << "\n";
+    cout << "mac_spd is:\n" << mac_spd << "\n";
+    cout << "pelect is:\n" << pelect << "\n";
+    cout << "qelect is:\n" << qelect << "\n";
+    cout << "pmech is:\n" << pmech << "\n";
+    cout << "phi is:\n" << phi << "\n";
+    cout << "psi_im is:\n" << psi_im << "\n";
+    cout << "psi_re is:\n" << psi_re << "\n";
+    cout << "vex is:\n" << vex << "\n";
+    cout << "rot (real) is:\n" << rot.real() << "\n";
+    cout << "rot (imag) is:\n" << rot.imag() << "\n";
+    cout << "curr (real) is:\n" << curr.real() << "\n";
+    cout << "curr (imag) is:\n" << curr.imag() << "\n";
+    cout << "ei (real) is:\n" << ei.real() << "\n";
+    cout << "ei (imag) is:\n" << ei.imag() << "\n";
+    cout << "eqra is:\n" << eqra << "\n";
+    cout << "psidpp is:\n" << psidpp << "\n";
+    cout << "psikd is:\n" << psikd << "\n";
+    cout << "edra is:\n" << edra << "\n";
+    cout << "psiqpp is:\n" << psiqpp << "\n";
+    cout << "psikq is:\n" << psikq << "\n";
+    cout << "V (real) is:\n" << V.real() << "\n";
+    cout << "V (imag) is:\n" << V.imag() << "\n";
+    cout << "E_Isat is:\n" << E_Isat << "\n";
+    cout << "fld_cur is:\n" << fld_cur << "\n";
 
 
 

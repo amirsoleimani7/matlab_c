@@ -18,10 +18,12 @@ void mac_indx(MatrixXd& mac_con, MatrixXd& mac_pot, MatrixXd& mac_em_idx,
 
     macmax = mac_con.col(0).maxCoeff(); 
     
-    // if (n_par < 22) { //(adding 4 columns and setting the last two on 1's)this is already done on the data
-    //     mac_con.conservativeResize(mac_con.rows(), std::max(23, static_cast<int>(mac_con.cols())));
-    //     mac_con.block(0, 21, mac_con.rows(), 2).setOnes(); // Set columns 22 and 23 to ones (0-based index: 21, 22)
-    // }
+    n_par = mac_con.cols();
+    
+    if (n_par < 22) { //(adding 4 columns and setting the last two on 1's)this is already done on the data
+        mac_con.conservativeResize(mac_con.rows(), std::max(23, static_cast<int>(mac_con.cols())));
+        mac_con.block(0, 21, mac_con.rows(), 2).setOnes(); // Set columns 22 and 23 to ones (0-based index: 21, 22)
+    }
 
     mac_int = MatrixXd::Zero(macmax, 1);  
 
