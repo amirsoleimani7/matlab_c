@@ -113,7 +113,10 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     cout << "pss_idx is : \n "<< pss_idx <<"\n";   
     cout << "pss_mb_idx is : \n" << pss_mb_idx <<"\n";
     cout << "pss_con is : \n" << pss_con <<"\n";
+
+    cout << "pss_exc_idx is" << pss_exc_idx.rows() << " " << pss_exc_idx.cols() << "\n";
     cout << "pss_exc_idx is : \n" << pss_exc_idx <<"\n";
+
     cout << "exc_con is : \n" << exc_con  <<"\n ";
     cout << "pss_exc_idx is : \n" << pss_exc_idx << "\n";
     cout << "pss_T is : \n" << pss_T << "\n";
@@ -167,92 +170,99 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
         k += k_inc(li, 0);
     }
 
-    cout << "this is afte the loop \n";
-    cout << "the h is : \n" << h << "\n";
-    cout << "the k_inc is : \n" << k_inc << "\n";
-    cout << "t_switch is : \n" << t_switch << "\n";
-    cout << "k is : " << k << "\n";    
-
     t.conservativeResize(t.rows() +1  , NoChange);
     t(k -1 , 0) = sw_con(n_switch -1 ,  0);
 
-    cout << "the new t is : " << t << "\n";
-    // int n_bus = bus.col(0).rows();
-    // int n = mac_con.col(0).rows();
+
+    int n_bus = bus.col(0).rows();
+    int n = mac_con.col(0).rows();
 
 
-    // MatrixXd z(n , k);
-    // MatrixXd z1(1 , k);
+    MatrixXd z(n , k);
+    MatrixXd z1(1 , k);
 
-    // MatrixXd mac_ang = z , mac_spd = z , dmac_ang = z , dmac_spd = z , pmech = z;
-    // MatrixXd pelect = z  , edprime = z , eqprime  = z , dedprime = z , deqprime = z;
-    // MatrixXd psikd = z  , psikq = z , dpsikq = z , pm_sig = z , curd = z , curq = z;
-    // MatrixXd durdg = z , curqg = z , fldcur = z , ed = z , eq = z , eterm = z , qelect = z;
-    // MatrixXd vex = z, cur_re = z ,  cur_im = z , psi_re = z , psi_im = z;
+    MatrixXd mac_ang = z , mac_spd = z , dmac_ang = z , dmac_spd = z , pmech = z;
+    MatrixXd pelect = z  , edprime = z , eqprime  = z , dedprime = z , deqprime = z;
+    MatrixXd psikd = z  , psikq = z , dpsikq = z , pm_sig = z , curd = z , curq = z;
+    MatrixXd durdg = z , curqg = z , fldcur = z , ed = z , eq = z , eterm = z , qelect = z;
+    MatrixXd vex = z, cur_re = z ,  cur_im = z , psi_re = z , psi_im = z;
 
-    // MatrixXd v_p = z1 , mac_ref = z1 , sys_ref = z1;
+    MatrixXd v_p = z1 , mac_ref = z1 , sys_ref = z1;
 
-    // MatrixXd theta(n_bus + 1, k);
-    // MatrixXd bus_v(n_bus + 1, k);
+    MatrixXd theta(n_bus + 1, k);
+    MatrixXd bus_v(n_bus + 1, k);
 
-    // MatrixXd z_tg(1 , k);
+    MatrixXd z_tg(1 , k);
 
-    // MatrixXd tg1 = z_tg , tg2 = z_tg , tg3 = z_tg , tg4 = z_tg , tg5 = z_tg;
-    // MatrixXd dtg1 = z_tg , dtg2 = z_tg , dtg3 = z_tg , dtg4 = z_tg , dtg5 = z_tg;
-    // MatrixXd tg_sig = z_tg;
+    MatrixXd tg1 = z_tg , tg2 = z_tg , tg3 = z_tg , tg4 = z_tg , tg5 = z_tg;
+    MatrixXd dtg1 = z_tg , dtg2 = z_tg , dtg3 = z_tg , dtg4 = z_tg , dtg5 = z_tg;
+    MatrixXd tg_sig = z_tg;
 
-    // if(n_tg != 0){
-    //     MatrixXd z_tg(n_tg , k);
-    // }
-
-
-    // if(n_pss == 0){
-    //     MatrixXd z_pss(1 , k);
-    //     MatrixXd pss1 = z_pss , pss2 = z_pss , pss3 = z_pss;
-    //     MatrixXd dpss1 = z_pss , dpss2 = z_pss , dpss3 = z_pss;
-    // }else{
-    //     MatrixXd z_pss(n_pss , k);
-    //     MatrixXd pss1 = z_pss , pss2 = z_pss , pss3 = z_pss;
-    //     MatrixXd dpss1 = z_pss , dpss2 = z_pss , dpss3 = z_pss;
-    // }
+    if(n_tg != 0){
+        MatrixXd z_tg(n_tg , k);
+    }
 
 
-
-    // if(n_exc == 0){
-    //     MatrixXd ze(1 , k);
-    //     MatrixXd V_B = ze , V_TR = ze , V_R = ze , V_A = ze , V_As = ze;
-    //     MatrixXd Efd = ze , R_f = ze , dv_TR = ze , dV_R = ze , dV_As = ze;
-    //     MatrixXd dEfd = ze , dR = ze , dR_f = ze , pss_out = ze;
-    // }else{
-    //     MatrixXd ze(n_pss , k);
-    //     MatrixXd V_B = ze , V_TR = ze , V_R = ze , V_A = ze , V_As = ze;
-    //     MatrixXd Efd = ze , R_f = ze , dv_TR = ze , dV_R = ze , dV_As = ze;
-    //     MatrixXd dEfd = ze , dR = ze , dR_f = ze , pss_out = ze;
-    // }
+    if(n_pss == 0){
+        MatrixXd z_pss(1 , k);
+        MatrixXd pss1 = z_pss , pss2 = z_pss , pss3 = z_pss;
+        MatrixXd dpss1 = z_pss , dpss2 = z_pss , dpss3 = z_pss;
+    }else{
+        MatrixXd z_pss(n_pss , k);
+        MatrixXd pss1 = z_pss , pss2 = z_pss , pss3 = z_pss;
+        MatrixXd dpss1 = z_pss , dpss2 = z_pss , dpss3 = z_pss;
+    }
 
 
-    // MatrixXd m_sys_freq(1 , k); // matrix of system frequency .. 
 
-    // // y_switch(bus , line, load_con , mac_con , sw_con);
+    if(n_exc == 0){
+        MatrixXd ze(1 , k);
+        MatrixXd V_B = ze , V_TR = ze , V_R = ze , V_A = ze , V_As = ze;
+        MatrixXd Efd = ze , R_f = ze , dv_TR = ze , dV_R = ze , dV_As = ze;
+        MatrixXd dEfd = ze , dR = ze , dR_f = ze , pss_out = ze;
+    }else{
+        MatrixXd ze(n_pss , k);
+        MatrixXd V_B = ze , V_TR = ze , V_R = ze , V_A = ze , V_As = ze;
+        MatrixXd Efd = ze , R_f = ze , dv_TR = ze , dV_R = ze , dV_As = ze;
+        MatrixXd dEfd = ze , dR = ze , dR_f = ze , pss_out = ze;
+    }
+
+    MatrixXd m_sys_freq(1 , k); // matrix of system frequency .. 
+
+    // y_switch(bus , line, load_con , mac_con , sw_con);
     
-    // flag = 0;   
-    // int i = 0;
-    // // Create placeholders For pss 
-    // MatrixXd  Tclead1, Tclead2, Tclag1;
-    // MatrixXd pss1, pss2, pss3, pss_out, dpw_pss_idx, dpw_out;
+    flag = 0;   
+    int i = 0;
+    // Create placeholders For pss 
+
+    MatrixXd  Tclead1, Tclead2, Tclag1;
+    MatrixXd pss1, pss2, pss3, pss_out, dpw_pss_idx, dpw_out;
 
     // cout << "pss_-------------------\n";
 
-    // pss(i, flag, pss_con, Tclead1, Tclead2, Tclag1, pss_idx, pss_pot, mac_int, pss_p_idx, pss_mb_idx, 
-    // pss_exc_idx, pss1, pss_T4_idx, pss_T4, pss2, pss3, pss_out, dpw_pss_idx, dpw_out, mac_con, 
-    // mac_spd, pelect, pss_sp_idx, basmva);
+    // mac_spd should be all ones  ... 
+    mac_spd.col(0) = MatrixXd::Ones(4 ,1); // not sure about this one tho 
+    
+    pss(i, flag, pss_con, Tclead1, Tclead2, Tclag1, pss_idx, pss_pot, mac_int, pss_p_idx, pss_mb_idx, 
+    pss_exc_idx, pss1, pss_T4_idx, pss_T4, pss2, pss3, pss_out, dpw_pss_idx, dpw_out, mac_con, 
+    mac_spd, pelect, pss_sp_idx, basmva);
+
+    cout << "pss_pot is : \n" << pss_pot << "\n";
+    cout << "pss1 is :\n" << pss1 << "\n";
+    cout << "pss2 is :\n" << pss2 << "\n";
+    cout << "pss3 is :\n" << pss3 << "\n";
+    cout << "pss_out is : \n" << pss_out <<"\n"; 
 
 
-    // cout << "pss_pot is : \n" << pss_pot << "\n";
-    // cout << "pss1 is :\n" << pss1 << "\n";
-    // cout << "pss2 is :\n" << pss2 << "\n";
-    // cout << "pss3 is :\n" << pss3 << "\n";
-    // cout << "pss_out is : \n" << pss_out <<"\n"; 
+
+
+
+
+
+
+
+
+
     
 
 
@@ -262,39 +272,26 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
 
 
 
-
-
-    
-
-
-
-
-
-
-    // here we should call some functions ... 
-    
-
-
     
     
     
     
     
-//     double H_sum = 0;
+    double H_sum = 0;
     
-//     for(int li = 0; li < n ;++li){
-//         H_sum += mac_con(li ,15) / mac_pot(li , 0);
-//     }
+    for(int li = 0; li < n ;++li){
+        H_sum += mac_con(li ,15) / mac_pot(li , 0);
+    }
 
-//     double kt = 0;
-//     double ks = 1;
-//     int lswitch = k_inc.rows();
+    double kt = 0;
+    double ks = 1;
+    int lswitch = k_inc.rows();
 
-//     double k_tot = 0;
-//     for(int li=  0 ;li < lswitch ; ++li){
-//         k_tot += k_inc(li ,0);
-//     }
+    double k_tot = 0;
+    for(int li=  0 ;li < lswitch ; ++li){
+        k_tot += k_inc(li ,0);
+    }
 
-//     double ktmax = k_tot - k_inc(lswitch -1 , 0); // meaning the last element ..
-//     MatrixXd bus_sim = bus;
+    double ktmax = k_tot - k_inc(lswitch -1 , 0); // meaning the last element ..
+    MatrixXd bus_sim = bus;
 } 

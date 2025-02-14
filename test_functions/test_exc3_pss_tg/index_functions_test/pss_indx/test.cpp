@@ -41,7 +41,6 @@ int main(){
 
     int n_pss;
     
-    
     pss_indx(pss_con , mac_con, exc_con,pss_idx , n_pss , pss_sp_idx , pss_p_idx , pss_mb_idx , pss_exc_idx , 
             pss_T , pss_T2 , pss_T4 , pss_T4_idx , pss_noT4);
 
