@@ -307,44 +307,99 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     cout << "E_Isat is:\n" << E_Isat << "\n";
     cout << "fld_cur is:\n" << fld_cur << "\n";
 
+    
+    
+    
+    //create placeholder for mac_tra 
+    // MatrixXd mac_pot;
+    // MatrixXd cur_re, cur_im, psidpp, psikd, psikq, psiqpp, psi_re, psi_im;
+    // MatrixXd mac_ang, mac_spd, eqprime, edprime;
+    // MatrixXd curd, curq, curdg, curqg, fld_cur;
+    // MatrixXd vex, eterm, theta, ed, eq;
+    // MatrixXd pmech, pelect, qelect;
+    // MatrixXd dmac_ang, dmac_spd, deqprime, dedprime;
+    // MatrixXd mcurmag;
+    // MatrixXd busnum, phi, eqra, E_Isat, edra;
+    // MatrixXcd curr, V, ei, rot, eprime;
+    
+    MatrixXcd eprime;
+
+    cout << "n_tra is : " << n_tra << "\n";
+
+
+    cout << "vex before is : \n" << vex << "\n";
+    mac_tra(bus ,  mac_con , bus_int , mac_tra_idx , i , k , flag  ,n_tra , basmva , mac_pot , cur_re
+            , cur_im , psidpp , psikd , psikq , psiqpp , psi_re , psi_im , mac_ang,  mac_spd, eqprime , edprime, 
+            curd, curq , curdg , curqg , fld_cur , vex , eterm , theta , ed , eq , pmech , pelect , qelect , dmac_ang , 
+            dmac_spd , deqprime , dedprime , mcurmag  ,busnum , phi , eqra , E_Isat , edra , curr,  V , ei , rot , eprime);
+                    
+
+            // Print selected outputs (unchanged from original)
+    cout << "result in mac_Tra is :----- \n";
+    cout << "theta is \n" << theta << "\n";
+    cout << "curd is \n" << curd << "\n";
+    cout << "curdg is \n" << curdg << "\n";
+    cout << "curq is \n" << curq << "\n";
+    cout << "curqg is \n" << curqg << "\n";
+    cout << "ed is \n" << ed << "\n";
+    cout << "edprime is \n" << edprime << "\n";
+    cout << "eq is \n" << eq << "\n";
+    cout << "eqprime is \n" << eqprime << "\n";
+    cout << "etern  is \n" << eterm << "\n";
+    cout << "mac_ang  is \n" << mac_ang << "\n";
+    cout << "mac_spd  is \n" << mac_spd << "\n";
+    cout << "pelect  is \n" << pelect << "\n";
+    cout << "qelect  is \n" << qelect << "\n";
+    cout << "pmech  is \n" << pmech << "\n";
+    cout << "phi  is \n" << phi << "\n";
+    cout << "psi_im  is \n" << psi_im << "\n";
+    cout << "psi_re  is \n" << psi_re << "\n";
+    cout << "vex  is \n" << vex << "\n";
+    cout << "rot_re   is \n" << rot.real() << "\n";
+    cout << "rot_im   is \n" << rot.imag() << "\n";
+    cout << "curr_re  is \n" << curr.real() << "\n";
+    cout << "curr_im  is \n" << curr.imag() << "\n";
+    cout << "ei_re  is \n" << ei.real() << "\n";
+    cout << "ei_im  is \n" << ei.imag() << "\n";
+    cout << "eprime_re is \n" << eprime.real() << "\n";
+    cout << "eprime_im is \n" << eprime.imag() << "\n";
+    cout << "v_re  is \n" << V.real() << "\n"; 
+    cout << "v_im  is \n" << V.imag() << "\n";
+    cout << "E_isat is \n" << E_Isat << "\n"; 
+    cout << "fldcur\n" << fld_cur << "\n"; 
+
+
+
+    //place holders for mac_em  ... 
+    mac_em(bus , mac_con , bus_int , mac_em_idx , i , k , flag, n_em , basmva , mac_pot , 
+        eterm , pelect , qelect , phi, psi_re , psi_im , mac_ang, mac_spd , eqprime , vex ,
+        edprime , busnum , curqg  , curdg , eq , ed , curq , curd , pmech , theta , V , curr , 
+        eprime , ei , rot);
+
+
+    cout << "out_put for mac_em is--------\n";
+    cout << "theta is \n" << theta << "\n";
+    cout << "curd is \n" << curd << "\n";
+    cout << "curdg is \n" << curdg << "\n";
+    cout << "curq is \n" << curq << "\n";
+    cout << "curqg is \n" << curqg << "\n";
+    cout << "ed is \n" << ed << "\n";
+    cout << "edprime is \n" << edprime << "\n";
+    cout << "eq is \n" << eq << "\n";
+    cout << "eqprime is \n" << eqprime << "\n";
+    cout << "etern  is \n" << eterm << "\n";
+    cout << "mac_ang  is \n" << mac_ang << "\n";
+    cout << "mac_spd  is \n" << mac_spd << "\n";
+    cout << "pelect  is \n" << pelect << "\n";
+    cout << "qelect  is \n" << qelect << "\n";
+    cout << "pmetch  is \n" << pmech << "\n";
+    cout << "phi  is \n" << phi << "\n";
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
     // // Create placeholders For pss 
 

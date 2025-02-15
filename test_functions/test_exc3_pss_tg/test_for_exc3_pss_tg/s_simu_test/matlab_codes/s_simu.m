@@ -153,7 +153,7 @@ disp('Performing simulation.')
 %
 % construct simulation switching sequence as defined in sw_con
 tswitch(1) = sw_con(1,1);
-k = 1;kdc=1;
+k = 1;kdc=1;   
 n_switch = length(sw_con(:,1));
 k_inc = zeros(n_switch-1,1);k_incdc=k_inc;
 t_switch = zeros(n_switch,1);

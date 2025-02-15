@@ -39,10 +39,36 @@ void red_ybus(MatrixXd bus_sol, MatrixXd line , MatrixXd mac_con, MatrixXd load_
 
 void y_switch(MatrixXd& bus, MatrixXd& line,MatrixXd& load_con, MatrixXd& mac_con, MatrixXd& sw_con);
 
-void mac_em(MatrixXd bus ,MatrixXd mac_con ,MatrixXd bus_int ,MatrixXd mac_em_idx,
-        double i ,double k , double flag ,double n_em,double basmva);
 
-        
+void mac_em(
+        MatrixXd bus, MatrixXd mac_con, MatrixXd bus_int, MatrixXd mac_em_idx,
+        int  i, int k, double flag, int  &n_em, double &basmva,
+        MatrixXd &mac_pot,
+        MatrixXd &eterm, MatrixXd &pelect, MatrixXd &qelect, MatrixXd &phi,
+        MatrixXd &psi_re, MatrixXd &psi_im, MatrixXd &mac_ang, MatrixXd &mac_spd,
+        MatrixXd &eqprime, MatrixXd &vex, MatrixXd &edprime, MatrixXd &busnum,
+        MatrixXd &curqg, MatrixXd &curdg, MatrixXd &eq, MatrixXd &ed,
+        MatrixXd &curq, MatrixXd &curd, MatrixXd &pmech, MatrixXd &theta,
+        MatrixXcd &V, MatrixXcd &curr, MatrixXcd &eprime, MatrixXcd &ei, MatrixXcd &rot
+    );
+    
+void mac_tra(
+        MatrixXd &bus, MatrixXd &mac_con, MatrixXd &bus_int, MatrixXd &mac_tra_idx,
+        int &i, int &k, double &flag, int  &n_tra, double &basmva,
+        MatrixXd &mac_pot,
+        MatrixXd &cur_re, MatrixXd &cur_im, 
+        MatrixXd &psidpp, MatrixXd &psikd, MatrixXd &psikq, MatrixXd &psiqpp,
+        MatrixXd &psi_re, MatrixXd &psi_im,
+        MatrixXd &mac_ang, MatrixXd &mac_spd, MatrixXd &eqprime, MatrixXd &edprime,
+        MatrixXd &curd, MatrixXd &curq, MatrixXd &curdg, MatrixXd &curqg, MatrixXd &fld_cur,
+        MatrixXd &vex, MatrixXd &eterm, MatrixXd &theta, MatrixXd &ed, MatrixXd &eq,
+        MatrixXd &pmech, MatrixXd &pelect, MatrixXd &qelect,
+        MatrixXd &dmac_ang, MatrixXd &dmac_spd, MatrixXd &deqprime, MatrixXd &dedprime,
+        MatrixXd &mcurmag,
+        MatrixXd &busnum, MatrixXd &phi, MatrixXd &eqra, MatrixXd &E_Isat, MatrixXd &edra,
+        MatrixXcd &curr, MatrixXcd &V, MatrixXcd &ei, MatrixXcd &rot, MatrixXcd &eprime
+        );
+
 void mac_sub(
         int i,            // (Unused; originally "i")
         int flag,
