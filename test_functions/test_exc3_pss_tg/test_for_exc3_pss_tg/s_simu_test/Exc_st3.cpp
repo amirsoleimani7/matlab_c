@@ -37,7 +37,7 @@ void exc_st3( int i, int flag,
     MatrixXd &I_N)      // Output: V_I values
 {
     cout << "we are in the exc_st3 \n";
-
+    
     // Determine the number of ST3 machines.
     int n_st3 = st3_idx.rows();
 
@@ -89,8 +89,11 @@ void exc_st3( int i, int flag,
     R_f.resize(n_st3, 1);
     Efd.resize(n_st3, 1);
 
+    cout << "we are hre \n";
     for (int li = 0; li < n_st3; ++li) {
         // Machine number vector
+        cout << "li is : " << li << "\n";
+
         int lj = st3_idx(li, 0) - 1;
         
         // Assign machine number using mac_int and exc_con.

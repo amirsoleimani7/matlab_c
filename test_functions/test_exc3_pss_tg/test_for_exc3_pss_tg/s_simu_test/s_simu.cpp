@@ -403,29 +403,32 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
 
     // // Create placeholders For pss 
 
-    // MatrixXd  Tclead1, Tclead2, Tclag1;
-    // MatrixXd pss1, pss2, pss3, pss_out, dpw_pss_idx, dpw_out;
+    MatrixXd  Tclead1, Tclead2, Tclag1;
+    MatrixXd pss1, pss2, pss3, pss_out, dpw_pss_idx, dpw_out;
 
 
-    // // mac_spd should be all ones  ... 
+    // mac_spd should be all ones  ... 
     // mac_spd.col(0) = MatrixXd::Ones(4 ,1); // not sure about this one tho 
 
-    // pss(i, flag, pss_con, Tclead1, Tclead2, Tclag1, pss_idx, pss_pot, mac_int, pss_p_idx, pss_mb_idx, 
-    // pss_exc_idx, pss1, pss_T4_idx, pss_T4, pss2, pss3, pss_out, dpw_pss_idx, dpw_out, mac_con, 
-    // mac_spd, pelect, pss_sp_idx, basmva);
+    pss(i, flag, pss_con, Tclead1, Tclead2, Tclag1, pss_idx, pss_pot, mac_int, pss_p_idx, pss_mb_idx, 
+    pss_exc_idx, pss1, pss_T4_idx, pss_T4, pss2, pss3, pss_out, dpw_pss_idx, dpw_out, mac_con, 
+    mac_spd, pelect, pss_sp_idx, basmva);
 
 
 
-    // cout << "----------result (ps)----------\n";
-    // cout << "pss_pot is : \n" << pss_pot << "\n";
-    // cout << "pss1 is :\n" << pss1 << "\n";
-    // cout << "pss2 is :\n" << pss2 << "\n";
-    // cout << "pss3 is :\n" << pss3 << "\n";
-    // cout << "pss_out is : \n" << pss_out <<"\n"; 
+    cout << "----------result (ps)----------\n";
+    cout << "pss_pot is : \n" << pss_pot << "\n";
+    cout << "pss1 is :\n" << pss1 << "\n";
+    cout << "pss2 is :\n" << pss2 << "\n";
+    cout << "pss3 is :\n" << pss3 << "\n";
+    cout << "pss_out is : \n" << pss_out <<"\n"; 
 
     // //place holder for exc_st3  ... 
-    // MatrixXd Efd , V_B , V_R  , V_A , V_As , V_TR , R_f;    
+
     // MatrixXd bus_int = bus.col(0);
+
+    cout << "bus_int is : \n" << bus_int << "\n";
+    cout << "bus_int1 is : \n" << bus.col(0) << "\n";
 
 
     // cout << "-------------------\n";
@@ -435,6 +438,8 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     // cout << "st3_idx is : \n" << st3_idx << "\n";
     // cout << "bus_int is : \n" << bus_int << "\n"; 
 
+
+    cout << "vex is : \n" << vex << "\n";
     // vex.resize(4, 1);
     // vex << 1.87245065830439, 
     //        1.95024192439475, 
@@ -442,12 +447,15 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     //        1.91659268284482;
     
     // cout << "vex is : \n" << vex << "\n";
-
+    
+    cout << "pelect is : \n" << pelect << "\n";
     // pelect.resize(4, 1);
     // pelect << 7.26106622019356, 
     //           7, 
     //           7, 
     //           7;
+
+    cout << "qelect is : \n" << qelect << "\n";
 
     // std::cout << "pelect matrix:\n" << pelect << std::endl;
 
@@ -460,32 +468,24 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
 
     // std::cout << "qelect matrix:\n" << qelect << std::endl;
 
+    cout << "eterm is : \n" << eterm << "\n";
     // eterm.resize(4, 1);
     
     // eterm << 1.01, 1.01, 1.01, 1.01;
 
     // std::cout << "eterm matrix:\n" << eterm << std::endl;
 
-    // theta.resize(14, 1);
     
-    // theta <<  0.322885911618951, 
-    //           0.134825139650961, 
-    //          -0.129863257254776, 
-    //          -0.17857604175599, 
-    //           0.2020801912147, 
-    //          -0.157298115763022, 
-    //          -0.333711889371994, 
-    //          -0.594510944060937, 
-    //          -0.681034322781182, 
-    //           0.0170136892433736, 
-    //          -0.367460704798512, 
-    //          -0.273536351796361, 
-    //          -0.451171213764415, 
-    //           0;
+
+    MatrixXd theta1;
+    theta1.resize(14, 1);
+    theta1 = bus_sol_1.col(2) * (M_PI / 180);
+
 
     // std::cout << "theta matrix:\n" << theta << std::endl;  
     // cout << "mac_pot is : \n" << mac_pot << "\n";
-
+    
+    cout << "mac_pot is : \n" << mac_pot << "\n";
     // mac_pot.resize(4, 15);
     // mac_pot << 0.111111111111111, 1, 6.9795, -11.2361, 5.32200000000001, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     //            0.111111111111111, 1, 6.9795, -11.2361, 5.32200000000001, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -495,6 +495,8 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     // std::cout << "mac_pot matrix:\n" << mac_pot << std::endl;
 
 
+    cout << "fld_cur is :" << fld_cur << "\n";
+
     // fldcur.resize(4, 1);
     // fldcur << 1.87245065830439, 
     //           1.95024192439475, 
@@ -503,63 +505,57 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
 
     // std::cout << "fldcur matrix:\n" << fldcur << std::endl;
 
-    // MatrixXcd iterm , vep , ve;
-    // MatrixXd F_EX , low_IN , V_I , n_mat , n_bus_mat , V_E , I_N;
+    MatrixXd Efd , V_B , V_R  , V_A , V_As , V_TR , R_f;    
+    MatrixXcd iterm , vep , ve;
+    MatrixXd F_EX , low_IN , V_I , n_mat , n_bus_mat , V_E , I_N;
 
-    // exc_st3(i , flag , exc_con , mac_con , mac_pot , bus_int , mac_int , vex , pelect , qelect , eterm
-    //  , theta , fldcur , Efd , exc_pot , V_B , V_R , V_A , V_As , V_TR , R_f , st3_idx , st3_TB_idx,
-    //     iterm , vep , ve , F_EX , n_mat , n_bus_mat ,low_IN , V_I , V_E , I_N);
+    exc_st3(i , flag , exc_con , mac_con , mac_pot , bus_int , mac_int , vex , pelect , qelect , eterm
+     , theta1 , fld_cur , Efd , exc_pot , V_B , V_R , V_A , V_As , V_TR , R_f , st3_idx , st3_TB_idx,
+        iterm , vep , ve , F_EX , n_mat , n_bus_mat ,low_IN , V_I , V_E , I_N);
     
-    // cout << "-------------resalt(exc_st3)---------------\n ";
-    // cout << "iterm is : \n" << iterm << "\n";
-    // cout << "vep is : \n" << vep << "\n";
-    // cout << "ve is : \n" << ve << "\n";
-    // cout << "F_EX is : \n" << F_EX << "\n";
-    // cout << "n_bus is : \n" << n_bus_mat << "\n";
-    // cout << "n is : \n" << n_mat << "\n";
-    // cout << "Efd is : \n" << Efd << "\n";
-    // cout << "exc_pot is : \n" << exc_pot << "\n";
-    // cout << "low_IN is : \n" << low_IN << "\n";
-    // cout << "V_B is : \n" << V_B << "\n";
-    // cout << "I_N is : \n" << I_N  << "\n";
+    cout << "-------------resalt(exc_st3)---------------\n ";
+    cout << "iterm is : \n" << iterm << "\n";
+    cout << "vep is : \n" << vep << "\n";
+    cout << "ve is : \n" << ve << "\n";
+    cout << "F_EX is : \n" << F_EX << "\n";
+    cout << "n_bus is : \n" << n_bus_mat << "\n";
+    cout << "n is : \n" << n_mat << "\n";
+    cout << "Efd is : \n" << Efd << "\n";
+    cout << "exc_pot is : \n" << exc_pot << "\n";
+    cout << "low_IN is : \n" << low_IN << "\n";
+    cout << "V_B is : \n" << V_B << "\n";
+    cout << "I_N is : \n" << I_N  << "\n";
 
-    // cout << "V_E is ; \n" << V_E << "\n";
-    // cout << "V_R is : \n" << V_R << "\n";
-    // cout << "V_A is : \n" << V_A << "\n";
-    // cout << "V_As is : \n" << V_As << "\n";
-    // cout << "V_I is : \n" << V_I << "\n";
-    // cout << "V_TR is : \n" << V_TR << "\n";
-    // cout << "R_f is : \n" << R_f << "\n";    
+    cout << "V_E is ; \n" << V_E << "\n";
+    cout << "V_R is : \n" << V_R << "\n";
+    cout << "V_A is : \n" << V_A << "\n";
+    cout << "V_As is : \n" << V_As << "\n";
+    cout << "V_I is : \n" << V_I << "\n";
+    cout << "V_TR is : \n" << V_TR << "\n";
+    cout << "R_f is : \n" << R_f << "\n";    
 
-    // //place holders for tg  ...
+    //place holders for tg  ...
 
-    // cout << "------------------------\n"; 
-    // cout << "mac_int is:\n" << mac_int << "\n";
-    // cout << "tg_idx is :\n" << tg_idx << "\n";
-    // cout << "tg_con is :\n" << tg_con << "\n";
+    cout << "------------------------\n"; 
+    cout << "mac_int is:\n" << mac_int << "\n";
+    cout << "tg_idx is :\n" << tg_idx << "\n";
+    cout << "tg_con is :\n" << tg_con << "\n";
 
-    // pmech.resize(4, 1);
-    // pmech <<
-    //         0.8068,
-    //         0.7778,
-    //         0.7778,
-    //         0.7778;
             
-            
-    // cout << "pmech is :\n" << pmech << "\n";
-    // cout << "n_tg is :" << n_tg << "\n";
-    // cout << "------------------------\n";
+    cout << "pmech is :\n" << pmech << "\n";
+    cout << "n_tg is :" << n_tg << "\n";
+    cout << "------------------------\n";
 
-    // MatrixXd tg_pot;
+    MatrixXd tg_pot , tg1 , tg2 , tg3 , tg_sig;  
     
-    // tg(i ,flag , mac_int , tg_con , tg_idx ,pmech , n_tg,  tg1 , tg2 , tg3 , tg_pot , tg_sig);
+    tg(i ,flag , mac_int , tg_con , tg_idx ,pmech , n_tg,  tg1 , tg2 , tg3 , tg_pot , tg_sig);
 
-    // cout << "------------result(tg)-------------\n";
-    // cout << "tg1 is : \n" << tg1 << "\n";
-    // cout << "tg_pot is : \n" << tg_pot << "\n";
-    // cout << "tg2 is : \n" << tg2 << "\n";
-    // cout << "tg3 is : \n" << tg3 << "\n";
-    // cout << "tg_sig is : \n" << tg_sig << "\n";    
+    cout << "------------result(tg)-------------\n";
+    cout << "tg1 is : \n" << tg1 << "\n";
+    cout << "tg_pot is : \n" << tg_pot << "\n";
+    cout << "tg2 is : \n" << tg2 << "\n";
+    cout << "tg3 is : \n" << tg3 << "\n";
+    cout << "tg_sig is : \n" << tg_sig << "\n";    
 
     // double H_sum = 0;
     

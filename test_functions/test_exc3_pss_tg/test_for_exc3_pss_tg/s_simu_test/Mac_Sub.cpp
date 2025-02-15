@@ -255,8 +255,7 @@ void mac_sub(
     MatrixXcd &rot
 )
 {
-
-
+    
     cout << "we are in the mac_sub\n";
     const std::complex<double> jay(0, 1); 
     
