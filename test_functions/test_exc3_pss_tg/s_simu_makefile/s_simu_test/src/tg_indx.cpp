@@ -21,9 +21,8 @@ void Tg_idx(MatrixXd& tg_con, MatrixXd& tg_idx, int& n_tg, MatrixXd& tgh_idx, in
             
             }
         }
-
     }
-        
+    
     // cout << "tg_idx is : \n" << tg_idx << "\n";
     // cout << "tg_idx size is : " << tg_idx.rows() << " " << tg_idx.cols() << "\n ";   
 
