@@ -116,12 +116,11 @@
 
 // }
 
-#include "H_header.h"
+#include "../include/H_header.h"
 
 using namespace std;
 using namespace Eigen;
  
-// Revised function signature: all formerly local matrices are now passed as output parameters.
 void mac_em(
     MatrixXd bus, MatrixXd mac_con, MatrixXd bus_int, MatrixXd mac_em_idx,
     int i, int k, double flag, int  &n_em, double &basmva,

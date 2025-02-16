@@ -175,7 +175,7 @@
 //     cout << "fldcur\n" << fld_cur << "\n"; 
 
 // }
-#include "H_header.h"
+#include "../include/H_header.h"
 
 using namespace std;
 using namespace Eigen;

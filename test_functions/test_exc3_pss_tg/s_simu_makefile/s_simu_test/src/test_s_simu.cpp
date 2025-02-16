@@ -4,9 +4,8 @@ using namespace Eigen;
 using namespace std;
 
 int main(){
-
+        
         //1st test for s_simu
-
 //     Eigen::MatrixXd bus(13, 15);
 
 //     bus << 1, 1.0100, 18.5000, 7.2615, 1.2740, 0.0000, 0.0000, 0.0000, 0.0000, 1.0000, 5.0000, -2.0000, 22.0000, 1.1000, 0.9000,

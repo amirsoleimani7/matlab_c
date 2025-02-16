@@ -1,6 +1,6 @@
-obj/chq_lim.o: src/chq_lim.cpp include/H_header.h include/H_NBus.h \
- include/H_Bus.h include/H_Line.h
-include/H_header.h:
-include/H_NBus.h:
-include/H_Bus.h:
-include/H_Line.h:
+obj/chq_lim.o: src/chq_lim.cpp src/../include/H_header.h \
+ src/../include/H_NBus.h src/../include/H_Bus.h src/../include/H_Line.h
+src/../include/H_header.h:
+src/../include/H_NBus.h:
+src/../include/H_Bus.h:
+src/../include/H_Line.h:
