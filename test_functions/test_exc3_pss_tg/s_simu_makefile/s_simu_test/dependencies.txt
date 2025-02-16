@@ -1,0 +1,48 @@
+header.o: src/header.cpp include/H_header.h include/H_NBus.h \
+ include/H_Bus.h include/H_Line.h
+Bus.o: src/Bus.cpp include/H_header.h include/H_NBus.h include/H_Bus.h \
+ include/H_Line.h
+NBus.o: src/NBus.cpp include/H_header.h include/H_NBus.h include/H_Bus.h \
+ include/H_Line.h
+lftap.o: src/lftap.cpp include/H_header.h include/H_NBus.h \
+ include/H_Bus.h include/H_Line.h
+mac_em.o: src/mac_em.cpp include/H_header.h include/H_NBus.h \
+ include/H_Bus.h include/H_Line.h
+load_flow.o: src/load_flow.cpp include/H_header.h include/H_NBus.h \
+ include/H_Bus.h include/H_Line.h
+Calc.o: src/Calc.cpp include/H_header.h include/H_NBus.h include/H_Bus.h \
+ include/H_Line.h
+s_simu.o: src/s_simu.cpp include/H_header.h include/H_NBus.h \
+ include/H_Bus.h include/H_Line.h
+Mac_Sub.o: src/Mac_Sub.cpp include/H_header.h include/H_NBus.h \
+ include/H_Bus.h include/H_Line.h
+Y_Sparse.o: src/Y_Sparse.cpp include/H_header.h include/H_NBus.h \
+ include/H_Bus.h include/H_Line.h
+mac_indx.o: src/mac_indx.cpp include/H_header.h include/H_NBus.h \
+ include/H_Bus.h include/H_Line.h
+Pss_index.o: src/Pss_index.cpp include/H_header.h include/H_NBus.h \
+ include/H_Bus.h include/H_Line.h
+chq_lim.o: src/chq_lim.cpp include/H_header.h include/H_NBus.h \
+ include/H_Bus.h include/H_Line.h
+test_s_simu.o: src/test_s_simu.cpp include/H_header.h include/H_NBus.h \
+ include/H_Bus.h include/H_Line.h
+Red_Ybus.o: src/Red_Ybus.cpp include/H_header.h include/H_NBus.h \
+ include/H_Bus.h include/H_Line.h
+Pss.o: src/Pss.cpp include/H_header.h include/H_NBus.h include/H_Bus.h \
+ include/H_Line.h
+Mac_Tra.o: src/Mac_Tra.cpp include/H_header.h include/H_NBus.h \
+ include/H_Bus.h include/H_Line.h
+form_jac.o: src/form_jac.cpp include/H_header.h include/H_NBus.h \
+ include/H_Bus.h include/H_Line.h
+exc_indx.o: src/exc_indx.cpp include/H_header.h include/H_NBus.h \
+ include/H_Bus.h include/H_Line.h
+tg.o: src/tg.cpp include/H_header.h include/H_NBus.h include/H_Bus.h \
+ include/H_Line.h
+NPss_index.o: src/NPss_index.cpp include/H_header.h include/H_NBus.h \
+ include/H_Bus.h include/H_Line.h
+Exc_st3.o: src/Exc_st3.cpp include/H_header.h include/H_NBus.h \
+ include/H_Bus.h include/H_Line.h
+Y_switch.o: src/Y_switch.cpp include/H_header.h include/H_NBus.h \
+ include/H_Bus.h include/H_Line.h
+tg_indx.o: src/tg_indx.cpp include/H_header.h include/H_NBus.h \
+ include/H_Bus.h include/H_Line.h

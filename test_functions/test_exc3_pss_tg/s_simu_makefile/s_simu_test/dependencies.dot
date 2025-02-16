@@ -1,0 +1,145 @@
+digraph G {
+    "header.o" -> "src/header.cpp";
+    "header.o" -> "include/H_header.h";
+    "header.o" -> "include/H_NBus.h";
+    "header.o" -> "include/H_Bus.h";
+    "header.o" -> "include/H_Line.h";
+
+    "Bus.o" -> "src/Bus.cpp";
+    "Bus.o" -> "include/H_header.h";
+    "Bus.o" -> "include/H_NBus.h";
+    "Bus.o" -> "include/H_Bus.h";
+    "Bus.o" -> "include/H_Line.h";
+
+    "NBus.o" -> "src/NBus.cpp";
+    "NBus.o" -> "include/H_header.h";
+    "NBus.o" -> "include/H_NBus.h";
+    "NBus.o" -> "include/H_Bus.h";
+    "NBus.o" -> "include/H_Line.h";
+
+    "lftap.o" -> "src/lftap.cpp";
+    "lftap.o" -> "include/H_header.h";
+    "lftap.o" -> "include/H_NBus.h";
+    "lftap.o" -> "include/H_Bus.h";
+    "lftap.o" -> "include/H_Line.h";
+
+    "mac_em.o" -> "src/mac_em.cpp";
+    "mac_em.o" -> "include/H_header.h";
+    "mac_em.o" -> "include/H_NBus.h";
+    "mac_em.o" -> "include/H_Bus.h";
+    "mac_em.o" -> "include/H_Line.h";
+
+    "load_flow.o" -> "src/load_flow.cpp";
+    "load_flow.o" -> "include/H_header.h";
+    "load_flow.o" -> "include/H_NBus.h";
+    "load_flow.o" -> "include/H_Bus.h";
+    "load_flow.o" -> "include/H_Line.h";
+
+    "Calc.o" -> "src/Calc.cpp";
+    "Calc.o" -> "include/H_header.h";
+    "Calc.o" -> "include/H_NBus.h";
+    "Calc.o" -> "include/H_Bus.h";
+    "Calc.o" -> "include/H_Line.h";
+
+    "s_simu.o" -> "src/s_simu.cpp";
+    "s_simu.o" -> "include/H_header.h";
+    "s_simu.o" -> "include/H_NBus.h";
+    "s_simu.o" -> "include/H_Bus.h";
+    "s_simu.o" -> "include/H_Line.h";
+
+    "Mac_Sub.o" -> "src/Mac_Sub.cpp";
+    "Mac_Sub.o" -> "include/H_header.h";
+    "Mac_Sub.o" -> "include/H_NBus.h";
+    "Mac_Sub.o" -> "include/H_Bus.h";
+    "Mac_Sub.o" -> "include/H_Line.h";
+
+    "Y_Sparse.o" -> "src/Y_Sparse.cpp";
+    "Y_Sparse.o" -> "include/H_header.h";
+    "Y_Sparse.o" -> "include/H_NBus.h";
+    "Y_Sparse.o" -> "include/H_Bus.h";
+    "Y_Sparse.o" -> "include/H_Line.h";
+
+    "mac_indx.o" -> "src/mac_indx.cpp";
+    "mac_indx.o" -> "include/H_header.h";
+    "mac_indx.o" -> "include/H_NBus.h";
+    "mac_indx.o" -> "include/H_Bus.h";
+    "mac_indx.o" -> "include/H_Line.h";
+
+    "Pss_index.o" -> "src/Pss_index.cpp";
+    "Pss_index.o" -> "include/H_header.h";
+    "Pss_index.o" -> "include/H_NBus.h";
+    "Pss_index.o" -> "include/H_Bus.h";
+    "Pss_index.o" -> "include/H_Line.h";
+
+    "chq_lim.o" -> "src/chq_lim.cpp";
+    "chq_lim.o" -> "include/H_header.h";
+    "chq_lim.o" -> "include/H_NBus.h";
+    "chq_lim.o" -> "include/H_Bus.h";
+    "chq_lim.o" -> "include/H_Line.h";
+
+    "test_s_simu.o" -> "src/test_s_simu.cpp";
+    "test_s_simu.o" -> "include/H_header.h";
+    "test_s_simu.o" -> "include/H_NBus.h";
+    "test_s_simu.o" -> "include/H_Bus.h";
+    "test_s_simu.o" -> "include/H_Line.h";
+
+    "Red_Ybus.o" -> "src/Red_Ybus.cpp";
+    "Red_Ybus.o" -> "include/H_header.h";
+    "Red_Ybus.o" -> "include/H_NBus.h";
+    "Red_Ybus.o" -> "include/H_Bus.h";
+    "Red_Ybus.o" -> "include/H_Line.h";
+
+    "Pss.o" -> "src/Pss.cpp";
+    "Pss.o" -> "include/H_header.h";
+    "Pss.o" -> "include/H_NBus.h";
+    "Pss.o" -> "include/H_Bus.h";
+    "Pss.o" -> "include/H_Line.h";
+
+    "Mac_Tra.o" -> "src/Mac_Tra.cpp";
+    "Mac_Tra.o" -> "include/H_header.h";
+    "Mac_Tra.o" -> "include/H_NBus.h";
+    "Mac_Tra.o" -> "include/H_Bus.h";
+    "Mac_Tra.o" -> "include/H_Line.h";
+
+    "form_jac.o" -> "src/form_jac.cpp";
+    "form_jac.o" -> "include/H_header.h";
+    "form_jac.o" -> "include/H_NBus.h";
+    "form_jac.o" -> "include/H_Bus.h";
+    "form_jac.o" -> "include/H_Line.h";
+
+    "exc_indx.o" -> "src/exc_indx.cpp";
+    "exc_indx.o" -> "include/H_header.h";
+    "exc_indx.o" -> "include/H_NBus.h";
+    "exc_indx.o" -> "include/H_Bus.h";
+    "exc_indx.o" -> "include/H_Line.h";
+
+    "tg.o" -> "src/tg.cpp";
+    "tg.o" -> "include/H_header.h";
+    "tg.o" -> "include/H_NBus.h";
+    "tg.o" -> "include/H_Bus.h";
+    "tg.o" -> "include/H_Line.h";
+
+    "NPss_index.o" -> "src/NPss_index.cpp";
+    "NPss_index.o" -> "include/H_header.h";
+    "NPss_index.o" -> "include/H_NBus.h";
+    "NPss_index.o" -> "include/H_Bus.h";
+    "NPss_index.o" -> "include/H_Line.h";
+
+    "Exc_st3.o" -> "src/Exc_st3.cpp";
+    "Exc_st3.o" -> "include/H_header.h";
+    "Exc_st3.o" -> "include/H_NBus.h";
+    "Exc_st3.o" -> "include/H_Bus.h";
+    "Exc_st3.o" -> "include/H_Line.h";
+
+    "Y_switch.o" -> "src/Y_switch.cpp";
+    "Y_switch.o" -> "include/H_header.h";
+    "Y_switch.o" -> "include/H_NBus.h";
+    "Y_switch.o" -> "include/H_Bus.h";
+    "Y_switch.o" -> "include/H_Line.h";
+
+    "tg_indx.o" -> "src/tg_indx.cpp";
+    "tg_indx.o" -> "include/H_header.h";
+    "tg_indx.o" -> "include/H_NBus.h";
+    "tg_indx.o" -> "include/H_Bus.h";
+    "tg_indx.o" -> "include/H_Line.h";
+}
