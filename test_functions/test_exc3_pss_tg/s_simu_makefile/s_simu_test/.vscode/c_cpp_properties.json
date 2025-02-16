@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "defines": [],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c17",
+            "cppStandard": "c++20",
+            "intelliSenseMode": "linux-gcc-x64",
+            // "configurationProvider": "ms-vscode.makefile-tools",
+            "includePath": [
+                "${workspaceFolder}/include",
+                "${workspaceFolder}/src",
+                "${workspaceFolder}",
+                "/usr/local/include",
+                "/usr/include",
+                "/usr/include/clang/14", // Adjust version as needed
+                "/usr/include/x86_64-linux-gnu",
+                "/usr/include/c++/11" // Adjust version as needed
+            ]
+        }
+    ],
+    "version": 4
+}
