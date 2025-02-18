@@ -3,7 +3,7 @@
 using namespace Eigen;
 using namespace std;
 
-void exc_st3( int i, int flag,
+void exc_st3( int i, int flag, int n_sub , int n_tra , 
     MatrixXd &exc_con, 
     const MatrixXd &mac_con,
     const MatrixXd &mac_pot, 
@@ -36,12 +36,10 @@ void exc_st3( int i, int flag,
     MatrixXd &V_E, 
     MatrixXd &I_N)      // Output: V_I values
 {
-    cout << "we are in the exc_st3 \n";
     
-    // Determine the number of ST3 machines.
+
     int n_st3 = st3_idx.rows();
 
-    // Resize the output parameters.
     n.resize(n_st3, 1);
     n_bus.resize(n_st3, 1);
     V_I.resize(n_st3, 1);
@@ -58,15 +56,10 @@ void exc_st3( int i, int flag,
     }
 
     
-    // low_IN is an output parameter; clear its contents.
     low_IN.resize(0, 1);
-    
-    // These are local variables that change dynamically.
+        
     MatrixXd big_IN(0, 1);
     MatrixXd mid_IN(0, 1);
-
-    int n_sub = 1; 
-    int n_tra = 1;
 
     const std::complex<double> jay(0, 1); 
 

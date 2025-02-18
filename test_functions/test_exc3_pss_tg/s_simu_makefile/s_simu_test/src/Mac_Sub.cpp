@@ -56,121 +56,64 @@ void mac_sub(
     MatrixXcd &rot
 )
 {
-    
     cout << "we are in the mac_sub\n";
     const std::complex<double> jay(0, 1); 
+
+    int n = 4 ; // total numebr of machines ...  
+    mac_pot = MatrixXd::Zero(n, 23);
+    cur_re   = MatrixXd::Zero(n, 1);
+    cur_im   = MatrixXd::Zero(n, 1);
+    psidpp   = MatrixXd::Zero(n, 1);
+    psikd    = MatrixXd::Zero(n, 1);
+    psikq    = MatrixXd::Zero(n, 1);
+    psiqpp   = MatrixXd::Zero(n, 1);
+    psi_re   = MatrixXd::Zero(n, 1);
+    psi_im   = MatrixXd::Zero(n, 1);
+    mac_ang  = MatrixXd::Zero(n, 1);
+    mac_spd  = MatrixXd::Zero(n, 1);
+    eqprime  = MatrixXd::Zero(n, 1);
+    edprime  = MatrixXd::Zero(n, 1);
+    curd     = MatrixXd::Zero(n, 1);
+    curq     = MatrixXd::Zero(n, 1);
+    curdg    = MatrixXd::Zero(n, 1);
+    curqg    = MatrixXd::Zero(n, 1);
+    fld_cur  = MatrixXd::Zero(n, 1);
+    vex      = MatrixXd::Zero(n, 1);
+    eterm    = MatrixXd::Zero(n, 1);
+    theta    = MatrixXd::Zero(n, 1);
+    ed       = MatrixXd::Zero(n, 1);
+    eq       = MatrixXd::Zero(n, 1);
+    pmech    = MatrixXd::Zero(n, 1);
+    pelect   = MatrixXd::Zero(n, 1);
+    qelect   = MatrixXd::Zero(n, 1);
+    dmac_ang = MatrixXd::Zero(n, 1);
+    dmac_spd = MatrixXd::Zero(n, 1);
+    deqprime = MatrixXd::Zero(n, 1);
+    dedprime = MatrixXd::Zero(n, 1);
+    mcurmag  = MatrixXd::Zero(n, 1);
+    busnum   = MatrixXd::Zero(n, 1);
+    phi      = MatrixXd::Zero(n, 1);
+    eqra     = MatrixXd::Zero(n, 1);
+    E_Isat   = MatrixXd::Zero(n, 1);
+    edra     = MatrixXd::Zero(n, 1);
+    curr     = MatrixXcd::Zero(n, 1);  // if curr is a complex matrix
+    V        = MatrixXcd::Zero(n, 1);   // if V is a complex matrix
+    ei       = MatrixXcd::Zero(n, 1);   // if ei is a complex matrix
+    rot      = MatrixXcd::Zero(n, 1);   // if rot is a complex matrix
     
-    int n = 4 ; // total machines  ... 
-// Resize the matrices
-mac_pot.resize(n, 23);
-cur_re.resize(n, 1);
-cur_im.resize(n, 1);
-psidpp.resize(n, 1);
-psikd.resize(n, 1);
-psikq.resize(n, 1);
-psiqpp.resize(n, 1);
-psi_re.resize(n, 1);
-psi_im.resize(n, 1);
-mac_ang.resize(n, 1);
-mac_spd.resize(n, 1);
-eqprime.resize(n, 1);
-edprime.resize(n, 1);
-curd.resize(n, 1);
-curq.resize(n, 1);
-curdg.resize(n, 1);
-curqg.resize(n, 1);
-fld_cur.resize(n, 1);
-vex.resize(n, 1);
-eterm.resize(n, 1);
-theta.resize(n, 1);
-ed.resize(n, 1);
-eq.resize(n, 1);
-pmech.resize(n, 1);
-pelect.resize(n, 1);
-qelect.resize(n, 1);
-dmac_ang.resize(n, 1);
-dmac_spd.resize(n, 1);
-deqprime.resize(n, 1);
-dedprime.resize(n, 1);
-mcurmag.resize(n, 1);
-busnum.resize(n, 1);
-phi.resize(n, 1);
-eqra.resize(n, 1);
-E_Isat.resize(n, 1);
-edra.resize(n, 1);
-curr.resize(n, 1);
-V.resize(n, 1);
-ei.resize(n, 1);
-rot.resize(n, 1);
-
-// Initialize them to zero
-mac_pot.setZero();
-cur_re.setZero();
-cur_im.setZero();
-psidpp.setZero();
-psikd.setZero();
-psikq.setZero();
-psiqpp.setZero();
-psi_re.setZero();
-psi_im.setZero();
-mac_ang.setZero();
-mac_spd.setZero();
-eqprime.setZero();
-edprime.setZero();
-curd.setZero();
-curq.setZero();
-curdg.setZero();
-curqg.setZero();
-fld_cur.setZero();
-vex.setZero();
-eterm.setZero();
-theta.setZero();
-ed.setZero();
-eq.setZero();
-pmech.setZero();
-pelect.setZero();
-qelect.setZero();
-dmac_ang.setZero();
-dmac_spd.setZero();
-deqprime.setZero();
-dedprime.setZero();
-mcurmag.setZero();
-busnum.setZero();
-phi.setZero();
-eqra.setZero();
-E_Isat.setZero();
-edra.setZero();
-curr.setZero();
-V.setZero();
-ei.setZero();
-rot.setZero();
-
-
-    // Local intermediate matrix b (n x 3)
     MatrixXd b = MatrixXd::Zero(n, 3);
-    // Define saturation matrix and its inverse (local variables)
+
     MatrixXd sat(3, 3);
     sat << 0.64, 0.8, 1,
            1,    1,   1,
            1.44, 1.2, 1;
+
     MatrixXd inv_sat = sat.inverse();
-    // Use a loop over each subtransient machine (use "li" for loop index)
 
-    cout << "mac_sub_idx is : \n" << mac_sub_idx << "\n";
-    cout << "bus is : \n" << bus << "\n";
-    cout << "n is : " << n << "\n";  
-    cout << "mac_con is : \n" << mac_con << "\n";
-    cout << "busnum is : \n" << busnum << "\n";
-    cout << "busnum(2) is : " << busnum(2 ,0);
-    cout << "mac_sub_idx is : " << mac_sub_idx << "\n";
-    cout << "mac_sub indexis " << mac_sub_idx(0) << "\n";
-
-    for (int li = 0; li < n_sub; ++li) {
+    for (int li = 0; li < n_sub; ++li) { // the loop is on the n_** but the sizes are the same
         // Avoid conflict with the function parameter "dummy" by using "idx" for the machine index
         int idx = mac_sub_idx(li, 0) - 1;
-        cout << "the idx is : " << idx << "\n";
-        cout << "we are here1\n";
-        // Set bus number from mac_con (adjust indexing as needed)
+    
         busnum(idx, 0) = mac_con(idx, 1) - 1;
         
         // Update mac_con values if necessary
@@ -181,8 +124,6 @@ rot.setZero();
         if (mac_con(idx, 14) == 0)
             mac_con(idx, 14) = 999.0;
 
-        // Compute machine potential values
-        cout << "we are here 6\n";
         mac_pot(idx, 0) = basmva / mac_con(idx, 2);
         mac_pot(idx, 1) = 1.0;
         mac_pot(idx, 7) = mac_con(idx, 6) - mac_con(idx, 3);
@@ -195,19 +136,15 @@ rot.setZero();
         mac_pot(idx, 11) = (mac_con(idx, 10) - mac_con(idx, 11)) * mac_pot(idx, 13);
         mac_pot(idx, 14) = (mac_con(idx, 11) - mac_con(idx, 12)) / mac_pot(idx, 12);
         mac_pot(idx, 10) = (mac_con(idx, 10) - mac_con(idx, 11)) / mac_pot(idx, 12) * mac_pot(idx, 14);
-        cout << "we are here 7\n";
 
         // Get terminal voltage and angle from bus data
         eterm(idx, 0) = bus((int)busnum(idx, 0), 1);
         theta(idx, 0) = bus((int)busnum(idx, 0), 2) * M_PI / 180.0;
-        cout << "we are here 8\n";
 
         // Compute electrical power values (Pg and Qg)
         
         pelect(idx, 0) = bus((int)busnum(idx, 0), 3) * mac_con(idx, 21);
         qelect(idx, 0) = bus((int)busnum(idx, 0), 4) * mac_con(idx, 22);
-        
-        cout << "we are here 9\n";
 
         // Compute current magnitude and adjust with machine potential
         curr(idx) = sqrt(pow(pelect(idx, 0), 2) + pow(qelect(idx, 0), 2)) / eterm(idx, 0);
@@ -226,8 +163,6 @@ rot.setZero();
         mac_ang(idx) = atan(ei(idx).imag() / ei(idx).real());
         mac_spd(idx) = 1.0;
 
-        cout << "we are here 8\n";
-
         // Compute rotation and update current
         rot(idx) = exp(-jay * mac_ang(idx, 0)) * jay;
         curr(idx) = rot(idx) * curr(idx);
@@ -241,7 +176,6 @@ rot.setZero();
 
         // Mechanical power calculation
         pmech(idx) = pelect(idx, 0) * mac_pot(idx, 0) + mac_con(idx, 4) * (mcurmag(idx) * mcurmag(idx));
-        cout << "we are here 9\n";
 
         // Rotate voltage for further calculations
         V(idx) = rot(idx) * V(idx);
@@ -256,7 +190,7 @@ rot.setZero();
         psiqpp(idx, 0) = edra(idx, 0) + mac_con(idx, 12) * curqg(idx, 0);
         psikq(idx, 0) = edra(idx, 0) + mac_con(idx, 3) * curqg(idx, 0);
         edprime(idx, 0) = edra(idx, 0) + mac_con(idx, 11) * curqg(idx, 0);
-        cout << "we are 10 \n";
+
         // Use the inverse saturation matrix to compute additional machine parameters
         MatrixXd col_1 = inv_sat.row(0).transpose();
         MatrixXd col_2 = inv_sat.row(1).transpose();
@@ -280,8 +214,8 @@ rot.setZero();
                       + mac_pot(idx, 5) * (eqprime(idx, 0) - psikd(idx, 0))
                       + mac_pot(idx, 6) * curdg(idx, 0);
         fld_cur(idx, 0) = vex(idx, 0);
-        cout << "we are 11 \n";
 
+        
         // Compute the real and imaginary parts of the internal flux
         psi_re(idx, 0) = (-sin(mac_ang(idx, 0)) * psiqpp(idx, 0)) + (cos(mac_ang(idx, 0)) * psidpp(idx, 0));
         psi_im(idx, 0) = (cos(mac_ang(idx, 0)) * psiqpp(idx, 0)) + (sin(mac_ang(idx, 0)) * psidpp(idx, 0));

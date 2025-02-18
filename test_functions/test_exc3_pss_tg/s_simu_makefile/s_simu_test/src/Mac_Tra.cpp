@@ -20,69 +20,19 @@ void mac_tra(
     MatrixXcd &curr, MatrixXcd &V, MatrixXcd &ei, MatrixXcd &rot, MatrixXcd &eprime
 )
 {
-    // Convert n_tra (double) to int for use as the number of rows
-    // int n = static_cast<int>(n_tra);
+    cout << "we are in mac_tra\n";
 
-    // Instead of declaring with fixed sizes, we resize all output matrices to use n rows.
-    // mac_pot.resize(n, 23);
-    // cur_re.resize(n, 1);
-    // cur_im.resize(n, 1);
-    // psidpp.resize(n, 1);
-    // psikd.resize(n, 1);
-    // psikq.resize(n, 1);
-    // psiqpp.resize(n, 1);
-    // psi_re.resize(n, 1);
-    // psi_im.resize(n, 1);
-    // mac_ang.resize(n, 1);
-    // mac_spd.resize(n, 1);
-    // eqprime.resize(n, 1);
-    // edprime.resize(n, 1);
-    // curd.resize(n, 1);
-    // curq.resize(n, 1);
-    // curdg.resize(n, 1);
-    // curqg.resize(n, 1);
-    // fld_cur.resize(n, 1);
-    // vex.resize(n, 1);
-    // eterm.resize(n, 1);
-    // theta.resize(n, 1);
-    // ed.resize(n, 1);
-    // eq.resize(n, 1);
-    // pmech.resize(n, 1);
-    // pelect.resize(n, 1);
-    // qelect.resize(n, 1);
-    // dmac_ang.resize(n, 1);
-    // dmac_spd.resize(n, 1);
-    // deqprime.resize(n, 1);
-    // dedprime.resize(n, 1);
-    // mcurmag.resize(n, 1);
-    // busnum.resize(n, 1);
-    // phi.resize(n, 1);
-    // eqra.resize(n, 1);
-    // E_Isat.resize(n, 1);
-    // edra.resize(n, 1);
-    // curr.resize(n, 1);
-    // V.resize(n, 1);
-    // ei.resize(n, 1);
-    // rot.resize(n, 1);
-    // Local intermediate matrix b (n x 3)
-    MatrixXd b = MatrixXd::Zero(4, 3);
+    MatrixXd b = MatrixXd::Zero(4, 3); // dont need all the items tho .. 
 
-    // Define the saturation matrix and compute its inverse.
     MatrixXd sat(3, 3);
     sat <<  0.64, 0.8, 1,
             1,    1,   1,
             1.44, 1.2, 1;
+
     MatrixXd inv_sat = sat.inverse();
 
     std::complex<double> jay(0, 1);
 
-    // Loop over each transient machine
-
-
-    cout << "n_tra is : " << n_tra << "\n";
-    cout << "mac_tra_idx is : \n" << mac_tra_idx << "\n";
-    cout << "busnum is : \n" << busnum << "\n";
-    
     for (int li = 0; li < n_tra; ++li) {
         // NOTE: This local "i" shadows the function parameter "i" (as in the original code).
         int i = mac_tra_idx(li, 0) - 1;
@@ -166,40 +116,6 @@ void mac_tra(
 
         fld_cur(i, 0) = vex(i, 0);
     }
-
-    // Print selected outputs (unchanged from original)
-    cout << "result in mac_Tra is :----- \n";
-    cout << "theta is \n" << theta << "\n";
-    cout << "curd is \n" << curd << "\n";
-    cout << "curdg is \n" << curdg << "\n";
-    cout << "curq is \n" << curq << "\n";
-    cout << "curqg is \n" << curqg << "\n";
-    cout << "ed is \n" << ed << "\n";
-    cout << "edprime is \n" << edprime << "\n";
-    cout << "eq is \n" << eq << "\n";
-    cout << "eqprime is \n" << eqprime << "\n";
-    cout << "etern  is \n" << eterm << "\n";
-    cout << "mac_ang  is \n" << mac_ang << "\n";
-    cout << "mac_spd  is \n" << mac_spd << "\n";
-    cout << "pelect  is \n" << pelect << "\n";
-    cout << "qelect  is \n" << qelect << "\n";
-    cout << "pmech  is \n" << pmech << "\n";
-    cout << "phi  is \n" << phi << "\n";
-    cout << "psi_im  is \n" << psi_im << "\n";
-    cout << "psi_re  is \n" << psi_re << "\n";
-    cout << "vex  is \n" << vex << "\n";
-    cout << "rot_re   is \n" << rot.real() << "\n";
-    cout << "rot_im   is \n" << rot.imag() << "\n";
-    cout << "curr_re  is \n" << curr.real() << "\n";
-    cout << "curr_im  is \n" << curr.imag() << "\n";
-    cout << "ei_re  is \n" << ei.real() << "\n";
-    cout << "ei_im  is \n" << ei.imag() << "\n";
-    cout << "eprime_re is \n" << eprime.real() << "\n";
-    cout << "eprime_im is \n" << eprime.imag() << "\n";
-    cout << "v_re  is \n" << V.real() << "\n"; 
-    cout << "v_im  is \n" << V.imag() << "\n";
-    cout << "E_isat is \n" << E_Isat << "\n"; 
-    cout << "fldcur\n" << fld_cur << "\n"; 
 }
 
 

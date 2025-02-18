@@ -147,7 +147,7 @@ void pss(int i, int flag, MatrixXd& pss_con,MatrixXd& Tclead1, MatrixXd& Tclead2
          MatrixXd& dpw_out, MatrixXd& mac_con, MatrixXd& mac_spd, MatrixXd& pelect, MatrixXd& pss_sp_idx ,double basmva);
 
 
-void exc_st3( int i, int flag,
+void exc_st3( int i, int flag, int n_sub , int n_tra ,
     MatrixXd &exc_con, 
     const MatrixXd &mac_con,
     const MatrixXd &mac_pot, 

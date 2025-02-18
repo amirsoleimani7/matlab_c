@@ -120,7 +120,6 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     
     //pss_indx result 
     cout << "pss_idx ------------------------\n";
-    
     cout << "pss_idx is : \n "<< pss_idx <<"\n";   
     cout << "pss_mb_idx is : \n" << pss_mb_idx <<"\n";
     cout << "pss_con is : \n" << pss_con <<"\n";
@@ -138,7 +137,6 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     cout << "pss_sp_idx is : \n" << pss_sp_idx << "\n"; 
     cout << "pss_p_idx is : \n" << pss_p_idx << "\n";
     cout << "n_pss : " << n_pss << "\n";
-
     cout << "------------------------\n";
 
     int ntot = n_mac;
@@ -155,11 +153,6 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
 
     MatrixXd t(0 ,1); // change the size dynamicly 
 
-    // To Do : fix the k ...
-
-
-    cout << "sw_con is :\n" << sw_con << "\n";
-    
     for (int li = 0; li < n_switch -1 ; ++li) { // not sure about this loop at all 
         h(li, 0) = sw_con(li, 6);
 
@@ -186,15 +179,9 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
 
     t.conservativeResize(t.rows() +1  , NoChange);
     t(k -1 , 0) = sw_con(n_switch -1 ,  0);
-    
-    cout << "t is : \n" << t << "\n";
-    cout << "h is : \n" << h << "\n";
-    cout << "k_inc is : \n" << k_inc << "\n";
-    cout << "k is : " << k << "\n";
 
-    int n_bus = bus.col(0).rows();
-    int n = mac_con.col(0).rows();
-
+    // int n_bus = bus.col(0).rows();
+    // int n = mac_con.col(0).rows();
 
     // MatrixXd z(n , k);
     // MatrixXd z1(1 , k);
@@ -264,6 +251,7 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     MatrixXd busnum, phi, eqra, E_Isat, edra;
     MatrixXcd curr, V, ei, rot;    
 
+    cout << "n_sub is :\n" << n_sub << "\n";
     mac_sub(i , flag , bus_sol_1 , mac_con , bus_int , mac_sub_idx , n_sub , basmva , mac_pot , cur_re , cur_im , 
             psidpp , psikd , psikq , psiqpp , psi_re , psi_im ,mac_ang , mac_spd , eqprime , edprime , curd ,
         curq , curdg , curqg , fld_cur , vex , eterm , theta  , ed , eq , pmech , pelect , qelect , dmac_ang ,
@@ -324,16 +312,11 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     MatrixXcd eprime(4 ,1); // not sure about the sizes  ... 
 
     cout << "n_tra is : " << n_tra << "\n";
-
-
-    cout << "vex before is : \n" << vex << "\n";
     mac_tra(bus ,  mac_con , bus_int , mac_tra_idx , i , k , flag  ,n_tra , basmva , mac_pot , cur_re
             , cur_im , psidpp , psikd , psikq , psiqpp , psi_re , psi_im , mac_ang,  mac_spd, eqprime , edprime, 
             curd, curq , curdg , curqg , fld_cur , vex , eterm , theta , ed , eq , pmech , pelect , qelect , dmac_ang , 
             dmac_spd , deqprime , dedprime , mcurmag  ,busnum , phi , eqra , E_Isat , edra , curr,  V , ei , rot , eprime);
                     
-
-            // Print selected outputs (unchanged from original)
     cout << "result in mac_Tra is :----- \n";
     cout << "theta is \n" << theta << "\n";
     cout << "curd is \n" << curd << "\n";
@@ -368,13 +351,10 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     cout << "fldcur\n" << fld_cur << "\n"; 
 
 
-
-    // //place holders for mac_em  ... 
     mac_em(bus , mac_con , bus_int , mac_em_idx , i , k , flag, n_em , basmva , mac_pot , 
         eterm , pelect , qelect , phi, psi_re , psi_im , mac_ang, mac_spd , eqprime , vex ,
         edprime , busnum , curqg  , curdg , eq , ed , curq , curd , pmech , theta , V , curr , 
         eprime , ei , rot);
-
 
     cout << "out_put for mac_em is--------\n";
     cout << "theta is \n" << theta << "\n";
@@ -394,21 +374,11 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     cout << "pmetch  is \n" << pmech << "\n";
     cout << "phi  is \n" << phi << "\n";
 
+
     // // // Create placeholders For pss 
     MatrixXd  Tclead1, Tclead2, Tclag1;
     MatrixXd pss1, pss2, pss3, pss_out, dpw_pss_idx, dpw_out;
-
-
-    // mac_spd should be all ones  ... 
-    // mac_spd.col(0) = MatrixXd::Ones(4 ,1); // not sure about this one tho 
-
-    cout << "n_pss is : \n" << n_pss << "\n";
-    cout << "pss_idx is : \n" << pss_idx << "\n";
-    cout << "pss_mb_idx is : \n" << pss_mb_idx << "\n";
-    cout << "pss_exc_idx is  : \n" << pss_exc_idx << "\n";
-    cout << "pss_p_idx is  : \n" << pss_p_idx << "\n";
-    cout << "pss_T4_idx is ; \n" << pss_T4_idx << "\n";
-
+    
     pss(i, flag, pss_con, Tclead1, Tclead2, Tclag1, pss_idx, pss_pot, mac_int, pss_p_idx, pss_mb_idx, 
     pss_exc_idx, pss1, pss_T4_idx, pss_T4, pss2, pss3, pss_out, dpw_pss_idx, dpw_out, mac_con, 
     mac_spd, pelect, pss_sp_idx, basmva);
@@ -422,7 +392,6 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
 
 
     // palce holders for exc_st3 
-
     MatrixXd theta1;
     theta1.resize(14, 1);
     theta1 = bus_sol_1.col(2) * (M_PI / 180);
@@ -431,9 +400,7 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     MatrixXcd iterm , vep , ve;
     MatrixXd F_EX , low_IN , V_I , n_mat , n_bus_mat , V_E , I_N;
     
-    cout << "st3_idx is ; \n" << st3_idx << "\n";
-
-    exc_st3(i , flag , exc_con , mac_con , mac_pot , bus_int , mac_int , vex , pelect , qelect , eterm
+    exc_st3(i , flag , n_sub , n_tra, exc_con , mac_con , mac_pot , bus_int , mac_int , vex , pelect , qelect , eterm
      , theta1 , fld_cur , Efd , exc_pot , V_B , V_R , V_A , V_As , V_TR , R_f , st3_idx , st3_TB_idx,
         iterm , vep , ve , F_EX , n_mat , n_bus_mat ,low_IN , V_I , V_E , I_N);
     
@@ -449,7 +416,6 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     cout << "low_IN is : \n" << low_IN << "\n";
     cout << "V_B is : \n" << V_B << "\n";
     cout << "I_N is : \n" << I_N  << "\n";
-
     cout << "V_E is ; \n" << V_E << "\n";
     cout << "V_R is : \n" << V_R << "\n";
     cout << "V_A is : \n" << V_A << "\n";
@@ -459,7 +425,6 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     cout << "R_f is : \n" << R_f << "\n";    
 
     // //place holders for tg  ...
-
     cout << "------------------------\n"; 
     cout << "mac_int is:\n" << mac_int << "\n";
     cout << "tg_idx is :\n" << tg_idx << "\n";
