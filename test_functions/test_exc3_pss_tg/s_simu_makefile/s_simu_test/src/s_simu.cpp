@@ -425,13 +425,6 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     cout << "R_f is : \n" << R_f << "\n";    
 
     // //place holders for tg  ...
-    cout << "------------------------\n"; 
-    cout << "mac_int is:\n" << mac_int << "\n";
-    cout << "tg_idx is :\n" << tg_idx << "\n";
-    cout << "tg_con is :\n" << tg_con << "\n";
-            
-    cout << "pmech is :\n" << pmech << "\n";
-    cout << "n_tg is :" << n_tg << "\n";
 
     MatrixXd tg_pot , tg1 , tg2 , tg3 , tg_sig;  
     
@@ -443,7 +436,7 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     cout << "tg2 is : \n" << tg2 << "\n";
     cout << "tg3 is : \n" << tg3 << "\n";
     cout << "tg_sig is : \n" << tg_sig << "\n";
-
+    
     // ------------------------------------------------------------------------------------------------
 
     // double H_sum = 0;

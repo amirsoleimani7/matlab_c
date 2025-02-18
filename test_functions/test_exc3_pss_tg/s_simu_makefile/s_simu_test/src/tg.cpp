@@ -27,7 +27,7 @@ void tg(int i, int flag,
     tg_pot.resize(n_tg ,5);
     MatrixXd a1(n_tg , 1);
     MatrixXd a2(n_tg , 1);
-
+    
     MatrixXd T3(n_tg , 1);
     MatrixXd T4(n_tg , 1);
     MatrixXd T5(n_tg , 1);
@@ -46,7 +46,7 @@ void tg(int i, int flag,
             if (pmech(n, 0) > tg_con(lj, 4)) {   // the indexing needs to be checked ...  // not sure about the indexing of the pmech(lj , 1) or pmetch(lj , k)
                 cout << "TG init: pmech > upper limit, check machine base";
             }
-            
+
             if (pmech(n, 0) < 0) { //should'nt be less than 0 either
                 cout << "TG init: pmech < 0, check data";
             }

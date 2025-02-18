@@ -44,20 +44,10 @@ void exc_st3( int i, int flag, int n_sub , int n_tra ,
     n_bus.resize(n_st3, 1);
     V_I.resize(n_st3, 1);
     
-    // TB is local.
-    MatrixXd TB(n_st3, 1); // this should be done here  ..
-    TB = MatrixXd::Constant(4, 1, -1);  // Fill TB with -1
-
-    // Update TB with valid indices from st3_TB_idx.
-    // Here, we assume you want to fill the bottom two positions with the new indices.
-    for (int i = 0; i < st3_TB_idx.rows(); ++i) {
-        // Place the valid index into the TB; adjust this logic as needed
-        TB(TB.rows() - st3_TB_idx.rows() + i, 0) = st3_TB_idx(i, 0);
-    }
-
+    MatrixXd TB = st3_TB_idx;  // Now TB is exactly {3, 4}
     
     low_IN.resize(0, 1);
-        
+
     MatrixXd big_IN(0, 1);
     MatrixXd mid_IN(0, 1);
 
@@ -91,10 +81,8 @@ void exc_st3( int i, int flag, int n_sub , int n_tra ,
     R_f.resize(n_st3, 1);
     Efd.resize(n_st3, 1);
 
-    cout << "we are hre \n";
     for (int li = 0; li < n_st3; ++li) {
         // Machine number vector
-        cout << "li is : " << li << "\n";
 
         int lj = st3_idx(li, 0) - 1;
         
@@ -109,7 +97,7 @@ void exc_st3( int i, int flag, int n_sub , int n_tra ,
 
         if (Efd((int)n(li, 0) - 1, 0) > exc_con(lj, 17)) {
             cout << "EXC_ST3: Efd exceeds maximum in initialization at " 
-                 << n(li, 0) - 1 << "\n";
+                << n(li, 0) - 1 << "\n";
         }
         
         // Calculate exc_pot components.
@@ -183,29 +171,28 @@ void exc_st3( int i, int flag, int n_sub , int n_tra ,
         V_As(lj, 0) = V_A(lj, 0);
         exc_pot(lj, 4) = 1;
 
-        // TB and related calculations.
+        
         cout << "st3_TB_idx is ; \n" << st3_TB_idx << "\n";
         cout << "TB is ; \n" << TB << "\n";
 
         // TB(lj, 0) = st3_TB_idx(lj, 0);  // needs checking
-
         // exc_pot((int)TB(lj, 0) - 1, 4) = 
         //     exc_con((int)TB(lj, 0) - 1, 6) / exc_con((int)TB(lj, 0) - 1, 5);
-        if (TB(lj, 0) != -1) { // TB is handles poorly ... 
-            // Convert TB index (assumed to be 1-based) to a 0-based index
-            int idx = static_cast<int>(TB(lj, 0)) - 1;
+        
+        double TB_val = (lj < TB.rows()) ? TB(lj, 0) : -1;
+
+        if (TB_val != -1) {
+            // Convert from 1-based to 0-based index
+            int idx = static_cast<int>(TB_val) - 1;
     
-            // It’s a good idea to check that idx is within the bounds of exc_con and exc_pot.
+            // Check that idx is within bounds of exc_con and exc_pot
             if (idx >= 0 && idx < exc_con.rows() && idx < exc_pot.rows()) {
-                // Perform the calculation only if exc_con has enough columns (i.e., at least 7) 
-                // and exc_pot has at least 5 columns.
                 exc_pot(idx, 4) = exc_con(idx, 6) / exc_con(idx, 5);
-            }
-            else {
+            } else {
                 std::cerr << "Index " << idx << " is out of bounds!" << std::endl;
             }
         }
-            // Compute V_I and check its limits.
+
         V_I((int)n(li, 0) - 1, 0) = V_A(lj, 0) / exc_con(lj, 11);
         if (V_I((int)n(li, 0) - 1, 0) > exc_con(lj, 9)) {
             cout << "EXC_ST3: V_I above maximum in initialization at index " 
@@ -218,7 +205,6 @@ void exc_st3( int i, int flag, int n_sub , int n_tra ,
 
 
         // Final exc_pot and other updates.
-
         exc_pot(lj, 2) = eterm((int)n(li, 0) - 1, 0) + V_I((int)n(li, 0) - 1, 0);
         V_TR(lj, 0) = eterm((int)n(li, 0) - 1, 0);
         R_f(lj, 0) = 0;
