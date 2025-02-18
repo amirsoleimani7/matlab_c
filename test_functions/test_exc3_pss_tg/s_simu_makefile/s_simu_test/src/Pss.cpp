@@ -9,10 +9,8 @@ void pss(int i, int flag, MatrixXd& pss_con,MatrixXd& Tclead1, MatrixXd& Tclead2
          MatrixXd& dpw_out, MatrixXd& mac_con, MatrixXd& mac_spd, MatrixXd& pelect, MatrixXd& pss_sp_idx ,double basmva) {
   
     
-
-    cout << "we are in the pss\n";
     int f = 0;
-    int n_pss = 4; // this was given manualyy in the test case
+    int n_pss =  pss_idx.rows();
 
     if (n_pss != 0) {        
 
@@ -45,31 +43,32 @@ void pss(int i, int flag, MatrixXd& pss_con,MatrixXd& Tclead1, MatrixXd& Tclead2
                 }
             
                 MatrixXd n_p(pss_idx.rows() , 1);
-                cout << "pss_p_idx is : " << pss_p_idx << "\n";
+
                 if (pss_p_idx.rows() != 0) {
                     for(int li = 0; li < pss_p_idx.rows() ; ++li){
                         n_p(li , 0) = mac_int((int)pss_con((int)pss_p_idx(li , 0) -1, 1) -1 , 0) -1 ;
                         pss1((int)pss_p_idx(li , 0) -1, 0) = (pelect((int)n_p(li , 0), 0) * basmva )/ mac_con((int)n_p(li , 0), 2);
                     }   
                 }
-            
+
                 // if (dpw_pss_idx.rows() != 0) { // not sure about this dude ... 
                 //     pss1(dpw_pss_idx, 0) = dpw_out.col(0);
                 // }
-
-                pss_pot.resize(n_pss , 2);
+                
                 pss2.resize(n_pss ,1);
+                pss2.setZero();
                 pss3.resize(n_pss ,1);
-                pss_out.resize(n_pss ,1);
+                pss3.setZero();
+                pss_out.resize(4 ,1);
+                pss_out.setZero();
 
-                for(int li = 0 ; li < n_pss ;++li){ 
+                for(int li = 0 ; li < n_pss ;++li){
                     pss2((int)pss_idx(li , 0) -1) = 0;
                     pss3((int)pss_idx(li , 0) -1) = 0;
                     pss_out((int)pss_exc_idx(li , 0) -1) = 0;                    
                     pss_pot(li , 0) = pss_con(li , 4) / pss_con(li , 5);  
                 }   
                 
-
                 for(int li = 0 ;li < pss_T4_idx.rows() ;++li){
                     pss_pot((int)pss_T4_idx(li , 0) -1, 1) = pss_con((int)pss_T4_idx(li , 0) -1, 6) / pss_T4((int)pss_T4_idx(li, 0)-1 , 0);                    
                 }

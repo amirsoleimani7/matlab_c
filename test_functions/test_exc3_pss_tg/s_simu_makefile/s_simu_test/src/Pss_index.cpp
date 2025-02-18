@@ -14,7 +14,6 @@ void pss_indx(MatrixXd& pss_con, MatrixXd& mac_con, MatrixXd& exc_con,
     int _globjpss = 0;
 
     if (pss_con.rows() > 0) {
-
         pss_idx.resize(0 , 1);
 
         for (int i = 0; i < pss_con.rows(); ++i) { // if speed or power
@@ -23,7 +22,9 @@ void pss_indx(MatrixXd& pss_con, MatrixXd& mac_con, MatrixXd& exc_con,
                     pss_idx(pss_idx.rows() -1, 0) = i + 1;
                 }
         }
-        
+
+      
+
         n_pss = pss_idx.rows();
         pss_mb_idx.resize(n_pss, 1);
 

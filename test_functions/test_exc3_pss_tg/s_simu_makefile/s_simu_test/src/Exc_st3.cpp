@@ -47,7 +47,16 @@ void exc_st3( int i, int flag,
     V_I.resize(n_st3, 1);
     
     // TB is local.
-    MatrixXd TB(n_st3, 1);
+    MatrixXd TB(n_st3, 1); // this should be done here  ..
+    TB = MatrixXd::Constant(4, 1, -1);  // Fill TB with -1
+
+    // Update TB with valid indices from st3_TB_idx.
+    // Here, we assume you want to fill the bottom two positions with the new indices.
+    for (int i = 0; i < st3_TB_idx.rows(); ++i) {
+        // Place the valid index into the TB; adjust this logic as needed
+        TB(TB.rows() - st3_TB_idx.rows() + i, 0) = st3_TB_idx(i, 0);
+    }
+
     
     // low_IN is an output parameter; clear its contents.
     low_IN.resize(0, 1);
@@ -166,7 +175,6 @@ void exc_st3( int i, int flag,
         if (F_EX((int)n(li, 0) - 1, 0) <= 0) {
             cout << "the F_EX(" << (int)n(li, 0) - 1 << ",0) is non-positive\n";
         }
-        
         // Compute V_B and V_R.
         V_B(lj, 0) = V_E((int)n(li, 0) - 1, 0) * F_EX((int)n(li, 0) - 1, 0);
         V_R(lj, 0) = Efd(lj, 0) / V_B(lj, 0);
@@ -175,7 +183,7 @@ void exc_st3( int i, int flag,
         if (exc_con(lj, 3) == 0) {
             exc_con(lj, 3) = 1;
         }
-        
+
         // Compute V_A.
         V_A(lj, 0) = V_R(lj, 0) / exc_con(lj, 3) + 
             min(exc_con(lj, 19), exc_con(lj, 18) * Efd(lj, 0));
@@ -183,11 +191,28 @@ void exc_st3( int i, int flag,
         exc_pot(lj, 4) = 1;
 
         // TB and related calculations.
-        TB(lj, 0) = st3_TB_idx(lj, 0);  
-        exc_pot((int)TB(lj, 0) - 1, 4) = 
-            exc_con((int)TB(lj, 0) - 1, 6) / exc_con((int)TB(lj, 0) - 1, 5);
+        cout << "st3_TB_idx is ; \n" << st3_TB_idx << "\n";
+        cout << "TB is ; \n" << TB << "\n";
 
-        // Compute V_I and check its limits.
+        // TB(lj, 0) = st3_TB_idx(lj, 0);  // needs checking
+
+        // exc_pot((int)TB(lj, 0) - 1, 4) = 
+        //     exc_con((int)TB(lj, 0) - 1, 6) / exc_con((int)TB(lj, 0) - 1, 5);
+        if (TB(lj, 0) != -1) { // TB is handles poorly ... 
+            // Convert TB index (assumed to be 1-based) to a 0-based index
+            int idx = static_cast<int>(TB(lj, 0)) - 1;
+    
+            // It’s a good idea to check that idx is within the bounds of exc_con and exc_pot.
+            if (idx >= 0 && idx < exc_con.rows() && idx < exc_pot.rows()) {
+                // Perform the calculation only if exc_con has enough columns (i.e., at least 7) 
+                // and exc_pot has at least 5 columns.
+                exc_pot(idx, 4) = exc_con(idx, 6) / exc_con(idx, 5);
+            }
+            else {
+                std::cerr << "Index " << idx << " is out of bounds!" << std::endl;
+            }
+        }
+            // Compute V_I and check its limits.
         V_I((int)n(li, 0) - 1, 0) = V_A(lj, 0) / exc_con(lj, 11);
         if (V_I((int)n(li, 0) - 1, 0) > exc_con(lj, 9)) {
             cout << "EXC_ST3: V_I above maximum in initialization at index " 
@@ -198,7 +223,9 @@ void exc_st3( int i, int flag,
                  << (int)n(li, 0) - 1 << "\n";
         }
 
+
         // Final exc_pot and other updates.
+
         exc_pot(lj, 2) = eterm((int)n(li, 0) - 1, 0) + V_I((int)n(li, 0) - 1, 0);
         V_TR(lj, 0) = eterm((int)n(li, 0) - 1, 0);
         R_f(lj, 0) = 0;

@@ -8,16 +8,6 @@
             "cppStandard": "c++14",
             "intelliSenseMode": "linux-gcc-x64",
             "configurationProvider": "ms-vscode.makefile-tools",
-            // "includePath": [
-            //     "/usr/include/clang/14",
-            //     "/usr/include/x86_64-linux-gnu",
-            //     "/usr/include/c++/11",
-            //     "${workspaceFolder}/include",
-            //     "${workspaceFolder}/src",
-            //     "${workspaceFolder}",
-            //     "/usr/local/include",
-            //     "/usr/include"
-            // ],
             "includePath": [
                 "${workspaceFolder}/include",
                 "${workspaceFolder}/src",
@@ -26,7 +16,7 @@
                 "/usr/include",
                 "/usr/include/c++/11",
                 "/usr/include/x86_64-linux-gnu"
-            ],
+            ]
         }
     ],
     "version": 4

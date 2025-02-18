@@ -16,19 +16,13 @@ void tg(int i, int flag,
     MatrixXd &tg_pot,
     MatrixXd &tg_sig)
 {
-    cout << "we are in the tg function \n";
-
     int k = 0; // this should be given to the user  ... 
 
     complex<float> jay(0.0, 1.0); // the is the sqrt(-1)
     
-    cout << "we are here \n" ;
-
     tg1.resize(n_tg , 1);
     tg2.resize(n_tg , 1);
     tg3.resize(n_tg , 1);
-
-    cout << "we are here2\n";
  
     tg_pot.resize(n_tg ,5);
     MatrixXd a1(n_tg , 1);
@@ -48,12 +42,11 @@ void tg(int i, int flag,
             int lj = tg_idx(li , 0) - 1;
 
             int n = mac_int((int)tg_con(lj , 1) -1) -1; // we should take the machine number ... machines that have governer-turbine
-
             // this is for the scaler one .. (but needs to be checked for vectorized as well)
             if (pmech(n, 0) > tg_con(lj, 4)) {   // the indexing needs to be checked ...  // not sure about the indexing of the pmech(lj , 1) or pmetch(lj , k)
                 cout << "TG init: pmech > upper limit, check machine base";
             }
-
+            
             if (pmech(n, 0) < 0) { //should'nt be less than 0 either
                 cout << "TG init: pmech < 0, check data";
             }
@@ -85,11 +78,4 @@ void tg(int i, int flag,
 
         }
     }
-    
-    cout << "------------result-------------\n";
-    cout << "tg1 is : \n" << tg1 << "\n";
-    cout << "tg_pot is : \n " << tg_pot << "\n";
-    cout << "tg2 is : \n " << tg2 << "\n";
-    cout << "tg3 is : \n" << tg3 << "\n";
-    cout << "tg_sig is : \n " <<  tg_sig  << "\n";
 }
