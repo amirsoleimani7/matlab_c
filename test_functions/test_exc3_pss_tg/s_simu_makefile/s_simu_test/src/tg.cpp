@@ -14,7 +14,8 @@ void tg(int i, int flag,
     MatrixXd &tg2,
     MatrixXd &tg3,
     MatrixXd &tg_pot,
-    MatrixXd &tg_sig)
+    MatrixXd &tg_sig,
+    MatrixXd &n_tg_mat)
 {
     int k = 0; // this should be given to the user  ... 
 
@@ -33,6 +34,7 @@ void tg(int i, int flag,
     MatrixXd T5(n_tg , 1);
     MatrixXd Tc(n_tg , 1);
 
+    n_tg_mat.resize(0 ,1); // will change dynamicly 
     tg_sig.resize(n_tg , 1);
 
     if(flag == 0 && i == 0){
@@ -42,6 +44,8 @@ void tg(int i, int flag,
             int lj = tg_idx(li , 0) - 1;
 
             int n = mac_int((int)tg_con(lj , 1) -1) -1; // we should take the machine number ... machines that have governer-turbine
+            n_tg_mat.conservativeResize(n_tg_mat.rows() +1  ,NoChange);
+            n_tg_mat(n_tg_mat.rows() -1 , 0) = n + 1;
             // this is for the scaler one .. (but needs to be checked for vectorized as well)
             if (pmech(n, 0) > tg_con(lj, 4)) {   // the indexing needs to be checked ...  // not sure about the indexing of the pmech(lj , 1) or pmetch(lj , k)
                 cout << "TG init: pmech > upper limit, check machine base";

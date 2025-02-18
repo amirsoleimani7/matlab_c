@@ -191,7 +191,8 @@ MatrixXd &tg1,
 MatrixXd &tg2,
 MatrixXd &tg3,
 MatrixXd &tg_pot,
-MatrixXd &tg_sig);
+MatrixXd &tg_sig,
+MatrixXd &n_tg_mat);
 void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,MatrixXd& exc_con,
              MatrixXd& pss_con , MatrixXd& tg_con ,MatrixXd& sw_con);
 

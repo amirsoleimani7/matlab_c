@@ -426,9 +426,9 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
 
     // //place holders for tg  ...
 
-    MatrixXd tg_pot , tg1 , tg2 , tg3 , tg_sig;  
-    
-    tg(i ,flag , mac_int , tg_con , tg_idx ,pmech , n_tg,  tg1 , tg2 , tg3 , tg_pot , tg_sig);
+    MatrixXd tg_pot , tg1 , tg2 , tg3 , tg_sig , n_tg_mat; 
+
+    tg(i ,flag , mac_int , tg_con , tg_idx ,pmech , n_tg,  tg1 , tg2 , tg3 , tg_pot , tg_sig , n_tg_mat);
 
     cout << "------------result(tg)-------------\n";
     cout << "tg1 is : \n" << tg1 << "\n";
@@ -436,6 +436,7 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     cout << "tg2 is : \n" << tg2 << "\n";
     cout << "tg3 is : \n" << tg3 << "\n";
     cout << "tg_sig is : \n" << tg_sig << "\n";
+    cout << "n_tg_mat is : \n" << n_tg_mat << "\n";
     
     // ------------------------------------------------------------------------------------------------
 

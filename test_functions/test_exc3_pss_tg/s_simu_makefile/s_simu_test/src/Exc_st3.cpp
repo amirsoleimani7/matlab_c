@@ -44,8 +44,18 @@ void exc_st3( int i, int flag, int n_sub , int n_tra ,
     n_bus.resize(n_st3, 1);
     V_I.resize(n_st3, 1);
     
-    MatrixXd TB = st3_TB_idx;  // Now TB is exactly {3, 4}
-    
+    // MatrixXd TB = st3_TB_idx;  // Now TB is exactly {3, 4}
+    MatrixXd TB(4 ,1);
+    TB = MatrixXd::Constant(4, 1, -1);  // Fill TB with -1
+
+    // // Update TB with valid indices from st3_TB_idx.
+    // // Here, we assume you want to fill the bottom two positions with the new indices.
+    for (int i = 0; i < st3_TB_idx.rows(); ++i) {
+        // Place the valid index into the TB; adjust this logic as needed
+        TB(TB.rows() - st3_TB_idx.rows() + i, 0) = st3_TB_idx(i, 0);
+    }
+
+
     low_IN.resize(0, 1);
 
     MatrixXd big_IN(0, 1);
@@ -179,19 +189,34 @@ void exc_st3( int i, int flag, int n_sub , int n_tra ,
         // exc_pot((int)TB(lj, 0) - 1, 4) = 
         //     exc_con((int)TB(lj, 0) - 1, 6) / exc_con((int)TB(lj, 0) - 1, 5);
         
-        double TB_val = (lj < TB.rows()) ? TB(lj, 0) : -1;
-
-        if (TB_val != -1) {
-            // Convert from 1-based to 0-based index
-            int idx = static_cast<int>(TB_val) - 1;
+        if (TB(lj, 0) != -1) { // TB is handles poorly ... 
+            // Convert TB index (assumed to be 1-based) to a 0-based index
+            int idx = static_cast<int>(TB(lj, 0)) - 1;
     
-            // Check that idx is within bounds of exc_con and exc_pot
+            // It’s a good idea to check that idx is within the bounds of exc_con and exc_pot.
             if (idx >= 0 && idx < exc_con.rows() && idx < exc_pot.rows()) {
+                // Perform the calculation only if exc_con has enough columns (i.e., at least 7) 
+                // and exc_pot has at least 5 columns.
                 exc_pot(idx, 4) = exc_con(idx, 6) / exc_con(idx, 5);
-            } else {
+            }
+            else {
                 std::cerr << "Index " << idx << " is out of bounds!" << std::endl;
             }
         }
+
+        // double TB_val = (lj < TB.rows()) ? TB(lj, 0) : -1;
+
+        // if (TB_val != -1) {
+        //     // Convert from 1-based to 0-based index
+        //     int idx = static_cast<int>(TB_val) - 1;
+    
+        //     // Check that idx is within bounds of exc_con and exc_pot
+        //     if (idx >= 0 && idx < exc_con.rows() && idx < exc_pot.rows()) {
+        //         exc_pot(idx, 4) = exc_con(idx, 6) / exc_con(idx, 5);
+        //     } else {
+        //         std::cerr << "Index " << idx << " is out of bounds!" << std::endl;
+        //     }
+        // }
 
         V_I((int)n(li, 0) - 1, 0) = V_A(lj, 0) / exc_con(lj, 11);
         if (V_I((int)n(li, 0) - 1, 0) > exc_con(lj, 9)) {
