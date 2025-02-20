@@ -437,9 +437,23 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     cout << "tg3 is : \n" << tg3 << "\n";
     cout << "tg_sig is : \n" << tg_sig << "\n";
     cout << "n_tg_mat is : \n" << n_tg_mat << "\n";
-    
-    // ------------------------------------------------------------------------------------------------
+    cout << "-------------------------\n";
 
+    // ------------------------------------------------------------------------------------------------
+    cout << "bus is : \n" << bus << "\n";
+    cout << "load_con is :\n" << load_con << "\n";
+    // here we should call nc_load  ... 
+    MatrixXd j;
+    MatrixXcd V_nc , S_cc, load_pot;
+
+    nc_load(bus, flag , load_con , j , V_nc , S_cc , load_pot);
+
+    cout << "-----------result(nc_load)---------\n";
+    cout << "V_nc is :\n" << V_nc << "\n";
+    cout << "load_pot is :\n" << load_pot << "\n";
+    cout << "S_cc is : \n" << S_cc << "\n";
+    cout << "j is :\n" << j << "\n";
+    
     // double H_sum = 0;
     
     // for(int li = 0; li < n ;++li){

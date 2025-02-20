@@ -197,4 +197,8 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
              MatrixXd& pss_con , MatrixXd& tg_con ,MatrixXd& sw_con);
 
 
+void nc_load(MatrixXd &bus , int falg , MatrixXd &load_con,
+            MatrixXd &j  ,MatrixXcd &V_nc  , MatrixXcd &S_cc , MatrixXcd &load_pot
+);
+        
 #endif
