@@ -19,6 +19,15 @@ void load_flow(MatrixXd bus, MatrixXd line, double tol, double iter_max, double 
     NBus nBus(busses);
     vector<Line> lines= createLinesFromMatrix(line);
     
+    // cheack for column 11 ,12 of bus
+    for(int i = 0; i < bus.rows(); ++i){
+        if(bus(i , 10) == 0){
+            bus(i ,10) = 9999;
+        }
+        if(bus(i , 11) == 0){
+            bus(i ,11) = 9999;
+        }
+    }
     double tap_it = 0;
     double tap_it_max = 10;
     double no_taps = 0;
