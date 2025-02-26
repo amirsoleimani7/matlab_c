@@ -1,0 +1,66 @@
+[?2004h(B)0[?1049h[1;65r[m[4l[39;49m[?1h=[?1h=[?25l[39;49m[m[H[J[63;61H[0;7m[ Reading... ][m[63;59H[0;7m[ Read 103 lines ][m[H[0;7m  GNU nano 6.2                         /home/amir/Desktop/matlab_c/.git/rebase-merge/git-rebase-todo                                   [1;134H[m
+[64d[0;7m^G[m Help[64;17H[0;7m^O[m Write Out    [0;7m^W[m Where Is     [0;7m^K[m Cut[64;65H[0;7m^T[m Execute[81G[0;7m^C[m Location     [0;7mM-U[m Undo[64;113H[0;7mM-A[m Set Mark
+[65d[0;7m^X[m Exit[65;17H[0;7m^R[m Read File    [0;7m^\[m Replace[49G[0;7m^U[m Paste[65;65H[0;7m^J[m Justify[81G[0;7m^/[m Go To Line   [0;7mM-E[m Redo[65;113H[0;7mM-6[m Copy
+[2dpick 4d0a934 Update README.md
+[3dpick 7dce189 Update README.md
+[4dpick f139984 adding test_dir for mac_em
+[5dpick b1f9180 getting files ready to fix mac_em
+[6dpick 0f2db3e v1 bug mac_em fixed need testing ...
+[7dpick 9b6634c making test_file for mac_em
+[8dpick 0a997c1 v2 fixed not he right awnsers
+[9dpick 1939f6f v3 updated ix mac_em right awnsers
+[10dpick b833f54 fixing bugs in mac_sub v1 (not tested yet)
+[11dpick d13995d test_function craeted ...
+[12dpick d027f54 some bugs fixed(mac_sub) wrong awnsers
+[13dpick d8fd395 fixed bugs for(mac_sub) v2 ,right awnsers
+[14dpick d13cc3b making mac_tra test folder
+[15dpick ee3ec0d bug fixed(mac_tra) not tested yet
+[16dpick dec323b test function craeted(mac_tra) not tested yet
+[17dpick 0842711 buges fixed(mac_tra) tests passed
+[18dpick f700a67 adding files for test
+[19dpick 6b8d73a making new dir for _index tests
+[20dpick 5524b7c tested exc_idx
+[21dpick 4d3bbff init commit
+[22dpick cf890e8 making the init commit for mac_idxc
+[23dpick daf2ca3 mac_indx refrence doc done!
+[24dpick 1e1a27e not enough documnet for the mac_indx.cpp
+[25dpick 5b04640 mac_indx finish for now
+[26dpick 45b3276 v1 pss_indx is done
+[27dpick d4bda76 tests for the pss_indx passed
+[28dpick 2d9b710 tg_indx tests passed
+[29dpick 74f494d pss done halfway
+[30dpick 3f73677 pss finished , not tested
+[31dpick 23985b1 fixed errors in the Pss.cpp tests are not passed yet
+[32dpick 410c92b fix bugs Pss.cpp , tests not passed yet
+[33dpick 55f17ca pss tests passed
+[34dpick c5194a3 fixing result_index files(convert ods to xlsx)
+[35dpick 44e947b tg vector init done but leave the scaller one for now
+[36dpick 924a6c0 adding init files for exc_st3
+[37dpick 36c1531 init commit before testing exc_st3
+[38dpick 420ffa0 adding test matrixes
+[39dpick 9848860 test funtion is finished , tests not passed yet
+[40dpick 583ee9a test_funtion for exc_st3 finished
+[41dpick 00ee815 tests for exc_st3 passed
+[42dpick e1572eb tg is done tests not passed yet!
+[43dpick b9198e5 tg tests passd
+[44dpick b229be0 exc_st3 , tg added to s_simu and header updated
+[45dpick ac34780 load_flow works in s_simu
+[46dpick e491efd mac_indx works in s)simu
+[47dpick 314cb92 exc_indx works in s_simu
+[48dpick a9cd83c tg_index works in s_simu
+[49dpick f6477fe pss_indx works in s_simu
+[50dpick 139c68e switching sequesnce for sw_con added
+[51dpick 391dfee s_simu completed till right before calling function
+[52dpick cad9321 s_simu bug not fixed yet , request for log of matrixes
+[53dpick acd8eb5 log after loop in s_simu fixed
+[54dpick a2d8162 pss works in s_simu
+[55dpick 9fecdcc exc_st3 tests passed  in s_simu
+[56dpick 9a64f33 exc_st3 parameters fixed
+[57dpick 8294a00 first tests for s_simu kinda passed
+[58dpick 54f49c5 trying to add mac_sub
+[59dpick fa3ebf7 mac_sub works in s_simu
+[60dpick fadddd1 mac_em , mac_tra is fixed on s_simu
+[61dpick 2527897 test1 passed for s_simu(exc_st3 , tg , pss)
+[62dpick 0fab48e removing extra files
+[2d[34h[?25h[?25l[63d[J[65d[34h[?25h[65;1H[?1049l
+[?1l>[?2004l
