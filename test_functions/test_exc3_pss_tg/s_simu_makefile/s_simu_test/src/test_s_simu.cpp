@@ -184,5 +184,6 @@ int main(){
         cout << "tg_con =\n" << tg_con << endl;
 
         s_simu(bus, line,mac_con , load_con , exc_con , pss_con , tg_con , sw_con);
-    return 0;
+        return 0;
+    
 }
