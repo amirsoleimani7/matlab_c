@@ -1,6 +1,9 @@
 #ifndef H_NBus
 #define H_NBus
-#include <eigen3/Eigen/Core>
+
+// #include <eigen3/Eigen/Core>
+#include "../third_party/Eigen/Core"
+
 #include "H_Bus.h"
 #include <vector>
 using namespace std;

@@ -1,8 +1,12 @@
 #ifndef Header_h
 #define Header_h
 
-#include<eigen3/Eigen/Core>
-#include<eigen3/Eigen/Dense>
+// #include<eigen3/Eigen/Core>
+// #include<eigen3/Eigen/Dense>
+
+#include "../third_party/Eigen/Core"
+#include "../third_party/Eigen/Dense"
+
 
 #include <iomanip>
 #include <chrono>
