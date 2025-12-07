@@ -403,7 +403,18 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     exc_st3(i , flag , n_sub , n_tra, exc_con , mac_con , mac_pot , bus_int , mac_int , vex , pelect , qelect , eterm
      , theta1 , fld_cur , Efd , exc_pot , V_B , V_R , V_A , V_As , V_TR , R_f , st3_idx , st3_TB_idx,
         iterm , vep , ve , F_EX , n_mat , n_bus_mat ,low_IN , V_I , V_E , I_N);
-    
+
+    // saving the flags
+    save_exc_st3_outputs(
+        "exc_st3_flag0.txt",
+        iterm, vep, ve,
+        F_EX, Efd, V_B, V_R, V_A, V_As,
+        V_TR, R_f,
+        V_I, V_E, I_N,
+        low_IN, n_bus_mat, n_mat , st3_idx
+    );
+
+
     cout << "-------------resalt(exc_st3)---------------\n ";
     cout << "iterm is : \n" << iterm << "\n";
     cout << "vep is : \n" << vep << "\n";
@@ -423,12 +434,18 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     cout << "V_I is : \n" << V_I << "\n";
     cout << "V_TR is : \n" << V_TR << "\n";
     cout << "R_f is : \n" << R_f << "\n";    
-
+    
+    
     // //place holders for tg  ...
-
     MatrixXd tg_pot , tg1 , tg2 , tg3 , tg_sig , n_tg_mat; 
-
+    
     tg(i ,flag , mac_int , tg_con , tg_idx ,pmech , n_tg,  tg1 , tg2 , tg3 , tg_pot , tg_sig , n_tg_mat);
+
+    save_tg_outputs(
+        "tg_flag0.txt",
+        tg1, tg2, tg3,
+        tg_pot, tg_sig, n_tg_mat
+    );
 
     cout << "------------result(tg)-------------\n";
     cout << "tg1 is : \n" << tg1 << "\n";

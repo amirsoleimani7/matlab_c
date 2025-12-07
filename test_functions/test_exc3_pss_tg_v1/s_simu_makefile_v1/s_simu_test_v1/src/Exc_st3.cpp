@@ -217,7 +217,7 @@ void exc_st3( int i, int flag, int n_sub , int n_tra ,
         //         std::cerr << "Index " << idx << " is out of bounds!" << std::endl;
         //     }
         // }
-
+        
         V_I((int)n(li, 0) - 1, 0) = V_A(lj, 0) / exc_con(lj, 11);
         if (V_I((int)n(li, 0) - 1, 0) > exc_con(lj, 9)) {
             cout << "EXC_ST3: V_I above maximum in initialization at index " 
