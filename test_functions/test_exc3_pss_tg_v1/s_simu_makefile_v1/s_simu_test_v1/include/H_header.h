@@ -209,40 +209,42 @@ void nc_load(MatrixXd &bus , int falg , MatrixXd &load_con,
       
 
 // functions for saving the data of flag0
-void writeRealVector(ofstream &f, const string &name, const MatrixXd &v);
-void writeComplexVector(ofstream &f, const string &name, const MatrixXcd &v);
+// void writeRealVector(ofstream &f, const string &name, const MatrixXd &v);
+// void writeComplexVector(ofstream &f, const string &name, const MatrixXcd &v);
 
-void save_exc_st3_outputs(
-    const string &filename,
-    const MatrixXcd &iterm,
-    const MatrixXcd &vep,
-    const MatrixXcd &ve,
-    const MatrixXd &F_EX,
-    const MatrixXd &Efd,
-    const MatrixXd &V_B,
-    const MatrixXd &V_R,
-    const MatrixXd &V_A,
-    const MatrixXd &V_As,
-    const MatrixXd &V_TR,
-    const MatrixXd &R_f,
-    const MatrixXd &V_I,
-    const MatrixXd &V_E,
-    const MatrixXd &I_N,
-    const MatrixXd &low_IN,
-    const MatrixXd &n_bus_mat,
-    const MatrixXd &n_mat,
-    const MatrixXd &st3_idx     
-);
+// void save_exc_st3_outputs(
+//     const string &filename,
+//     const MatrixXcd &iterm,
+//     const MatrixXcd &vep,
+//     const MatrixXcd &ve,
+//     const MatrixXd &F_EX,
+//     const MatrixXd &Efd,
+//     const MatrixXd &V_B,
+//     const MatrixXd &V_R,
+//     const MatrixXd &V_A,
+//     const MatrixXd &V_As,
+//     const MatrixXd &V_TR,
+//     const MatrixXd &R_f,
+//     const MatrixXd &V_I,
+//     const MatrixXd &V_E,
+//     const MatrixXd &I_N,
+//     const MatrixXd &low_IN,
+//     const MatrixXd &n_bus_mat,
+//     const MatrixXd &n_mat,
+//     const MatrixXd &st3_idx     
+// );
 
-void save_tg_outputs(
-    const string &filename,
-    const MatrixXd &tg1,
-    const MatrixXd &tg2,
-    const MatrixXd &tg3,
-    const MatrixXd &tg_pot,
-    const MatrixXd &tg_sig,
-    const MatrixXd &n_tg_mat
-);
+// void save_tg_outputs(
+//     const string &filename,
+//     const MatrixXd &tg1,
+//     const MatrixXd &tg2,
+//     const MatrixXd &tg3,
+//     const MatrixXd &tg_pot,
+//     const MatrixXd &tg_sig,
+//     const MatrixXd &n_tg_mat
+// );
 
+void save_maccon_matrix(ofstream &f, const MatrixXd &mac_con, const string &filename);
+void save_macpot_matrix(ofstream &f, const MatrixXd &matrix, const string &filename);
 
 #endif

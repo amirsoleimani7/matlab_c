@@ -405,14 +405,14 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
         iterm , vep , ve , F_EX , n_mat , n_bus_mat ,low_IN , V_I , V_E , I_N);
 
     // saving the flags
-    save_exc_st3_outputs(
-        "exc_st3_flag0.txt",
-        iterm, vep, ve,
-        F_EX, Efd, V_B, V_R, V_A, V_As,
-        V_TR, R_f,
-        V_I, V_E, I_N,
-        low_IN, n_bus_mat, n_mat , st3_idx
-    );
+    // save_exc_st3_outputs(
+    //     "exc_st3_flag0.txt",
+    //     iterm, vep, ve,
+    //     F_EX, Efd, V_B, V_R, V_A, V_As,
+    //     V_TR, R_f,
+    //     V_I, V_E, I_N,
+    //     low_IN, n_bus_mat, n_mat , st3_idx
+    // );
 
 
     cout << "-------------resalt(exc_st3)---------------\n ";
@@ -441,11 +441,11 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     
     tg(i ,flag , mac_int , tg_con , tg_idx ,pmech , n_tg,  tg1 , tg2 , tg3 , tg_pot , tg_sig , n_tg_mat);
 
-    save_tg_outputs(
-        "tg_flag0.txt",
-        tg1, tg2, tg3,
-        tg_pot, tg_sig, n_tg_mat
-    );
+    // save_tg_outputs(
+    //     "tg_flag0.txt",
+    //     tg1, tg2, tg3,
+    //     tg_pot, tg_sig, n_tg_mat
+    // );
 
     cout << "------------result(tg)-------------\n";
     cout << "tg1 is : \n" << tg1 << "\n";
@@ -462,7 +462,7 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     // here we should call nc_load  ... 
     MatrixXd j;
     MatrixXcd V_nc , S_cc, load_pot;
-
+    
     nc_load(bus, flag , load_con , j , V_nc , S_cc , load_pot);
     
     cout << "-----------result(nc_load)---------\n";
@@ -470,6 +470,27 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     cout << "load_pot is :\n" << load_pot << "\n";
     cout << "S_cc is : \n" << S_cc << "\n";
     cout << "j is :\n" << j << "\n";
+
+    
+    // ------------------------------------------------------------------------------------------------ save variables
+    // mac_con
+    ofstream mac_con_file("Rep_mac_con.txt");
+    save_maccon_matrix(mac_con_file, mac_con, "Rep_mac_con.txt"); 
+    mac_con_file.close();
+    
+    
+    // mac_pot
+    cout << "mac_pot is : " << mac_pot;
+    cout << "mac_pot size is : " << mac_pot.cols();
+    ofstream mac_pot_file("Rep_mac_pot.txt");
+    save_macpot_matrix(mac_pot_file , mac_pot , "Rep_mac_pot.txt");
+    mac_pot_file.close();
+
+    
+    // pss_con 
+    
+    
+
 
     // double H_sum = 0;
     
