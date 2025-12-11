@@ -1,5 +1,7 @@
 #include "../include/H_header.h"
 
+
+
 using namespace std;
 using namespace Eigen;
 
@@ -128,18 +130,18 @@ void save_exc_st3_outputs(
     const MatrixXd &low_IN,
     const MatrixXd &n_bus_mat,
     const MatrixXd &n_mat,
-    const MatrixXd &st3_idx     // ⭐ machine index matrix
+    const MatrixXd &st3_idx    
 )
 {
     ofstream f(filename);
     if (!f.is_open()) { cerr << "Cannot open file: " << filename << "\n"; return; }
 
-    // ⭐ Complex values mapped to machine numbers
+    //complex
     writeIndexedComplexVector(f, "iterm", iterm, st3_idx);
     writeIndexedComplexVector(f, "vep",   vep,   st3_idx);
     writeIndexedComplexVector(f, "ve",    ve,    st3_idx);
 
-    // ⭐ Real values mapped to machine numbers
+    // real
     writeIndexedRealVector(f, "F_EX", F_EX, st3_idx);
     writeIndexedRealVector(f, "Efd",  Efd,  st3_idx);
     writeIndexedRealVector(f, "V_B",  V_B,  st3_idx);

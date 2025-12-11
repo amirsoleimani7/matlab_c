@@ -1,0 +1,38 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Company: IUT
+% Engineer: M.Yazdian
+% 
+% Create Date: 1404/09
+% Design Name: PST  software modeling
+% Module Name: s_sim
+% Project Name: power system toolbox
+% Target Devices: 
+% Description: 	save matlab variables in file prepared for ARM in Fpga		
+% Dependencies: 	
+% 
+% Revision:
+% Revision 0.01 -  1404/09/18 : File Created
+% Additional Comments:
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function save_excpot_matrix(filename, matrix,exc_con)
+    fid = fopen(filename, 'w'); 
+     [rows, cols] = size(matrix);
+     scale = zeros(5,1);
+    scale (1:5) = [2^7,2^7,2^16,2^7,2^7 ];% no exc_pot4 in ref table
+    for i = 1:rows
+        mac_num=  exc_con(i,2);
+        mac_index = mac_num -1;
+
+        for j = 1:cols
+            val = matrix(i,j);
+            r_fixed = round(real(val)*scale(j));
+            fprintf(fid, '%d %d,%d,%d\n',mac_index ,  i-1, j, r_fixed);%% Important note : machin index begin from 0 but mac tables begin from 1 ///
+        end
+    end
+    % what to do for empty matrix????
+        fprintf(fid, '//eof\n');  %����� ��?��
+fprintf(fid,'%s    // exc_pot: mac_index , row,col,real_fix(d)\n',filename);  %% header fil at first line cause error in verilog fscanf
+   
+    fclose(fid);
+end
