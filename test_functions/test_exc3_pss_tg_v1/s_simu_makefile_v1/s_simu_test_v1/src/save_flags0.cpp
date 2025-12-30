@@ -26,7 +26,8 @@ void save_maccon_matrix(ofstream &f, const MatrixXd &mac_con, const string &file
         (1LL<<0),
         (1LL<<7), (1LL<<7), (1LL<<7), (1LL<<7)
     };
-
+    
+    
     if (cols > (int)scale.size()) {
         cerr << "Error: columns exceed scale size (23)" << endl;
         return;
