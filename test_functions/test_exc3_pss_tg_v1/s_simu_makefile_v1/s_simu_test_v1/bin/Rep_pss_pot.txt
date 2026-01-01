@@ -1,0 +1,8 @@
+1,-1,0,640
+1,-1,1,128
+2,0,0,640
+2,0,1,128
+3,1,0,640
+3,1,1,640
+//eof
+Rep_pss_pot.txt    // pss_pot: mac_index, row,col,real_fix(d)
