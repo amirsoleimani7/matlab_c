@@ -7,7 +7,6 @@
 #include "../third_party/Eigen/Core"
 #include "../third_party/Eigen/Dense"
 
-
 #include <iomanip>
 #include <chrono>
 
@@ -20,6 +19,8 @@
 
 #include"H_NBus.h"
 #include"H_Line.h"
+
+
 
 double inverse(double num) ;
 double degreeToRadians( double degrees) ;
