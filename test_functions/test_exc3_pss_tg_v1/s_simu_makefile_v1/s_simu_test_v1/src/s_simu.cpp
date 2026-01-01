@@ -475,13 +475,13 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     // ------------------------------------------------------------------------------------------------ save variables
     // mac_con
     ofstream mac_con_file("Rep_mac_con.txt");
-    save_macpot_matrix(mac_con_file, mac_pot, "Rep_mac_cpn.txt");
+    save_macpot_matrix(mac_con_file, mac_pot, "Rep/Rep_mac_cpn.txt");
     mac_con_file.close();
     
     
     // mac_pot
     std::ofstream mac_pot_file("Rep_mac_pot.txt");
-    save_macpot_matrix(mac_pot_file, mac_pot, "Rep_mac_pot.txt");
+    save_macpot_matrix(mac_pot_file, mac_pot, "Rep/Rep_mac_pot.txt");
     mac_pot_file.close();
 
     
@@ -490,7 +490,7 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     save_psscon_matrix(pss_con_file,
                     pss_con,          // was global in MATLAB
                     pss_con,   // matrix being saved
-                    "Rep_pss_con.txt");
+                    "Rep/Rep_pss_con.txt");
     pss_con_file.close();
     
     
@@ -499,7 +499,7 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     save_psspot_matrix(pss_pot_file,
                     pss_pot,   // matrix
                     pss_con,   // was global in MATLAB
-                    "Rep_pss_pot.txt");
+                    "Rep/Rep_pss_pot.txt");
     pss_pot_file.close();
 
     // tg_con
@@ -507,7 +507,7 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     save_tgcon_matrix(tg_con_file,
                     tg_con,
                     tg_con,         // was global in MATLAB
-                    "Rep_tg_con.txt");
+                    "Rep/Rep_tg_con.txt");
     tg_con_file.close();
 
     
@@ -516,7 +516,7 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     save_tgpot_matrix(tg_pot_file,
                     tg_pot,   // matrix being saved
                     tg_con,   // was global in MATLAB
-                    "Rep_tg_pot.txt");
+                    "Rep/Rep_tg_pot.txt");
     tg_pot_file.close();
 
     
@@ -525,7 +525,7 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     save_exccon_matrix(exc_con_file,
                     exc_con,  // matrix being saved
                     exc_con,         // was global in MATLAB
-                    "Rep_exc_con.txt");
+                    "Rep/Rep_exc_con.txt");
     exc_con_file.close();
 
 
@@ -534,7 +534,7 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     save_excpot_matrix(exc_pot_file,
                     exc_pot,   // matrix being saved
                     exc_con,   // was global in MATLAB
-                    "Rep_exc_pot.txt");
+                    "Rep/Rep_exc_pot.txt");
     exc_pot_file.close();
 
 
@@ -545,14 +545,14 @@ void s_simu(MatrixXd& bus,MatrixXd& line,MatrixXd& mac_con,MatrixXd& load_con,Ma
     save_exc_coefficient(exc_coef_file,
                         exc_con,
                         exc_pot,
-                        "Rep_exc_coef.txt");
+                        "Rep/Rep_exc_coef.txt");
     exc_coef_file.close();
 
     // save flag 1 vars 
     std::ofstream flag0_file("flag0_mac.txt");
 
     save_Flag0_mac_variables(flag0_file,
-                            "flag0_mac.txt",
+                            "Rep/flag0_mac.txt",
                             mac_ang,
                             edprime,
                             eqprime,
