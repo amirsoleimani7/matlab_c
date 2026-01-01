@@ -1,0 +1,5 @@
+% machine_id  exc_vep_coef_mag  exc_vep_coef_phase  exc_ve_coef_mag  exc_ve_coef_phase
+0  559  1430  341117  6541
+1  559  1430  341117  6541
+2  559  1430  341117  6541
+3  559  1430  341117  6541

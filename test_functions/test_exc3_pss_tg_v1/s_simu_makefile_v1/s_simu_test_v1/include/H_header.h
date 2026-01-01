@@ -20,7 +20,7 @@
 #include"H_NBus.h"
 #include"H_Line.h"
 
-
+#define M_PI 3.14159265358979323846264338327950288
 
 double inverse(double num) ;
 double degreeToRadians( double degrees) ;
