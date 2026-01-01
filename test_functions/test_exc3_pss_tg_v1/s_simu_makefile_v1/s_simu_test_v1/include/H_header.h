@@ -245,7 +245,58 @@ void nc_load(MatrixXd &bus , int falg , MatrixXd &load_con,
 //     const MatrixXd &n_tg_mat
 // );
 
-void save_maccon_matrix(ofstream &f, const MatrixXd &mac_con, const string &filename);
-void save_macpot_matrix(ofstream &f, const MatrixXd &matrix, const string &filename);
+void save_maccon_matrix(ofstream &f,
+                        const Eigen::MatrixXd &matrix,
+                        const std::string &filename);
+
+void save_macpot_matrix(std::ofstream &f,
+                        const Eigen::MatrixXd &matrix,
+                        const std::string &filename);
+                        
+void save_psscon_matrix(std::ofstream &f,
+                        const Eigen::MatrixXd &pss_con,
+                        const Eigen::MatrixXd &matrix,
+                        const std::string &filename);
+
+void save_psspot_matrix(std::ofstream &f,
+                        const Eigen::MatrixXd &matrix,
+                        const Eigen::MatrixXd &pss_con,
+                        const std::string &filename);
+
+void save_tgcon_matrix(std::ofstream &f,
+                       const Eigen::MatrixXd &matrix,
+                       const Eigen::MatrixXd &tg_con,
+                       const std::string &filename);
+
+void save_tgpot_matrix(std::ofstream &f,
+                       const Eigen::MatrixXd &matrix,
+                       const Eigen::MatrixXd &tg_con,
+                       const std::string &filename);
+
+void save_exccon_matrix(std::ofstream &f,
+                        const Eigen::MatrixXd &matrix,
+                        const Eigen::MatrixXd &exc_con,
+                        const std::string &filename);
+
+void save_excpot_matrix(std::ofstream &f,
+                        const Eigen::MatrixXd &matrix,
+                        const Eigen::MatrixXd &exc_con,
+                        const std::string &filename);
+
+void save_exc_coefficient(std::ofstream &f,
+                          const Eigen::MatrixXd &exc_con,
+                          const Eigen::MatrixXd &exc_pot,
+                          const std::string &filename);
+
+void save_Flag0_mac_variables(std::ofstream &f,
+                              const std::string &filename,
+                              const Eigen::VectorXd &mac_ang,
+                              const Eigen::VectorXd &edprime,
+                              const Eigen::VectorXd &eqprime,
+                              const Eigen::VectorXd &psikd,
+                              const Eigen::VectorXd &psikq,
+                              const Eigen::VectorXd &vex,
+                              const Eigen::VectorXd &pmech,
+                              const Eigen::VectorXd &pelec);
 
 #endif
