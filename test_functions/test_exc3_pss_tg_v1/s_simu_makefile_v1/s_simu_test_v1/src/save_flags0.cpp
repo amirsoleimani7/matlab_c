@@ -530,12 +530,6 @@ void save_exc_coefficient(std::ofstream &f,
 }
 
 
-#include <fstream>
-#include <iomanip>
-#include <string>
-#include <vector>
-#include <Eigen/Dense>
-
 void save_Flag0_mac_variables(std::ofstream &f,
                               const std::string &filename,
                               const Eigen::VectorXd &mac_ang,
